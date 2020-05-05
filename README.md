@@ -12,13 +12,14 @@ Mini projects built with HTML5, CSS &amp; JavaScript
   - Hang man
   - rock paper scissors
   - pong game
+  - memory
 - Counters/clock/countdown
-  - Dead counter
+  - till I die counter
   - Days till New Years counter
   - is it Friday counter
   - is it beer time counter
   - meditation clock
-  - progress
+  - progress bar
   - 7 min app
 - SVG editor
 - photo upload and manipulation and share

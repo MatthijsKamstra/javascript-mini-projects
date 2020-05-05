@@ -1,0 +1,23 @@
+--class-path src
+--dce full
+# -D source-map-content
+# -D state=debug
+# -debug
+# -dce full
+# -dce no
+
+--each
+
+-main Main
+-js docs/default.js
+
+--next
+
+-main PhotoWatermark
+-js docs/photo-watermark/photo-watermark.js
+
+--next
+
+-main EmojiFavicon
+-js docs/emoji-favicon/emoji-favicon.js
+

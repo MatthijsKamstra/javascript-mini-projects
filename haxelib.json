@@ -1,0 +1,11 @@
+{
+  "name": "MiniProjectInJavascript",
+  "url": "https://github.com/MatthijsKamstra",
+  "license": "MIT",
+  "tags": ["haxe", "javascript", "mini", "projects"],
+  "description": "Mini projects in Javascript by Matthijs Kamstra aka [mck]",
+  "version": "0.0.1",
+  "classPath": "src",
+  "releasenote": "",
+  "contributors": ["Matthijs_Kamstra"]
+}

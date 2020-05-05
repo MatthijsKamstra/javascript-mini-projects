@@ -1,0 +1,19 @@
+-lib cc-sketch-plus
+-lib hxquicksettings
+-lib hxexterns
+-lib cc-export
+# -lib thx.color
+-lib thx.csv
+# -lib hxColorToolkit
+# -lib msignal
+# -lib mloader
+# -lib uglifyjs
+-cp src
+-main Main
+-js docs/cc_doodle.js
+# -D source-map-content
+# -D state=debug
+-debug
+# -dce full
+# -dce no
+

@@ -9,7 +9,7 @@
 --each
 
 -main Main
--js docs/default.js
+-js docs/assets/js/default.js
 
 --next
 

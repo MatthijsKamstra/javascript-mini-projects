@@ -3,7 +3,7 @@
 var App = function() { };
 var Main = function() {
 	window.document.addEventListener("DOMContentLoaded",function(event) {
-		window.console.log("" + App.NAME + " Dom ready :: build: " + "2020-05-05 15:44:01");
+		window.console.log("" + App.NAME + " Dom ready :: build: " + "2020-05-06 11:21:46");
 	});
 };
 Main.main = function() {

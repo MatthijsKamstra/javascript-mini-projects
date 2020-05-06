@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Easier to locate this page with an icon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦄</text></svg>">
+
+    <!-- ficons -->
+    <link href="https://cdn.jsdelivr.net/npm/ficons@1.1.52/dist/ficons/font.css" rel="stylesheet">
+
+    <!-- default styling (navigation) -->
+    <link rel="stylesheet" href="../assets/css/default.css">
+
+    <title>[mck] Photo watermark</title>
+
+    <style>
+        body {
+            background: rgb(33, 147, 176);
+            background: linear-gradient(90deg, rgba(33, 147, 176, 1) 0%, rgba(109, 213, 237, 1) 100%);
+        }
+
+        .text-muted {
+            color: silver;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        #canvas {
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Example</h1>
+                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna
+                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat. Duis
+                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint
+                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#mySidenav -->
+
+    <!-- Use any element to open the sidenav -->
+    <span class="openbtn" onclick="openNav()">☰</span>
+
+    <div id="main">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1>Photo Watermark</h1>
+                            <form id="photo-watermark">
+                                <!-- <div class="form-group">
+                                    <label for="formGroupExampleInput">Example label</label>
+                                    <input type="text" class="form-control" id="formGroupExampleInput"
+                                        placeholder="What is your name">
+                                </div> -->
+                                <div class="form-group">
+                                    <!-- <label for="exampleFormControlFile1">Example file input</label> -->
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1"
+                                        accept="image/*" style="display:none">
+                                </div>
+
+                                <div class="form-group">
+                                    <img src="preview.png" id="filePreview" class="img-fluid img-thumbnail"
+                                        alt="Responsive image">
+                                    <span id="filePreviewText" class="text-muted"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <button id="fileSelect" class="btn btn-dark btn-block">Select an image file
+                                        (jpg/png)</button>
+                                </div>
+
+                                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                            </form>
+
+                            <canvas id="canvas"></canvas>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col-6 -->
+
+
+
+
+            </div>
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#main -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <!-- default script (navigation) -->
+    <script src="../assets/js/default.js"></script>
+
+    <!-- custom script -->
+    <script src="photo-watermark.js"></script>
+</body>
+
+</html>

@@ -21,11 +21,15 @@ Mini projects built with HTML5, CSS &amp; JavaScript
   - meditation clock
   - progress bar
   - 7 min app
-- SVG editor
-- photo upload and manipulation and share
-- Form validator
-- Custom video player
-- Custom music player
+- SVG editor (svg exporter)
+- Form
+  - basic form validator
+  - drag and drop image/file
+  - photo share (twitter)
+  - photo upload and manipulation and share
+- Skinning default
+  - Custom video player
+  - Custom music player
 - ar.js
 - parcel
 - js drawing (canvas)

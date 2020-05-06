@@ -37,35 +37,17 @@
         #canvas {
             width: 100%;
         }
+
+        .fileSelect {
+            cursor: pointer;
+        }
     </style>
 
 </head>
 
 <body>
 
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>Example</h1>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis
-                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                        pariatur. Excepteur sint
-                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- /.container -->
-    </div>
-    <!-- /#mySidenav -->
 
-    <!-- Use any element to open the sidenav -->
-    <span class="openbtn" onclick="openNav()">☰</span>
 
     <div id="main">
         <div class="container">
@@ -87,13 +69,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <img src="preview.png" id="filePreview" class="img-fluid img-thumbnail"
-                                        alt="Responsive image">
+                                    <span class="fileSelect">
+                                        <img src="preview.png" id="filePreview" class="img-fluid img-thumbnail"
+                                            alt="Responsive image">
+                                    </span>
                                     <span id="filePreviewText" class="text-muted"></span>
-                                </div>
-
-                                <div class="form-group">
-                                    <button id="fileSelect" class="btn btn-dark btn-block">Select an image file
+                                    <button class="fileSelect btn btn-dark btn-block">Select an image file
                                         (jpg/png)</button>
                                 </div>
 

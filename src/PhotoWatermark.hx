@@ -10,8 +10,14 @@ import js.Browser.*;
  *
  */
 class PhotoWatermark {
+	// images
 	var waterMarkImg:Image;
 	var selectedImg:Image;
+	// elements
+	var form:FormElement;
+	var fileInput:InputElement;
+	var previewText:SpanElement;
+	var previewImg:ImageElement;
 
 	public function new() {
 		document.addEventListener("DOMContentLoaded", function(event) {
@@ -20,36 +26,46 @@ class PhotoWatermark {
 		});
 	}
 
-	function init() {
-		loadWaterMarkImage();
-
-		var form:js.html.FormElement = cast document.getElementById('photo-watermark');
-
-		// document.forms;
-
+	function setElements() {
+		form = cast document.getElementById('photo-watermark');
+		fileInput = cast document.getElementById("exampleFormControlFile1");
+		previewText = cast document.getElementById('filePreviewText');
+		previewImg = cast document.getElementById("filePreview");
 		// trace(form);
+		// document.forms;
 		// document.getElementById("btn01").disabled = true;
 		// document.getElementById("frm1").submit();
+
+		var fileSelectCollection = document.getElementsByClassName("fileSelect");
+		for (i in 0...fileSelectCollection.length) {
+			var fileSelect = fileSelectCollection[i];
+			fileSelect.onclick = function(e) {
+				if (fileInput != null) {
+					fileInput.click();
+				}
+			};
+		}
+	}
+
+	function init() {
+		setElements();
+		loadWaterMarkImage();
 
 		form.onsubmit = function(event) {
 			console.log("Saving value");
 			event.preventDefault();
 		};
 
-		var input:InputElement = cast document.getElementById("exampleFormControlFile1");
-
-		input.onchange = function(e) {
+		fileInput.onchange = function(e) {
 			var fileList:FileList = e.files;
-			if (input.files.length > 0) {
-				var file:File = input.files[0];
+			if (fileInput.files.length > 0) {
+				var file:File = fileInput.files[0];
 				console.log("You chose: ", file.name);
 				console.log("Weight: ", file.size);
 				console.log("Type: ", file.type);
 
-				var previewText:js.html.SpanElement = cast document.getElementById('filePreviewText');
-				previewText.innerText = '${file.name}" is ' + utils.ConvertBytes.bytesToSize(file.size);
+				previewText.innerText = '"${file.name}" is ' + utils.ConvertBytes.bytesToSize(file.size);
 				//
-				var previewImg:ImageElement = cast document.getElementById("filePreview");
 				var fileReader = new FileReader();
 				fileReader.onload = function() {
 					// convert image file to base64 string
@@ -57,15 +73,6 @@ class PhotoWatermark {
 					createImage(fileReader.result);
 				};
 				fileReader.readAsDataURL(file);
-			}
-		};
-
-		var fileSelect = document.getElementById("fileSelect");
-		var fileElem = input;
-
-		fileSelect.onclick = function(e) {
-			if (fileElem != null) {
-				fileElem.click();
 			}
 		};
 	}
@@ -87,27 +94,26 @@ class PhotoWatermark {
 		// alert(canvas.toDataURL("image/png"));
 
 		// position center
+		console.log('water.w: ' + waterMarkImg.width + ", water.h: " + waterMarkImg.height);
+		console.log('canvas.w: ' + canvas.width + ", canvas.h: " + canvas.height);
 
-		ctx.drawImage(waterMarkImg, 100, 100, 70, 50);
+		var scale = (canvas.height * 0.5) / waterMarkImg.height;
+		var left = (canvas.width - (waterMarkImg.width * scale)) / 2;
+		var top = (canvas.height - (waterMarkImg.height * scale)) / 2;
+
+		console.log(scale);
+
+		ctx.globalAlpha = 0.5;
+		ctx.drawImage(waterMarkImg, left, top, waterMarkImg.width * scale, waterMarkImg.height * scale);
 	}
 
 	function loadWaterMarkImage() {
 		waterMarkImg = new Image();
 		waterMarkImg.onload = function(e) {
+			// [mck] need to set a boolean?
 			console.log(e);
 		}
 		waterMarkImg.src = 'watermark.png';
-	}
-
-	function validateForm() {
-		// var submitbtn = document.get;
-
-		// var x = document.forms["myForm"]["fname"].value;
-
-		// if (x == "") {
-		// 	alert("Name must be filled out");
-		// 	return false;
-		// }
 	}
 
 	static public function main() {

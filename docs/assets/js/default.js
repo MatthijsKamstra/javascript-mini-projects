@@ -2,46 +2,56 @@
 (function ($global) { "use strict";
 var App = function() { };
 var Main = function() {
-	this.req = new XMLHttpRequest();
 	this.url = "_post.html";
-	window.console.log("" + App.NAME + " Dom ready :: build: " + "2020-05-06 16:37:05");
-	var span = window.document.createElement("span");
-	span.className = "openbtn";
-	span.innerText = "☰";
-	span.onclick = $bind(this,this.openNav);
-	window.document.body.prepend(span);
-	var nav = window.document.createElement("div");
-	nav.id = "mySidenav";
-	nav.className = "sidenav";
-	window.document.body.append(nav);
-	var link = window.document.createElement("a");
-	link.className = "closebtn";
-	link.innerText = "×";
-	link.onclick = $bind(this,this.closeNav);
-	nav.prepend(link);
-	var container = window.document.createElement("div");
-	container.className = "wrapper";
-	nav.append(container);
-	this.loadHTML(this.url,container);
+	window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-06 16:58:57");
+	this.setupNav();
 };
 Main.main = function() {
 	var app = new Main();
 };
 Main.prototype = {
-	loadHTML: function(url,el) {
+	setupNav: function() {
+		this.span = window.document.createElement("span");
+		this.span.className = "openbtn";
+		this.span.innerText = "☰";
+		this.span.onclick = $bind(this,this.openNav);
+		this.nav = window.document.createElement("div");
+		this.nav.id = "mySidenav";
+		this.nav.className = "sidenav";
+		var link = window.document.createElement("a");
+		link.className = "closebtn";
+		link.innerText = "×";
+		link.onclick = $bind(this,this.closeNav);
+		this.nav.prepend(link);
+		var container = window.document.createElement("div");
+		container.className = "wrapper";
+		this.nav.append(container);
+		this.loadHTML(this.url,container);
+	}
+	,finishSetup: function() {
+		window.document.body.prepend(this.span);
+		window.document.body.append(this.nav);
+	}
+	,loadHTML: function(url,el) {
 		var _gthis = this;
-		this.req.open("GET",url);
-		this.req.onload = function() {
-			var body = _gthis.getBody(_gthis.req.response);
+		var req = new XMLHttpRequest();
+		req.onreadystatechange = function() {
+			if(this.readyState == 4 && this.status == 200) {
+				_gthis.finishSetup();
+			}
+		};
+		req.onload = function() {
+			var body = _gthis.getBody(req.response);
 			if(body == "") {
-				body = _gthis.req.response;
+				body = req.response;
 			}
 			_gthis.processHTML(body,el);
 		};
-		this.req.onerror = function(error) {
+		req.onerror = function(error) {
 			window.console.error("[JS] error: " + error);
 		};
-		this.req.send();
+		req.open("GET",url);
+		req.send();
 	}
 	,getBody: function(html) {
 		var test = html.toLowerCase();

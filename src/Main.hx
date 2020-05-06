@@ -1,27 +1,33 @@
 package;
 
+import js.Lib;
 import js.Browser.*;
 import js.html.XMLHttpRequest;
 
 class Main {
 	var url = "_post.html";
-	var req = new XMLHttpRequest();
+	// elements
+	var span:SpanElement;
+	var nav:DivElement;
 
 	public function new() {
-		console.log('${App.NAME} Dom ready :: build: ${App.getBuildDate()}');
+		console.log('${App.NAME} - Navigation - Dom ready :: build: ${App.getBuildDate()}');
+		setupNav();
+	}
 
+	function setupNav() {
 		// open menu at the top of body
-		var span = document.createSpanElement();
+		span = document.createSpanElement();
 		span.className = "openbtn";
 		span.innerText = "☰";
 		span.onclick = openNav;
-		document.body.prepend(span);
+		// don't add it yet
 
 		// nav container
-		var nav = document.createDivElement();
+		nav = document.createDivElement();
 		nav.id = "mySidenav";
 		nav.className = "sidenav";
-		document.body.append(nav);
+		// don't add it yet
 
 		// add structure to nav container
 		var link = document.createAnchorElement();
@@ -37,6 +43,11 @@ class Main {
 
 		// load the data into the container
 		loadHTML(url, container);
+	}
+
+	function finishSetup() {
+		document.body.prepend(span);
+		document.body.append(nav);
 	}
 
 	/**
@@ -56,8 +67,14 @@ class Main {
 	 * @param el		element to parse the body into
 	 */
 	function loadHTML(?url:String, ?el:js.html.Element) {
+		var req = new XMLHttpRequest();
 		// your code
-		req.open('GET', url);
+		req.onreadystatechange = function() {
+			if (Lib.nativeThis.readyState == 4 && Lib.nativeThis.status == 200) {
+				// console.log(Lib.nativeThis.responseText);
+				finishSetup();
+			}
+		};
 		req.onload = function() {
 			var body = getBody(req.response);
 			if (body == "")
@@ -67,6 +84,7 @@ class Main {
 		req.onerror = function(error) {
 			console.error('[JS] error: $error');
 		};
+		req.open('GET', url);
 		req.send();
 	}
 

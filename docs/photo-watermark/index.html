@@ -34,7 +34,7 @@
             white-space: nowrap;
         }
 
-        #canvas {
+        #canvas-watermark {
             width: 100%;
         }
 
@@ -46,8 +46,6 @@
 </head>
 
 <body>
-
-
 
     <div id="main">
         <div class="container">
@@ -62,10 +60,10 @@
                                     <input type="text" class="form-control" id="formGroupExampleInput"
                                         placeholder="What is your name">
                                 </div> -->
-                                <div class="form-group">
-                                    <!-- <label for="exampleFormControlFile1">Example file input</label> -->
+                                <div class="form-group" style="display:none">
+                                    <label for="exampleFormControlFile1">Example file input</label>
                                     <input type="file" class="form-control-file" id="exampleFormControlFile1"
-                                        accept="image/*" style="display:none">
+                                        accept="image/*">
                                 </div>
 
                                 <div class="form-group">
@@ -80,8 +78,14 @@
 
                                 <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
                             </form>
-
-                            <canvas id="canvas"></canvas>
+                            <div id="container-canvas">
+                                <canvas id="canvas-watermark"></canvas>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button id="btn-download" class="btn btn-dark">download</button>
+                                    <button id="btn-base64" class="btn btn-dark d-none">base64</button>
+                                    <button id="btn-base64-2" class="btn btn-dark">open in tab</button>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>

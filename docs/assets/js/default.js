@@ -3,7 +3,7 @@
 var App = function() { };
 var Main = function() {
 	this.url = "_post.html";
-	window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-06 16:58:57");
+	window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-06 20:48:06");
 	this.setupNav();
 };
 Main.main = function() {

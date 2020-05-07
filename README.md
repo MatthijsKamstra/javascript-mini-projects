@@ -48,6 +48,25 @@ Mini projects built with HTML5, CSS &amp; JavaScript
 - emoji favicon generator
 - copy example code
 
+## list mini projects
+
+javascript mini projects
+
+- https://github.com/bradtraversy/vanillawebprojects
+- https://dev.to/simonholdorf/9-awesome-projects-you-can-build-with-vanilla-javascript-2o1b
+- https://skillcrush.com/blog/projects-you-can-do-with-javascript/
+- https://simplestepscode.com/javascript-project-ideas/
+- https://github.com/Asabeneh/30DaysOfJavaScript
+- https://javascript30.com/
+- https://github.com/wesbos/JavaScript30
+- https://flaviocopes.com/sample-app-ideas/
+- https://mikkegoes.com/javascript-projects-for-beginners/
+- https://learnvanillajs.com/projects/
+- https://www.juniordevelopercentral.com/13-javascript-project-ideas/
+- https://blog.bitsrc.io/15-app-ideas-to-build-and-level-up-your-coding-skills-28612c72a3b1
+- https://doctorcodetutorial.blogspot.com/2019/08/5-javascript-project-ideas-that-you-can.html
+- https://areknawo.com/7-best-javascript-projects-to-master-your-skills/
+
 ## Developer install
 
 Als developer installeer je:
@@ -70,9 +89,9 @@ En nice to haves:
 - Prettier - Code formatter: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 - Prettify JSON: https://marketplace.visualstudio.com/items?itemName=mohsen1.prettify-json
 
-## Start developement
+## Start development
 
-Gebruik de `public_html` (bin) folder als root, theoretisch zou dit ook moeten werken op de server
+Gebruik de `docs` folder als root, theoretisch zou dit ook moeten werken op de server
 
 - `npm install` om alle node packages te installeren (worden ignored voor git, dus zelf installeren)
 - VSCode plugin _LiveServer_: https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer

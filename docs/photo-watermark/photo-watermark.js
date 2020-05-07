@@ -12,7 +12,7 @@ Math.__name__ = true;
 var PhotoWatermark = function() {
 	var _gthis = this;
 	window.document.addEventListener("DOMContentLoaded",function(event) {
-		window.console.log("" + App.NAME + " - PhotoWatermark - Dom ready :: build: " + "2020-05-06 21:15:48");
+		window.console.log("" + App.NAME + " - PhotoWatermark - Dom ready :: build: " + "2020-05-07 11:51:15");
 		_gthis.init();
 	});
 };

@@ -16,8 +16,13 @@
 -main PhotoWatermark
 -js docs/photo-watermark/photo-watermark.js
 
+
+--next
+
+-main DragAndDrop
+-js docs/drag-and-drop/drag-and-drop.js
+
 --next
 
 -main EmojiFavicon
 -js docs/emoji-favicon/emoji-favicon.js
-

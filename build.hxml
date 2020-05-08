@@ -1,5 +1,6 @@
 --class-path src
 --dce full
+-D js-es=6
 # -D source-map-content
 # -D state=debug
 # -debug

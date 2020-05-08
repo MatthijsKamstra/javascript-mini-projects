@@ -22,6 +22,12 @@
 -main DragAndDrop
 -js docs/drag-and-drop/drag-and-drop.js
 
+
+--next
+
+-main Desktop
+-js docs/desktop/desktop.js
+
 --next
 
 -main EmojiFavicon

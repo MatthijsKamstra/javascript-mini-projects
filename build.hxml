@@ -31,5 +31,10 @@
 
 --next
 
+-main ToggleSound
+-js docs/togglesound/togglesound.js
+
+--next
+
 -main EmojiFavicon
 -js docs/emoji-favicon/emoji-favicon.js

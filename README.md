@@ -47,6 +47,7 @@ Mini projects built with HTML5, CSS &amp; JavaScript
 - real time chat (sockets)
 - emoji favicon generator
 - copy example code
+- copy paste
 
 ## list mini projects
 

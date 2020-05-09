@@ -1,39 +1,87 @@
 package;
 
+import haxe.Constraints.Function;
 import js.Lib;
 import js.Browser.*;
 import js.html.XMLHttpRequest;
 
 class Main {
-	var url = "_post.html";
-	// elements
-	var span:SpanElement;
-	var nav:DivElement;
+	// id
+	var HOME_ID = 'myHomeSideNav';
+	var INFO_ID = 'mySidenav';
+	// load
+	var homeUrl = "../_nav.html";
+	var infoUrl = "_post.html";
 
 	public function new() {
 		console.log('${App.NAME} - Navigation - Dom ready :: build: ${App.getBuildDate()}');
-		setupNav();
+
+		loadData(homeUrl, setupHome);
+		loadData(infoUrl, setupInfo);
 	}
 
-	function setupNav() {
-		// open menu at the top of body
-		span = document.createSpanElement();
-		span.className = "openbtn";
-		span.innerText = "☰";
-		span.onclick = openNav;
-		// don't add it yet
+	function loadData(url:String, callback:Function) {
+		// trace(url);
+		var req = new XMLHttpRequest();
+		req.onreadystatechange = function() {
+			if (Lib.nativeThis.readyState == 4 && Lib.nativeThis.status == 200) {
+				// console.log(Lib.nativeThis.responseText);
+				// finishSetup();
+			}
+		};
+		req.onload = function() {
+			var body = getBody(req.response);
+			if (body == "")
+				body = req.response;
 
+			callback(body);
+		};
+		req.onerror = function(error) {
+			console.error('[JS] error: $error');
+		};
+		req.open('GET', url);
+		req.send();
+	}
+
+	/**
+	 * info depends if there is a file `_post.html`
+	 */
+	function setupInfo(body:String) {
+		// open menu at the top of body
+		var span = document.createSpanElement();
+		span.className = "btn-open";
+		span.innerHTML = '<i class="fa fa-navicon"></i>'; // "☰";
+		span.onclick = () -> openPanel(INFO_ID);
+		document.body.prepend(span);
+
+		setupPanel(INFO_ID, body);
+	}
+
+	/**
+	 * is always present, nav?
+	 */
+	function setupHome(body:String) {
+		var span = document.createSpanElement();
+		span.className = "btn-home-open";
+		span.innerHTML = '<i class="fa fa-home"></i>';
+		span.onclick = () -> openPanel(HOME_ID);
+		document.body.prepend(span);
+
+		setupPanel(HOME_ID, body);
+	}
+
+	function setupPanel(id:String, body:String) {
 		// nav container
-		nav = document.createDivElement();
-		nav.id = "mySidenav";
+		var nav = document.createDivElement();
+		nav.id = id;
 		nav.className = "sidenav";
-		// don't add it yet
+		document.body.append(nav);
 
 		// add structure to nav container
 		var link = document.createAnchorElement();
-		link.className = 'closebtn';
-		link.innerText = '×';
-		link.onclick = closeNav;
+		link.className = 'btn-close';
+		link.innerHTML = '<i class="fa fa-times"></i>'; // '×';
+		link.onclick = () -> closePanel(id);
 		nav.prepend(link);
 
 		// wrapper to parse data in
@@ -41,13 +89,7 @@ class Main {
 		container.className = 'wrapper';
 		nav.append(container);
 
-		// load the data into the container
-		loadHTML(url, container);
-	}
-
-	function finishSetup() {
-		document.body.prepend(span);
-		document.body.append(nav);
+		processHTML(body, container);
 	}
 
 	/**
@@ -61,32 +103,7 @@ class Main {
 		return template.firstChild;
 	}
 
-	/**
-	 * load the html page and parse the body into the element
-	 * @param url		file name
-	 * @param el		element to parse the body into
-	 */
-	function loadHTML(?url:String, ?el:js.html.Element) {
-		var req = new XMLHttpRequest();
-		// your code
-		req.onreadystatechange = function() {
-			if (Lib.nativeThis.readyState == 4 && Lib.nativeThis.status == 200) {
-				// console.log(Lib.nativeThis.responseText);
-				finishSetup();
-			}
-		};
-		req.onload = function() {
-			var body = getBody(req.response);
-			if (body == "")
-				body = req.response;
-			processHTML(body, el);
-		};
-		req.onerror = function(error) {
-			console.error('[JS] error: $error');
-		};
-		req.open('GET', url);
-		req.send();
-	}
+	// ____________________________________ utils ____________________________________
 
 	/**
 	 * get the body of the document...
@@ -113,19 +130,21 @@ class Main {
 		target.innerHTML = content;
 	}
 
-	/* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
-	function openNav() {
-		document.getElementById("mySidenav").style.width = "50%";
+	// ____________________________________ open/close panel ____________________________________
+
+	function openPanel(id:String) {
+		document.getElementById(id).style.width = "50%";
 		// document.getElementById("main").style.marginLeft = "50%";
 		document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 	}
 
-	/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
-	function closeNav() {
-		document.getElementById("mySidenav").style.width = "0";
+	function closePanel(id:String) {
+		document.getElementById(id).style.width = "0";
 		// document.getElementById("main").style.marginLeft = "0";
 		document.body.style.backgroundColor = "white";
 	}
+
+	// ____________________________________ main ____________________________________
 
 	static public function main() {
 		var app = new Main();

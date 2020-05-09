@@ -2,6 +2,16 @@
 
 Mini projects built with HTML5, CSS &amp; JavaScript
 
+## Ideas examples
+
+| Name            | type          | link                         |
+| --------------- | ------------- | ---------------------------- |
+| photo watermark | canvas/upload | [link](docs/photo-watermark) |
+| desktop         | counter       | [link](docs/desktop)         |
+| svg-drag        | svg/tool      | [link](docs/svg-drag)        |
+| drag-and-drop   | upload        | [link](docs/drag-and-drop)   |
+| togglesound     | default style | [link](docs/togglesound)     |
+
 ## Ideas
 
 - Mini SPA website
@@ -14,6 +24,7 @@ Mini projects built with HTML5, CSS &amp; JavaScript
   - pong game
   - memory
 - Counters/clock/countdown
+  - ~~current time~~
   - till I die counter
   - Days till New Years counter
   - is it Friday counter
@@ -23,13 +34,13 @@ Mini projects built with HTML5, CSS &amp; JavaScript
   - 7 min app
 - SVG editor (svg exporter)
 - Form
-  - basic form validator
-  - drag and drop image/file
+  - ~~basic form validator~~
+  - ~~drag and drop image/file~~
   - photo share (twitter)
-  - photo upload and manipulation and share
+  - ~~photo upload and manipulation~~ and share
 - Skinning default
   - Custom video player
-  - Custom music player
+  - ~~Custom music player~~
 - ar.js
 - parcel
 - js drawing (canvas)

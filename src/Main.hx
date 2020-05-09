@@ -21,8 +21,12 @@ class Main {
 		loadData(infoUrl, setupInfo);
 	}
 
+	/**
+	 * loading data, check if file exists before generating navigation
+	 * @param url 		load file from here
+	 * @param callback 	if file exists and is loaded, use this callbakc
+	 */
 	function loadData(url:String, callback:Function) {
-		// trace(url);
 		var req = new XMLHttpRequest();
 		req.onreadystatechange = function() {
 			if (Lib.nativeThis.readyState == 4 && Lib.nativeThis.status == 200) {
@@ -35,7 +39,8 @@ class Main {
 			if (body == "")
 				body = req.response;
 
-			callback(body);
+			if (Lib.nativeThis.status == 200)
+				callback(body);
 		};
 		req.onerror = function(error) {
 			console.error('[JS] error: $error');
@@ -43,6 +48,8 @@ class Main {
 		req.open('GET', url);
 		req.send();
 	}
+
+	// ____________________________________ setup ____________________________________
 
 	/**
 	 * info depends if there is a file `_post.html`
@@ -71,6 +78,8 @@ class Main {
 		setupPanel(HOME_ID, body);
 	}
 
+	// ____________________________________ set panel ____________________________________
+
 	function setupPanel(id:String, body:String) {
 		// nav container
 		var nav = document.createDivElement();
@@ -93,6 +102,8 @@ class Main {
 		processHTML(body, container);
 	}
 
+	// ____________________________________ utils ____________________________________
+
 	/**
 	 * parse an string as a html element
 	 * @param html
@@ -103,8 +114,6 @@ class Main {
 		template.innerHTML = html;
 		return template.firstChild;
 	}
-
-	// ____________________________________ utils ____________________________________
 
 	/**
 	 * get the body of the document...

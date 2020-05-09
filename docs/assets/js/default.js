@@ -4,52 +4,75 @@ class App {
 }
 class Main {
 	constructor() {
-		this.url = "_post.html";
-		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-08 11:52:44");
-		this.setupNav();
+		this.infoUrl = "_post.html";
+		this.homeUrl = "../_nav.html";
+		this.INFO_ID = "mySidenav";
+		this.HOME_ID = "myHomeSideNav";
+		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-09 18:58:34");
+		this.loadData(this.homeUrl,$bind(this,this.setupHome));
+		this.loadData(this.infoUrl,$bind(this,this.setupInfo));
 	}
-	setupNav() {
-		this.span = window.document.createElement("span");
-		this.span.className = "openbtn";
-		this.span.innerText = "☰";
-		this.span.onclick = $bind(this,this.openNav);
-		this.nav = window.document.createElement("div");
-		this.nav.id = "mySidenav";
-		this.nav.className = "sidenav";
-		var link = window.document.createElement("a");
-		link.className = "closebtn";
-		link.innerText = "×";
-		link.onclick = $bind(this,this.closeNav);
-		this.nav.prepend(link);
-		var container = window.document.createElement("div");
-		container.className = "wrapper";
-		this.nav.append(container);
-		this.loadHTML(this.url,container);
-	}
-	finishSetup() {
-		window.document.body.prepend(this.span);
-		window.document.body.append(this.nav);
-	}
-	loadHTML(url,el) {
+	loadData(url,callback) {
 		var req = new XMLHttpRequest();
 		var _gthis = this;
 		req.onreadystatechange = function() {
-			if(this.readyState == 4 && this.status == 200) {
-				_gthis.finishSetup();
-			}
+			var tmp = this.readyState == 4 && this.status == 200;
 		};
 		req.onload = function() {
 			var body = _gthis.getBody(req.response);
 			if(body == "") {
 				body = req.response;
 			}
-			_gthis.processHTML(body,el);
+			callback(body);
 		};
 		req.onerror = function(error) {
 			window.console.error("[JS] error: " + error);
 		};
 		req.open("GET",url);
 		req.send();
+	}
+	setupInfo(body) {
+		var _gthis = this;
+		var span = window.document.createElement("span");
+		span.className = "btn-open";
+		span.innerHTML = "<i class=\"fa fa-navicon\"></i>";
+		span.onclick = function() {
+			_gthis.openPanel(_gthis.INFO_ID);
+			return;
+		};
+		window.document.body.prepend(span);
+		this.setupPanel(this.INFO_ID,body);
+	}
+	setupHome(body) {
+		var _gthis = this;
+		var span = window.document.createElement("span");
+		span.className = "btn-home-open";
+		span.innerHTML = "<i class=\"fa fa-home\"></i>";
+		span.onclick = function() {
+			_gthis.openPanel(_gthis.HOME_ID);
+			return;
+		};
+		window.document.body.prepend(span);
+		this.setupPanel(this.HOME_ID,body);
+	}
+	setupPanel(id,body) {
+		var _gthis = this;
+		var nav = window.document.createElement("div");
+		nav.id = id;
+		nav.className = "sidenav";
+		window.document.body.append(nav);
+		var link = window.document.createElement("a");
+		link.className = "btn-close";
+		link.innerHTML = "<i class=\"fa fa-close\"></i>";
+		link.onclick = function() {
+			_gthis.closePanel(id);
+			return;
+		};
+		nav.prepend(link);
+		var container = window.document.createElement("div");
+		container.className = "wrapper";
+		nav.append(container);
+		this.processHTML(body,container);
 	}
 	getBody(html) {
 		var test = html.toLowerCase();
@@ -73,13 +96,13 @@ class Main {
 	processHTML(content,target) {
 		target.innerHTML = content;
 	}
-	openNav() {
-		window.document.getElementById("mySidenav").style.width = "50%";
+	openPanel(id) {
+		window.document.getElementById(id).style.width = "50%";
 		window.document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 	}
-	closeNav() {
-		window.document.getElementById("mySidenav").style.width = "0";
-		window.document.body.style.backgroundColor = "white";
+	closePanel(id) {
+		window.document.getElementById(id).style.width = "0";
+		window.document.body.style.backgroundColor = "initial";
 	}
 	static main() {
 		var app = new Main();

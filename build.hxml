@@ -9,8 +9,10 @@
 
 --each
 
+--macro tools.Macro.buildTemplate(true)
 -main Main
 -js docs/assets/js/default.js
+
 
 --next
 

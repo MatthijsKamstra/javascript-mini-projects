@@ -2,6 +2,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  transition: background-color 0.5s;
 }
 h1,
 h2,
@@ -27,8 +28,17 @@ h6 {
   color: white;
 }
 
+#myHomeSideNav {
+  left: initial;
+  right: 0;
+}
+#mySidenav {
+  left: 0;
+  right: initial;
+}
+
 /* The navigation menu links */
-.sidenav a {
+.sidenav ul li a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
@@ -37,41 +47,42 @@ h6 {
   transition: 0.3s;
 }
 
+.sidenav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: #f1f1f1;
+  background-color: silver;
 }
 
 /* Position and style the close button (top right corner) */
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-  z-index: 1;
-}
-.openbtn {
+/* .sidenav  */
+
+.btn-open .fa,
+.btn-home-open .fa,
+.btn-close .fa {
   cursor: pointer;
   position: absolute;
   top: 0;
+  margin: 5px;
+  opacity: 0.3;
+}
+.btn-home-open .fa {
+  right: 0;
+}
+.btn-open .fa {
   left: 0;
-  font-size: 36px;
-  margin: 20px;
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+.btn-close .fa {
+  right: 0;
+  z-index: 1;
+}
+
 #main {
   transition: margin-left 0.5s;
-  /* padding: 20px; */
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
-  }
-  .sidenav a {
-    font-size: 18px;
-  }
+  transition: margin-right 0.5s;
 }

@@ -13,6 +13,7 @@ class Main {
 	var homeUrl = "../_nav.html";
 	var infoUrl = "_post.html";
 
+	// @:build(macro.Macro.buildTemplate(true))
 	public function new() {
 		console.log('${App.NAME} - Navigation - Dom ready :: build: ${App.getBuildDate()}');
 
@@ -80,7 +81,7 @@ class Main {
 		// add structure to nav container
 		var link = document.createAnchorElement();
 		link.className = 'btn-close';
-		link.innerHTML = '<i class="fa fa-times"></i>'; // '×';
+		link.innerHTML = '<i class="fa fa-close"></i>'; // '×';
 		link.onclick = () -> closePanel(id);
 		nav.prepend(link);
 
@@ -141,7 +142,7 @@ class Main {
 	function closePanel(id:String) {
 		document.getElementById(id).style.width = "0";
 		// document.getElementById("main").style.marginLeft = "0";
-		document.body.style.backgroundColor = "white";
+		document.body.style.backgroundColor = "initial";
 	}
 
 	// ____________________________________ main ____________________________________

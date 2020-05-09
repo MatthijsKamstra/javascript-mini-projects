@@ -38,5 +38,5 @@
 
 --next
 
--main EmojiFavicon
--js docs/emoji-favicon/emoji-favicon.js
+# -main EmojiFavicon
+# -js docs/emoji-favicon/emoji-favicon.js

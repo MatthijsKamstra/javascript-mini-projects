@@ -6,7 +6,7 @@ class DragAndDrop {
 	constructor() {
 		var _gthis = this;
 		window.document.addEventListener("DOMContentLoaded",function(event) {
-			window.console.log("" + App.NAME + " - DragAndDrop - Dom ready :: build: " + "2020-05-08 11:52:44");
+			window.console.log("" + App.NAME + " - DragAndDrop - Dom ready :: build: " + "2020-05-09 18:58:34");
 			_gthis.init();
 		});
 	}

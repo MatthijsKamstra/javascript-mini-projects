@@ -8,7 +8,7 @@ class Desktop {
 		this.bgArray = ["bg/faruk-kaymak-P_Ne56WEe5s-unsplash.jpg","bg/simon-wilkes-py3Uw1QbK6A-unsplash.jpg","bg/tim-swaan-eOpewngf68w-unsplash.jpg"];
 		var _gthis = this;
 		window.document.addEventListener("DOMContentLoaded",function(event) {
-			window.console.log("" + App.NAME + " - Desktop - Dom ready :: build: " + "2020-05-08 11:52:16");
+			window.console.log("" + App.NAME + " - Desktop - Dom ready :: build: " + "2020-05-09 18:58:34");
 			_gthis.init();
 		});
 	}

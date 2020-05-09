@@ -57,11 +57,12 @@ class Macro {
 	public static function generateFromFolder(folder):Void {
 		var ignoreArr = ['_example', 'assets'];
 		var fileNames = FileSystem.readDirectory(folder);
-		var ul = '<ul class="nav-link">\n';
+		var ul = '<ul class="project-link">\n';
 		for (fileName in fileNames) {
 			if (FileSystem.isDirectory(folder + '/' + fileName)) {
-				// trace(fileName);
-				// // ignore invisible (OSX) files like ".DS_Store"
+				// folders
+
+				// ignore folder that start with `_`
 				if (fileName.startsWith("_"))
 					continue;
 
@@ -70,9 +71,7 @@ class Macro {
 					ul += '\t<li><a href="../$fileName">' + fileName + '</a></li>\n';
 				}
 			} else {
-				// [mck] untested folder stucture copy from sourcefolder
-				// FileSystem.createDirectory(binFolder + '/' + fileName + '/');
-				// generateFromFolder(folder + '/' + fileName, binFolder);
+				// files
 			}
 		}
 		ul += '</ul>';

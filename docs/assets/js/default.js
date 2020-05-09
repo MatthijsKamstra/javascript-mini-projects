@@ -8,7 +8,7 @@ class Main {
 		this.homeUrl = "../_nav.html";
 		this.INFO_ID = "mySidenav";
 		this.HOME_ID = "myHomeSideNav";
-		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-09 18:58:34");
+		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-09 19:28:00");
 		this.loadData(this.homeUrl,$bind(this,this.setupHome));
 		this.loadData(this.infoUrl,$bind(this,this.setupInfo));
 	}
@@ -23,7 +23,9 @@ class Main {
 			if(body == "") {
 				body = req.response;
 			}
-			callback(body);
+			if(this.status == 200) {
+				callback(body);
+			}
 		};
 		req.onerror = function(error) {
 			window.console.error("[JS] error: " + error);

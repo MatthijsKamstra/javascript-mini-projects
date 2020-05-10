@@ -6,7 +6,7 @@ class ToggleSound {
 
 	public function new() {
 		document.addEventListener("DOMContentLoaded", function(event) {
-			console.log('${App.NAME} - ToggleSound - Dom ready :: build: ${App.getBuildDate()}');
+			console.log('ToggleSound - Dom ready');
 			init();
 		});
 	}

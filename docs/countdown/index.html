@@ -25,18 +25,16 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
 
-        .container-fluid {
-            height: 100vh;
+        .container {
+            text-align: center;
         }
 
         #time {
             font-size: 170px;
             font-family: 'Roboto Mono', monospace;
-
         }
 
         .dotdot {
-
             font-size: 8rem;
             /* letter-spacing: -10px; */
             font-family: Arial, Helvetica, sans-serif;
@@ -48,33 +46,30 @@
 <body>
 
     <div id="main">
-        <div class="container-countdown">
-            <div class="container-fluid">
+        <div class="container">
 
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-12">
-                        <span id="time">09<span class='dotdot'>:</span>49</span>
-                    </div>
-                    <div class="col-12">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-12 ">
+                    <span id="time">09<span class='dotdot'>:</span>49</span>
+                </div>
+                <div class="col-12">
 
-                        <div class="btn-group" role="group" aria-label="Basic example">
+                    <div class="btn-group" role="group" aria-label="Basic example">
 
-                            <button id="btn-start" class="btn btn-dark">start</button>
-                            <button id="btn-stop" class="btn btn-danger">stop</button>
-                            <button id="btn-10" class="btn btn-dark">10 sec</button>
-                            <button id="btn-30" class="btn btn-dark">30 sec</button>
-                            <button id="btn-60" class="btn btn-dark">60 sec</button>
-                            <button id="btn-80" class="btn btn-dark">80 sec</button>
+                        <button id="btn-start" class="btn btn-dark">start</button>
+                        <button id="btn-stop" class="btn btn-danger">stop</button>
+                        <button id="btn-10" class="btn btn-dark">10 sec</button>
+                        <button id="btn-30" class="btn btn-dark">30 sec</button>
+                        <button id="btn-60" class="btn btn-dark">60 sec</button>
+                        <button id="btn-80" class="btn btn-dark">80 sec</button>
 
 
-                        </div>
                     </div>
                 </div>
-
             </div>
-            <!-- /.container -->
+
         </div>
-        <!-- /.container-countdown -->
+        <!-- /.container -->
     </div>
     <!-- /#main -->
 

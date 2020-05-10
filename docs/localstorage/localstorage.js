@@ -148,13 +148,14 @@ class LocalStorage {
 		this.superHeroLast = ["x","shield","machine","justice","beast","wing","arrow","skull","blade","bolt","cobra","blaze","soldier","strike","falcon","fang","king","surfer","bot","guard","thing","claw","brain","master","power","storm"];
 		this.superHeroFirst = ["captain","turbo","galactic","the","aqua","fire","iron","super","green","phantom","dark","ghost","professor","atomic","rock","omega","rocket","shadow","agent","silver","wild","wolf","ultra","wonder","doctor","star"];
 		this.dbName = "test-localstorage";
+		window.console.log("LocalStorage - Dom ready");
 		utils_LocalData.create(this.dbName);
 		if(utils_LocalData.read(this.dbName,"itemArray") == null) {
 			utils_LocalData.update(this.dbName,"itemArray",[]);
 		}
 		var _gthis = this;
 		window.document.addEventListener("DOMContentLoaded",function(event) {
-			window.console.log("" + App.NAME + " - Desktop - Dom ready :: build: " + "2020-05-10 17:51:12");
+			window.console.log("" + App.NAME + " - Desktop - Dom ready :: build: " + "2020-05-10 22:42:02");
 			_gthis.init();
 		});
 	}
@@ -188,11 +189,11 @@ class LocalStorage {
 	}
 	onAddHandler(e) {
 		var arr = utils_LocalData.read(this.dbName,"itemArray");
-		console.log("src/LocalStorage.hx:84:",arr);
+		console.log("src/LocalStorage.hx:88:",arr);
 		var superHeroName = this.superHeroFirst[Math.floor(Math.random() * this.superHeroFirst.length)] + " " + this.superHeroLast[Math.floor(Math.random() * this.superHeroLast.length)];
 		var obj = { name : superHeroName, created : HxOverrides.dateStr(new Date())};
 		arr.push(obj);
-		console.log("src/LocalStorage.hx:95:",arr);
+		console.log("src/LocalStorage.hx:99:",arr);
 		utils_LocalData.update(this.dbName,"itemArray",arr);
 		this.updateOutput();
 	}
@@ -201,7 +202,7 @@ class LocalStorage {
 	}
 	onReadHandler(e) {
 		var json = utils_LocalData.load(this.dbName);
-		console.log("src/LocalStorage.hx:106:",json);
+		console.log("src/LocalStorage.hx:110:",json);
 	}
 	static main() {
 		var app = new LocalStorage();

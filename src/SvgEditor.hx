@@ -22,7 +22,7 @@ class SvgEditor {
 
 	public function new() {
 		document.addEventListener("DOMContentLoaded", function(event) {
-			console.log('${App.NAME} - SvgEditor - Dom ready :: build: ${App.getBuildDate()}');
+			console.log('SvgEditor - Dom ready');
 			init();
 		});
 	}

@@ -8,7 +8,7 @@ class DragAndDrop {
 
 	public function new() {
 		document.addEventListener("DOMContentLoaded", function(event) {
-			console.log('${App.NAME} - DragAndDrop - Dom ready :: build: ${App.getBuildDate()}');
+			console.log('DragAndDrop - Dom ready');
 			init();
 		});
 	}

@@ -1,11 +1,13 @@
 import utils.LocalData;
 
 class LocalStorage {
+	// store data under name
 	var dbName = 'test-localstorage';
 
+	// output data localstorage
 	var output:DivElement;
 
-	//
+	// buttons
 	var btnDownload:ButtonElement;
 	var btnBase64:ButtonElement;
 	var btnBase642:ButtonElement;
@@ -21,6 +23,8 @@ class LocalStorage {
 	];
 
 	public function new() {
+		console.log('LocalStorage - Dom ready');
+
 		LocalData.create(dbName);
 		// console.log(LocalData.read(dbName, '_id'));
 		// console.log(LocalData.read(dbName, 'version'));

@@ -29,7 +29,7 @@ class Desktop {
 
 	public function new() {
 		document.addEventListener("DOMContentLoaded", function(event) {
-			console.log('${App.NAME} - Desktop - Dom ready :: build: ${App.getBuildDate()}');
+			console.log('Desktop - Dom ready');
 			init();
 		});
 	}

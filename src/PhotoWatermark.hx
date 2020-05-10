@@ -27,7 +27,7 @@ class PhotoWatermark {
 
 	public function new() {
 		document.addEventListener("DOMContentLoaded", function(event) {
-			console.log('${App.NAME} - PhotoWatermark - Dom ready :: build: ${App.getBuildDate()}');
+			console.log('PhotoWatermark - Dom ready');
 			init();
 		});
 	}

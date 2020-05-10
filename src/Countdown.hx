@@ -1,3 +1,5 @@
+import utils.Name;
+
 class Countdown {
 	var containerDesktop:DivElement;
 	var timeEl:SpanElement;
@@ -10,7 +12,7 @@ class Countdown {
 
 	public function new() {
 		document.addEventListener("DOMContentLoaded", function(event) {
-			console.log('${Type.getClassName(Type.getClass(this))} - Dom ready');
+			console.log('Countdown - Dom ready');
 			init();
 		});
 	}

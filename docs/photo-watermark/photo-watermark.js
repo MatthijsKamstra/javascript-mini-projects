@@ -8,7 +8,7 @@ class PhotoWatermark {
 	constructor() {
 		var _gthis = this;
 		window.document.addEventListener("DOMContentLoaded",function(event) {
-			window.console.log("" + App.NAME + " - PhotoWatermark - Dom ready :: build: " + "2020-05-09 21:29:59");
+			window.console.log("" + App.NAME + " - PhotoWatermark - Dom ready :: build: " + "2020-05-10 15:32:57");
 			_gthis.init();
 		});
 	}

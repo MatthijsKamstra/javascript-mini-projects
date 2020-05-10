@@ -10,7 +10,7 @@ class SvgEditor {
 		this.svgW = 600;
 		var _gthis = this;
 		window.document.addEventListener("DOMContentLoaded",function(event) {
-			window.console.log("" + App.NAME + " - SvgEditor - Dom ready :: build: " + "2020-05-10 11:05:15");
+			window.console.log("" + App.NAME + " - SvgEditor - Dom ready :: build: " + "2020-05-10 12:43:11");
 			_gthis.init();
 		});
 	}

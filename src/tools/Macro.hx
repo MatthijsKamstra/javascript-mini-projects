@@ -77,8 +77,7 @@ class Macro {
 		ul += '</ul>';
 
 		var tempTemplateFile = folder + '/_nav.html';
-
-		var file = {nav: ul, title: 'Generated: ${Date.now()}'};
+		var file = {nav: ul, title: 'Generated'};
 		var template = new haxe.Template(html);
 		var output = template.execute(file);
 

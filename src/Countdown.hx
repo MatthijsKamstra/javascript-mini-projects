@@ -73,38 +73,40 @@ class Countdown {
 		// _startTimer(totalSec - 1);
 	}
 
-	// function stopTimer() {
-	// 	if (isDebug)
-	// 		console.debug("stopTimer()");
-	// 	if (intervall != null) {
-	// 		clearInterval(intervall);
-	// 		gif.src = "/assets/img/timer/haan_timer_static.gif";
-	// 		timerText.textContent = defaultTimeString;
-	// 	}
-	// }
-	// var intervall = null;
-	// // var timer;
-	// function _startTimer(duration) {
-	// 	// console.debug("_startTimer");
-	// 	if (intervall != null) {
-	// 		clearInterval(intervall);
-	// 	}
-	// 	timer = duration;
-	// 	var minutes;
-	// 	var seconds;
-	// 	intervall = setInterval(function() {
-	// 		minutes = parseInt(timer / 60, 10);
-	// 		seconds = parseInt(timer % 60, 10);
-	// 		minutes = minutes < 10 ? "0" + minutes : minutes;
-	// 		seconds = seconds < 10 ? "0" + seconds : seconds;
-	// 		timerText.textContent = minutes + ":" + seconds;
-	// 		// console.debug(timer);
-	// 		if (--timer < 0) {
-	// 			timer = duration;
-	// 			clearInterval(intervall);
-	// 		}
-	// 	}, 1000);
-	// }
+	var intervall = null;
+
+	function stopTimer() {
+		console.debug("stopTimer()");
+		if (intervall != null) {
+			window.clearInterval(intervall);
+			timeEl.innerHTML = defaultTimeString;
+		}
+	}
+
+	var timer:Int;
+
+	function _startTimer(duration:Int) {
+		// console.debug("_startTimer");
+		if (intervall != null) {
+			window.clearInterval(intervall);
+		}
+		timer = duration;
+		var minutes;
+		var seconds;
+		intervall = window.setInterval(function() {
+			var _minutes = Std.int(timer / 60);
+			var _seconds = Std.int(timer % 60);
+			var minutes:String = checkTime(_minutes);
+			var seconds:String = checkTime(_seconds);
+			timeEl.innerHTML = minutes + "<span class='dotdot'>:</span>" + seconds;
+
+			// console.debug(timer);
+			if (--timer < 0) {
+				timer = duration;
+				window.clearInterval(intervall);
+			}
+		}, 1000);
+	}
 
 	static public function main() {
 		var app = new Countdown();

@@ -20,7 +20,7 @@
     <!-- default styling (navigation) -->
     <link rel="stylesheet" href="../assets/css/default.css">
 
-    <title>[mck] SVG drag</title>
+    <title>[mck] SVG Editor</title>
 
     <style>
         body {
@@ -37,6 +37,15 @@
             height: 100%;
             background-color: wheat;
         }
+
+
+        .static {
+            cursor: not-allowed;
+        }
+
+        .draggable {
+            cursor: move;
+        }
     </style>
 </head>
 
@@ -47,9 +56,12 @@
             <div class="row justify-content-center">
                 <div class="col-12">SVG Editor</div>
                 <div class="col-12">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210" height="210mm" width="210mm">
-                        <path d="M50 21.22l108.836-6.16-5.476 50z" fill="#0ff" stroke="#000" stroke-width="1" />
-                    </svg>
+                    <div id="wrapper-svg">
+                        <svg viewBox="0 0 600 300" width="600" height="300">
+                            <!-- test -->
+                        </svg>
+                    </div>
+                    <!-- /#wrapper-svg -->
                 </div>
             </div>
         </div>
@@ -74,7 +86,7 @@
     <script src="../assets/js/default.js"></script>
 
     <!-- custom script -->
-    <script src="svg-drag.js"></script>
+    <script src="svg-editor.js"></script>
 </body>
 
 </html>

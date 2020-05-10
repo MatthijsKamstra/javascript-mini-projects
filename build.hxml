@@ -38,5 +38,9 @@
 
 --next
 
+-main SvgEditor
+-js docs/svg-editor/svg-editor.js
+
+# --next
 # -main EmojiFavicon
 # -js docs/emoji-favicon/emoji-favicon.js

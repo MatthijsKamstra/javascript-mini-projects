@@ -13,18 +13,15 @@
 -main Main
 -js docs/assets/js/default.js
 
-
 --next
 
 -main PhotoWatermark
 -js docs/photo-watermark/photo-watermark.js
 
-
 --next
 
 -main DragAndDrop
 -js docs/drag-and-drop/drag-and-drop.js
-
 
 --next
 
@@ -40,10 +37,16 @@
 
 -main SvgEditor
 -js docs/svg-editor/svg-editor.js
+
 --next
 
 -main LocalStorage
 -js docs/localstorage/localstorage.js
+
+--next
+
+-main Countdown
+-js docs/countdown/countdown.js
 
 # --next
 # -main EmojiFavicon

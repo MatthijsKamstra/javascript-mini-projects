@@ -6,10 +6,12 @@ Mini projects built with HTML5, CSS &amp; JavaScript
 
 | Name            | type          | link                         |
 | --------------- | ------------- | ---------------------------- |
-| photo watermark | canvas/upload | [link](docs/photo-watermark) |
-| desktop         | counter       | [link](docs/desktop)         |
-| svg-drag        | svg/tool      | [link](docs/svg-drag)        |
+| countdown       | timer         | [link](docs/countdown)       |
+| desktop         | timer         | [link](docs/desktop)         |
 | drag-and-drop   | upload        | [link](docs/drag-and-drop)   |
+| localstorage    | cookie/data   | [link](docs/localstorage)    |
+| photo watermark | canvas/upload | [link](docs/photo-watermark) |
+| svg-editor      | svg/tool      | [link](docs/svg-editor)      |
 | togglesound     | default style | [link](docs/togglesound)     |
 
 ## Ideas
@@ -25,6 +27,7 @@ Mini projects built with HTML5, CSS &amp; JavaScript
   - memory
 - Counters/clock/countdown
   - ~~current time~~
+  - ~~countdown~~
   - till I die counter
   - Days till New Years counter
   - is it Friday counter
@@ -32,7 +35,7 @@ Mini projects built with HTML5, CSS &amp; JavaScript
   - meditation clock
   - progress bar
   - 7 min app
-- SVG editor (svg exporter)
+- ~~SVG editor (svg exporter)~~
 - Form
   - ~~basic form validator~~
   - ~~drag and drop image/file~~

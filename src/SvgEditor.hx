@@ -88,6 +88,13 @@ class SvgEditor {
 		svg.onmousemove = onMouseMoveHandler;
 		svg.onmouseup = onMouseUpHandler;
 		// svg.onmouseleave = onMouseUpHandler;
+		/*
+			svg.addEventListener('touchstart', startDrag);
+			svg.addEventListener('touchmove', drag);
+			svg.addEventListener('touchend', endDrag);
+			svg.addEventListener('touchleave', endDrag);
+			svg.addEventListener('touchcancel', endDrag);
+		 */
 	}
 
 	function setupGraphics() {

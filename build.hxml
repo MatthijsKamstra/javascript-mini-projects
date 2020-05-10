@@ -40,6 +40,10 @@
 
 -main SvgEditor
 -js docs/svg-editor/svg-editor.js
+--next
+
+-main LocalStorage
+-js docs/localstorage/localstorage.js
 
 # --next
 # -main EmojiFavicon

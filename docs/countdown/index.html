@@ -12,7 +12,7 @@
 
     <!-- Easier to locate this page with an icon -->
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏰</text></svg>">
 
     <!-- ficons -->
     <link href="https://cdn.jsdelivr.net/npm/ficons@1.1.52/dist/ficons/font.css" rel="stylesheet">
@@ -25,13 +25,26 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
 
+        body {
+            background: #56ab2f;
+            background: linear-gradient(90deg, #56ab2f 0%, #a8e063 100%);
+            height: 100%;
+        }
+
+
+
         .container {
             text-align: center;
+            height: 100vh;
         }
 
         #time {
             font-size: 170px;
             font-family: 'Roboto Mono', monospace;
+        }
+
+        #time-description {
+            display: block;
         }
 
         .dotdot {
@@ -48,22 +61,26 @@
     <div id="main">
         <div class="container">
 
-            <div class="row align-items-center justify-content-center">
-                <div class="col-12 ">
-                    <span id="time">09<span class='dotdot'>:</span>49</span>
-                </div>
-                <div class="col-12">
+            <div class="row align-items-center justify-content-center ">
+                <div id="center-center">
 
-                    <div class="btn-group" role="group" aria-label="Basic example">
+                    <div class="col-12 ">
+                        <span id="time-description"></span>
+                        <span id="time">09<span class='dotdot'>:</span>49</span>
+                    </div>
+                    <div class="col-12 ">
 
-                        <button id="btn-start" class="btn btn-dark">start</button>
-                        <button id="btn-stop" class="btn btn-danger">stop</button>
-                        <button id="btn-10" class="btn btn-dark">10 sec</button>
-                        <button id="btn-30" class="btn btn-dark">30 sec</button>
-                        <button id="btn-60" class="btn btn-dark">60 sec</button>
-                        <button id="btn-80" class="btn btn-dark">80 sec</button>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+
+                            <button id="btn-start" class="btn btn-success">start</button>
+                            <button id="btn-stop" class="btn btn-danger">stop</button>
+                            <button id="btn-10" class="btn btn-dark">10 sec</button>
+                            <button id="btn-30" class="btn btn-dark">30 sec</button>
+                            <button id="btn-60" class="btn btn-dark">60 sec</button>
+                            <button id="btn-80" class="btn btn-dark">80 sec</button>
 
 
+                        </div>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,8 @@
 (function ($global) { "use strict";
 class Countdown {
 	constructor() {
+		this.durationInSeconds = 10;
+		this.timerID = null;
 		var _gthis = this;
 		window.document.addEventListener("DOMContentLoaded",function(event) {
 			window.console.log("Countdown - Dom ready");
@@ -10,43 +12,97 @@ class Countdown {
 	}
 	init() {
 		this.setElements();
+		this.initTimer();
 	}
 	setElements() {
 		this.containerDesktop = window.document.getElementsByClassName("container-countdown")[0];
+		this.timeDescriptionEl = window.document.getElementById("time-description");
 		this.timeEl = window.document.getElementById("time");
-		this.btnDownload = window.document.getElementById("btn-start");
-		this.btnDownload.onclick = $bind(this,this.onTimerStartHandler);
-		this.btnBase64 = window.document.getElementById("btn-stop");
-		this.btnBase64.onclick = $bind(this,this.onTimerStopHandler);
-		var btn = window.document.getElementById("btn-10");
+		var btn = window.document.getElementById("btn-start");
 		var _gthis = this;
-		btn.onclick = function() {
+		btn.onclick = $bind(this,this.onTimerStartHandler);
+		var btn1 = window.document.getElementById("btn-stop");
+		btn1.onclick = $bind(this,this.onTimerStopHandler);
+		var btn2 = window.document.getElementById("btn-10");
+		btn2.onclick = function() {
 			_gthis.onSetTimeHandler(10);
 			return;
 		};
-		var btn1 = window.document.getElementById("btn-30");
-		btn1.onclick = function() {
+		var btn3 = window.document.getElementById("btn-30");
+		btn3.onclick = function() {
 			_gthis.onSetTimeHandler(30);
 			return;
 		};
-		var btn2 = window.document.getElementById("btn-60");
-		btn2.onclick = function() {
+		var btn4 = window.document.getElementById("btn-60");
+		btn4.onclick = function() {
 			_gthis.onSetTimeHandler(60);
 			return;
 		};
-		var btn3 = window.document.getElementById("btn-80");
-		btn3.onclick = function() {
+		var btn5 = window.document.getElementById("btn-80");
+		btn5.onclick = function() {
 			_gthis.onSetTimeHandler(80);
 			return;
 		};
+		this.sfxDone = new Audio("sfx/dun_dun_dun-Delsym-719755295.mp3");
+		this.sfxTick = new Audio("sfx/Tick-DeepFrozenApps-397275646.mp3");
 	}
 	onTimerStartHandler() {
+		this.startTimer();
 	}
 	onTimerStopHandler() {
+		this.stopTimer();
 	}
 	onSetTimeHandler(sec) {
-		console.log("src/Countdown.hx:47:",sec);
+		this.durationInSeconds = sec;
 		this.onTimerStopHandler();
+		this.initTimer();
+	}
+	initTimer() {
+		var _minutes = this.durationInSeconds / 60 | 0;
+		var _seconds = this.durationInSeconds % 60 | 0;
+		var minutes = this.checkTime(_minutes);
+		var seconds = this.checkTime(_seconds);
+		this.defaultTimeString = minutes + "<span class='dotdot'>:</span>" + seconds;
+		this.timeEl.innerHTML = minutes + "<span class='dotdot'>:</span>" + seconds;
+		this.timeDescriptionEl.innerHTML = "countdown is set to " + this.durationInSeconds + " seconds";
+	}
+	startTimer() {
+		this._startTimer(this.durationInSeconds - 1);
+	}
+	stopTimer() {
+		window.console.debug("stopTimer()");
+		if(this.timerID != null) {
+			window.clearInterval(this.timerID);
+			this.timeEl.innerHTML = this.defaultTimeString;
+		}
+	}
+	_startTimer(duration) {
+		if(this.timerID != null) {
+			window.clearInterval(this.timerID);
+		}
+		var _gthis = this;
+		this.counter = duration;
+		this.timerID = window.setInterval(function() {
+			_gthis.sfxTick.play();
+			var _minutes = _gthis.counter / 60 | 0;
+			var _seconds = _gthis.counter % 60 | 0;
+			var minutes = _gthis.checkTime(_minutes);
+			var seconds = _gthis.checkTime(_seconds);
+			_gthis.timeEl.innerHTML = minutes + "<span class='dotdot'>:</span>" + seconds;
+			if(--_gthis.counter < 0) {
+				_gthis.counter = duration;
+				_gthis.sfxDone.play();
+				window.clearInterval(_gthis.timerID);
+				_gthis.initTimer();
+			}
+		},1000);
+	}
+	checkTime(i) {
+		var str = "" + i;
+		if(i < 10) {
+			str = "0" + i;
+		}
+		return str;
 	}
 	static main() {
 		var app = new Countdown();

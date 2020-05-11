@@ -56,7 +56,20 @@ class Macro {
 
 	public static function generateFromFolder(folder):Void {
 		var ignoreArr = ['_example', 'assets'];
-		var fileNames = FileSystem.readDirectory(folder);
+		// var fileNames = FileSystem.readDirectory(folder);
+
+		var fileNames:Array<String> = FileSystem.readDirectory(folder);
+		// sort alfabetical
+		fileNames.sort(function(a:String, b:String):Int {
+			a = a.toLowerCase();
+			b = b.toLowerCase();
+			if (a < b)
+				return -1;
+			if (a > b)
+				return 1;
+			return 0;
+		});
+
 		var ul = '<ul class="project-link">\n';
 		for (fileName in fileNames) {
 			if (FileSystem.isDirectory(folder + '/' + fileName)) {
@@ -68,7 +81,7 @@ class Macro {
 
 				if (ignoreArr.indexOf(fileName) == -1) {
 					// trace('>> ' + fileName);
-					ul += '\t<li><a href="../$fileName">' + fileName + '</a></li>\n';
+					ul += '\t<li><a href="../$fileName">' + capFirstLetter(fileName) + '</a></li>\n';
 				}
 			} else {
 				// files
@@ -84,7 +97,7 @@ class Macro {
 		File.saveContent(tempTemplateFile, output);
 	}
 
-	private static function capString(str:String):String {
+	private static function capFirstLetter(str:String):String {
 		var tempstr = '';
 		tempstr = str.substring(0, 1).toUpperCase() + str.substring(1, str.length);
 		return tempstr;

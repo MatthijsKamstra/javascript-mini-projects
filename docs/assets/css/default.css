@@ -67,8 +67,9 @@ h6 {
   cursor: pointer;
   position: absolute;
   top: 0;
-  margin: 5px;
+  margin: 10px;
   opacity: 0.3;
+  line-height: 0;
   /* z-index: 100; */
 }
 .btn-home-open {

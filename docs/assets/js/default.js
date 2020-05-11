@@ -8,9 +8,12 @@ class Main {
 		this.homeUrl = "../_nav.html";
 		this.INFO_ID = "mySidenav";
 		this.HOME_ID = "myHomeSideNav";
-		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-10 22:32:29");
+		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-11 20:05:28");
 		this.loadData(this.homeUrl,$bind(this,this.setupHome));
 		this.loadData(this.infoUrl,$bind(this,this.setupInfo));
+		if(window.document.getElementById("homepage") != null) {
+			this.loadData(this.homeUrl,$bind(this,this.setupHomepage));
+		}
 	}
 	loadData(url,callback) {
 		var req = new XMLHttpRequest();
@@ -56,6 +59,10 @@ class Main {
 		};
 		window.document.body.prepend(span);
 		this.setupPanel(this.HOME_ID,body);
+	}
+	setupHomepage(body) {
+		var container = window.document.getElementById("homepage-nav");
+		this.processHTML(body,container);
 	}
 	setupPanel(id,body) {
 		var _gthis = this;

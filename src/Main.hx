@@ -19,6 +19,11 @@ class Main {
 
 		loadData(homeUrl, setupHome);
 		loadData(infoUrl, setupInfo);
+
+		// only on homepage
+		if (document.getElementById('homepage') != null) {
+			loadData(homeUrl, setupHomepage);
+		}
 	}
 
 	/**
@@ -76,6 +81,11 @@ class Main {
 		document.body.prepend(span);
 
 		setupPanel(HOME_ID, body);
+	}
+
+	function setupHomepage(body:String) {
+		var container = document.getElementById('homepage-nav');
+		processHTML(body, container);
 	}
 
 	// ____________________________________ set panel ____________________________________

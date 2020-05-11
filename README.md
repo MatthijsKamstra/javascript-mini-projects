@@ -33,7 +33,7 @@ Mini projects built with HTML5, CSS &amp; JavaScript
   - is it Friday counter
   - is it beer time counter
   - meditation clock
-  - progress bar
+  - ~~progress bar~~
   - 7 min app
 - ~~SVG editor (svg exporter)~~
 - Form

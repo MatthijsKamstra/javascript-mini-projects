@@ -3,12 +3,13 @@ import utils.Name;
 class Countdown {
 	// elements
 	var containerDesktop:DivElement;
+	var progressBar:DivElement;
 	var timeDescriptionEl:SpanElement;
 	var timeEl:SpanElement;
 
 	// countdown
 	var timerID = null;
-	var counter:Int;
+	var counter:Int = 0;
 	var defaultTimeString:String;
 	var durationInSeconds:Int = 10; // seconds
 
@@ -29,7 +30,10 @@ class Countdown {
 	}
 
 	function setElements() {
+		counter = durationInSeconds;
+
 		containerDesktop = cast document.getElementsByClassName("container-countdown")[0]; // get the first
+		progressBar = cast document.getElementsByClassName("progress-bar")[0]; // get the first
 		timeDescriptionEl = cast document.getElementById("time-description");
 		timeEl = cast document.getElementById("time");
 
@@ -64,6 +68,7 @@ class Countdown {
 	function onSetTimeHandler(sec:Int) {
 		// trace(sec);
 		durationInSeconds = sec;
+		counter = sec;
 		onTimerStopHandler();
 		initTimer();
 	};
@@ -79,6 +84,8 @@ class Countdown {
 		timeEl.innerHTML = minutes + "<span class='dotdot'>:</span>" + seconds;
 
 		timeDescriptionEl.innerHTML = 'countdown is set to ${durationInSeconds} seconds';
+
+		updateProgress();
 	}
 
 	function startTimer() {
@@ -102,6 +109,8 @@ class Countdown {
 		counter = duration;
 		timerID = window.setInterval(function() {
 			sfxTick.play();
+			updateProgress();
+
 			var _minutes = Std.int(counter / 60);
 			var _seconds = Std.int(counter % 60);
 			var minutes:String = checkTime(_minutes);
@@ -110,12 +119,23 @@ class Countdown {
 
 			// console.debug(counter);
 			if (--counter < 0) {
-				counter = duration;
+				counter = durationInSeconds;
 				sfxDone.play();
 				window.clearInterval(timerID);
 				initTimer();
 			}
 		}, 1000);
+	}
+
+	// ____________________________________ progress ____________________________________
+
+	function updateProgress() {
+		var value = (counter / durationInSeconds) * 100;
+		if (counter == 0)
+			value = 0;
+		progressBar.setAttribute('style', 'width: ${value}%');
+		progressBar.setAttribute('aria-valuenow', '${value}');
+		progressBar.innerText = '${Math.round(value)}%';
 	}
 
 	// ____________________________________ utils ____________________________________

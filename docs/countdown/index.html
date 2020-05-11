@@ -53,6 +53,10 @@
             font-family: Arial, Helvetica, sans-serif;
             word-spacing: 10px;
         }
+
+        .progress {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
@@ -67,9 +71,12 @@
                     <div class="col-12 ">
                         <span id="time-description"></span>
                         <span id="time">09<span class='dotdot'>:</span>49</span>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100">25%</div>
+                        </div>
                     </div>
                     <div class="col-12 ">
-
                         <div class="btn-group" role="group" aria-label="Basic example">
 
                             <button id="btn-start" class="btn btn-success">start</button>

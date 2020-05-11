@@ -3,6 +3,7 @@
 class Countdown {
 	constructor() {
 		this.durationInSeconds = 10;
+		this.counter = 0;
 		this.timerID = null;
 		var _gthis = this;
 		window.document.addEventListener("DOMContentLoaded",function(event) {
@@ -15,7 +16,9 @@ class Countdown {
 		this.initTimer();
 	}
 	setElements() {
+		this.counter = this.durationInSeconds;
 		this.containerDesktop = window.document.getElementsByClassName("container-countdown")[0];
+		this.progressBar = window.document.getElementsByClassName("progress-bar")[0];
 		this.timeDescriptionEl = window.document.getElementById("time-description");
 		this.timeEl = window.document.getElementById("time");
 		var btn = window.document.getElementById("btn-start");
@@ -54,6 +57,7 @@ class Countdown {
 	}
 	onSetTimeHandler(sec) {
 		this.durationInSeconds = sec;
+		this.counter = sec;
 		this.onTimerStopHandler();
 		this.initTimer();
 	}
@@ -65,6 +69,7 @@ class Countdown {
 		this.defaultTimeString = minutes + "<span class='dotdot'>:</span>" + seconds;
 		this.timeEl.innerHTML = minutes + "<span class='dotdot'>:</span>" + seconds;
 		this.timeDescriptionEl.innerHTML = "countdown is set to " + this.durationInSeconds + " seconds";
+		this.updateProgress();
 	}
 	startTimer() {
 		this._startTimer(this.durationInSeconds - 1);
@@ -84,18 +89,28 @@ class Countdown {
 		this.counter = duration;
 		this.timerID = window.setInterval(function() {
 			_gthis.sfxTick.play();
+			_gthis.updateProgress();
 			var _minutes = _gthis.counter / 60 | 0;
 			var _seconds = _gthis.counter % 60 | 0;
 			var minutes = _gthis.checkTime(_minutes);
 			var seconds = _gthis.checkTime(_seconds);
 			_gthis.timeEl.innerHTML = minutes + "<span class='dotdot'>:</span>" + seconds;
 			if(--_gthis.counter < 0) {
-				_gthis.counter = duration;
+				_gthis.counter = _gthis.durationInSeconds;
 				_gthis.sfxDone.play();
 				window.clearInterval(_gthis.timerID);
 				_gthis.initTimer();
 			}
 		},1000);
+	}
+	updateProgress() {
+		var value = this.counter / this.durationInSeconds * 100;
+		if(this.counter == 0) {
+			value = 0;
+		}
+		this.progressBar.setAttribute("style","width: " + value + "%");
+		this.progressBar.setAttribute("aria-valuenow","" + value);
+		this.progressBar.innerText = "" + Math.round(value) + "%";
 	}
 	checkTime(i) {
 		var str = "" + i;

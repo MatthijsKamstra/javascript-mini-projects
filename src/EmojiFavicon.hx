@@ -109,11 +109,8 @@ class EmojiFavicon {
 		textarea.select();
 		document.execCommand('copy');
 
-		// document.body.removeChild(el);
-
-		// document.create // var el = document.create
-
-		// var el = document. // el.value = str;
+		// var el:TextAreaElement = document.createTextAreaElement();
+		// el.value = textarea.value;
 		// document.body.appendChild(el);
 		// el.select();
 		// document.execCommand('copy');
@@ -161,14 +158,6 @@ typedef EmojiObj = {
 	var tags:Array<String>;
 }
 
-// {
-// 	"codes": "1F1FB 1F1E6",
-// 	"char": "🇻🇦",
-// 	"name": "flag: Vatican City",
-// 	"category": "Flags (country-flag)",
-// 	"group": "Flags",
-// 	"subgroup": "country-flag"
-// }
 typedef Emoji2Obj = {
 	var codes:String;
 	var char:String;

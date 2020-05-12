@@ -59,7 +59,7 @@ Mini projects built with HTML5, CSS &amp; JavaScript
 - secret message encoder/decoder
 - inlog site and share info (sockets)
 - real time chat (sockets)
-- emoji favicon generator
+- ~~emoji favicon generator~~
 - copy example code
 - copy paste
 

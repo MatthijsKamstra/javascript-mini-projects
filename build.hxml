@@ -48,6 +48,7 @@
 -main Countdown
 -js docs/countdown/countdown.js
 
-# --next
-# -main EmojiFavicon
-# -js docs/emoji-favicon/emoji-favicon.js
+--next
+
+-main EmojiFavicon
+-js docs/emoji-favicon/emoji-favicon.js

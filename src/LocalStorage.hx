@@ -23,8 +23,6 @@ class LocalStorage {
 	];
 
 	public function new() {
-		console.log('LocalStorage - Dom ready');
-
 		LocalData.create(dbName);
 		// console.log(LocalData.read(dbName, '_id'));
 		// console.log(LocalData.read(dbName, 'version'));
@@ -42,7 +40,7 @@ class LocalStorage {
 			LocalData.update(dbName, 'itemArray', []);
 
 		document.addEventListener("DOMContentLoaded", function(event) {
-			console.log('${App.NAME} - Desktop - Dom ready :: build: ${App.getBuildDate()}');
+			console.log('LocalStorage -Dom ready');
 			init();
 		});
 	}

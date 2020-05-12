@@ -84,6 +84,17 @@ h6 {
   z-index: 1;
 }
 
+.dark-page .btn-open,
+.dark-page .btn-home-open,
+.dark-page .btn-close {
+  color: white;
+}
+.lite-page .btn-open,
+.lite-page .btn-home-open,
+.lite-page .btn-close {
+  color: black;
+}
+
 #main {
   transition: margin-left 0.5s;
   transition: margin-right 0.5s;

@@ -1,4 +1,5 @@
 --class-path src
 --dce full
 -main Main
--js docs/default.js
+-D js-es=6
+-js docs/assets/js/default.js

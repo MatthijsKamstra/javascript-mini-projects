@@ -8,7 +8,7 @@ class Main {
 		this.homeUrl = "../_nav.html";
 		this.INFO_ID = "mySidenav";
 		this.HOME_ID = "myHomeSideNav";
-		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-12 17:18:31");
+		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-13 15:49:51");
 		this.loadData(this.homeUrl,$bind(this,this.setupHome));
 		this.loadData(this.infoUrl,$bind(this,this.setupInfo));
 		if(window.document.getElementById("homepage") != null) {

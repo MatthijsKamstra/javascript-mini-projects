@@ -17,6 +17,9 @@ class Countdown {
 	var sfxDone:Audio;
 	var sfxTick:Audio;
 
+	/**
+	 * font-family: 'Pathway Gothic One', Arial, sans-serif;
+	 */
 	public function new() {
 		document.addEventListener("DOMContentLoaded", function(event) {
 			console.log('Countdown - Dom ready');

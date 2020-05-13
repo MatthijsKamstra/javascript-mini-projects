@@ -54,7 +54,6 @@ class EmojiFavicon {
 	function buildList(str:String) {
 		var json:Array<EmojiObj> = Json.parse(str);
 		// trace(json);
-
 		var html = '';
 		html += '<div class="row">';
 		for (i in 0...json.length) {
@@ -63,7 +62,6 @@ class EmojiFavicon {
 			html += '<div class="col-1"><span class="emoji-size">${emojiObj.emoji}</span></div>';
 		}
 		html += '</div>';
-
 		container.innerHTML = html;
 	}
 
@@ -88,11 +86,14 @@ class EmojiFavicon {
 		var arr = document.getElementsByClassName('emoji-link');
 		for (i in 0...arr.length) {
 			var link:LinkElement = cast arr[i];
-			link.onclick = () -> {
+			link.onclick = (e) -> {
 				var emoji:String = (untyped link.dataset.emojichar);
 				setEmojiFavicon(emoji);
 			}
 		}
+
+		console.log(catArr);
+
 		randomizeEmojiFavicon();
 	}
 

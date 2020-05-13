@@ -58,13 +58,14 @@ class EmojiFavicon {
 			var i1 = _g2++;
 			var link = [arr[i1]];
 			link[0].onclick = (function(link1) {
-				return function() {
+				return function(e) {
 					var emoji = link1[0].dataset.emojichar;
 					_gthis.setEmojiFavicon(emoji);
 					return;
 				};
 			})(link);
 		}
+		window.console.log(this.catArr);
 		this.randomizeEmojiFavicon();
 	}
 	randomizeEmojiFavicon() {

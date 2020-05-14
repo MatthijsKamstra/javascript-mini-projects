@@ -23,60 +23,43 @@
     <title>[mck] todo</title>
 
     <style>
-        /* Remove margins and padding from the list */
-        ul {
-            margin: 0;
-            padding: 0;
+        /* overwrite bootstrap defaults */
+        .list-group-item {
+            padding: .75rem 2.25rem;
         }
 
-        /* Style the list items */
-        ul li {
-            cursor: pointer;
-            position: relative;
-            padding: 12px 8px 12px 40px;
-            background: #eee;
-            font-size: 18px;
-            transition: 0.2s;
-
-            /* make the list items unselectable */
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        /* Set all odd list items to a different color (zebra-stripes) */
-        ul li:nth-child(odd) {
+        .list-group a:nth-child(odd) {
             background: #f9f9f9;
         }
 
-        /* Darker background-color on hover */
-        ul li:hover {
-            background: #ddd;
+        /* check mark toggle */
+        a.checked::before {
+            /* make sure the correct font is used to have a more stylized version of this checkmark */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            content: "\2713";
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 100%;
+            width: 35px;
+            line-height: 46px;
+            text-align: center;
         }
 
-        /* When clicked on, add a background color and strike out text */
-        ul li.checked {
-            background: #888;
+        a.checked {
+            background: #888 !important;
             color: #fff;
             text-decoration: line-through;
         }
 
-        /* Add a "checked" mark when clicked on */
-        ul li.checked::before {
-            content: '';
-            position: absolute;
-            border-color: #fff;
-            border-style: solid;
-            border-width: 0 2px 2px 0;
-            top: 10px;
-            left: 16px;
-            transform: rotate(45deg);
-            height: 15px;
-            width: 7px;
+        a.checked:hover {
+            background: rgb(73, 73, 73) !important;
+            color: #fff;
+            text-decoration: line-through;
         }
 
-        /* Style the close button */
+
+        /* close button */
         .close {
             position: absolute;
             right: 0;
@@ -88,81 +71,44 @@
             background-color: #f44336;
             color: white;
         }
-
-        /* Style the header */
-        .header {
-            background-color: #f44336;
-            padding: 30px 40px;
-            color: white;
-            text-align: center;
-        }
-
-        /* Clear floats after the header */
-        .header:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* Style the input */
-        input {
-            margin: 0;
-            border: none;
-            border-radius: 0;
-            width: 75%;
-            padding: 10px;
-            float: left;
-            font-size: 16px;
-        }
-
-        /* Style the "Add" button */
-        .addBtn {
-            padding: 10px;
-            width: 25%;
-            background: #d9d9d9;
-            color: #555;
-            float: left;
-            text-align: center;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-            border-radius: 0;
-        }
-
-        .addBtn:hover {
-            background-color: #bbb;
-        }
     </style>
 </head>
 
-<body>
+<body id='page-todo'>
 
     <div id="main">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-10">
                     <h1>ToDo List</h1>
-                    <img src="https://placeimg.com/1024/480/nature" class="img-fluid" alt="Responsive image">
+                    <img src="https://placeimg.com/1024/480/nature" class="rounded img-fluid" alt="Responsive image">
+                </div>
 
+                <div class="col-10">
 
-                    <div class="input-todo">
+                    <div class="todo-wrapper">
                         <div class="input-group mb-3">
-                            <input id="input-todo" type="text" class="form-control" placeholder="TODO">
+                            <input id="todo-input" type="text" class="form-control" placeholder="TODO">
                             <div class="input-group-append">
-                                <button id="btn-add-todo" class="btn btn-outline-secondary" type="button">Add
+                                <button id="btn-todo-add" class="btn btn-outline-secondary" type="button">Add
                                     Todo</button>
                             </div>
                         </div>
                     </div>
 
-                    <ul id="todo-list">
-                        <li>Hit the gym</li>
-                        <li class="checked">Pay bills</li>
-                        <li>Meet George</li>
-                        <li>Buy eggs</li>
-                        <li>Read a book</li>
-                        <li>Organize office</li>
-                    </ul>
+                    <div class="btn-group mb-3" role="group" aria-label="Basic example">
+                        <button id="btn-random" type="button" class="btn btn-secondary">Random Todo</button>
+                        <button id="btn-clear" type="button" class="btn btn-secondary">Clear all</button>
+                        <button id="btn-save" type="button" class="btn btn-secondary">Save</button>
+                        <button id="btn-clear" type="button" class="btn btn-danger">Reset</button>
+                    </div>
+
+                    <div id="todo-list" class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action checked">Dapibus ac facilisis in</a>
+                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                    </div>
+
 
                 </div>
             </div>

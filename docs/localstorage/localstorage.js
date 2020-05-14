@@ -350,7 +350,7 @@ class utils_LocalData {
 		}
 		utils_LocalData.json = JSON.parse(window.localStorage.getItem(name));
 		if(utils_LocalData.json == null || isOverwrite) {
-			utils_LocalData.json = { _id : "localdata-" + new Date().getTime(), version : "0.0.1", creationDate : HxOverrides.dateStr(new Date()), updateDate : HxOverrides.dateStr(new Date())};
+			utils_LocalData.json = { _id : "localdata-" + new Date().getTime(), version : "0.0.1", created : HxOverrides.dateStr(new Date()), updated : HxOverrides.dateStr(new Date())};
 			if(utils_LocalData.isDebug) {
 				window.console.log("initialize database:" + JSON.stringify(utils_LocalData.json));
 			}
@@ -360,6 +360,9 @@ class utils_LocalData {
 	static read(name,key) {
 		if(utils_LocalData.json == null) {
 			utils_LocalData.json = JSON.parse(window.localStorage.getItem(name));
+		}
+		if(key == null) {
+			return utils_LocalData.json;
 		}
 		if(Object.prototype.hasOwnProperty.call(utils_LocalData.json,key)) {
 			return Reflect.getProperty(utils_LocalData.json,key);
@@ -382,7 +385,7 @@ class utils_LocalData {
 			utils_LocalData.json = JSON.parse(window.localStorage.getItem(name));
 		}
 		Reflect.setProperty(utils_LocalData.json,key,value);
-		Reflect.setProperty(utils_LocalData.json,"updateDate",HxOverrides.dateStr(new Date()));
+		Reflect.setProperty(utils_LocalData.json,"updated",HxOverrides.dateStr(new Date()));
 		utils_LocalData.saveData(name);
 	}
 	static clear(name) {

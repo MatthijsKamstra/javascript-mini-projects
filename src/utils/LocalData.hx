@@ -7,16 +7,17 @@ class LocalData {
 	static var json:Dynamic;
 
 	// CRUD: Create Read Update Delete
-	public function new() {
-		// your code
-	}
+	public function new() {}
 
 	// create
 
 	/**
-	 * create the database or get the previous information (isOverwrite==false)
-	 * @param name
-	 * @param isOverwrite
+	 * create the database or get the previous information
+	 *
+	 * if (isOverwrite == false) the 'database' is not created and not overwritten
+	 *
+	 * @param name			dataBase name
+	 * @param isOverwrite	possible to reset the database/overwrite with original data
 	 */
 	public static function create(name:String, ?isOverwrite:Bool = false) {
 		if (isDebug)
@@ -28,8 +29,8 @@ class LocalData {
 			json = {
 				_id: 'localdata-${Date.now().getTime()}',
 				version: '0.0.1',
-				creationDate: Date.now().toString(),
-				updateDate: Date.now().toString(),
+				created: Date.now().toString(),
+				updated: Date.now().toString(),
 			}
 			// window.localStorage.setItem(name, Json.stringify(json));
 
@@ -42,9 +43,25 @@ class LocalData {
 	}
 
 	// read
-	public static function read(name:String, key:String) {
+
+	/**
+	 * read/load data from "database", send key and get specific data
+	 *
+	 * @example
+	 * 				var json = LocalData.read('databaseName'); // get whole json
+	 * 				var version = LocalData.read('databaseName', 'version'); // version from json (untyped)
+	 *
+	 * @param name			dataBase name
+	 * @param key			(optional) key to get from json
+	 * @return Dynamic		json/object or null
+	 */
+	public static function read(name:String, ?key:String) {
 		if (json == null) {
 			json = Json.parse(window.localStorage.getItem(name));
+		}
+
+		if (key == null) {
+			return json;
 		}
 
 		if (Reflect.hasField(json, key)) {
@@ -55,9 +72,14 @@ class LocalData {
 	}
 
 	/**
-	 * load data
+	 * load data (syntactic sugar for read without a key param)
+	 *
+	 * @example
+	 * 				var json = LocalData.load('databaseName'); // get json
+	 *
 	 * @param name			dataBase name
-	 * @return Dynamic 		json value
+	 * @param key			(optional) key to get from json
+	 * @return Dynamic		json/object or null
 	 */
 	public static function load(name:String):Dynamic {
 		if (json == null) {
@@ -71,6 +93,19 @@ class LocalData {
 	}
 
 	// update
+
+	/**
+	 * update data (essential overwriting data: be careful with arrays and object)
+	 *
+	 * in the process the `updated` is updated to current date
+	 *
+	 * @example
+	 * 				var json = LocalData.update('databaseName', 'test', 'foo');
+	 *
+	 * @param name			dataBase name
+	 * @param key			(optional) key to get from json
+	 * @param value
+	 */
 	public static function update(name:String, key:String, value:Dynamic) {
 		if (json == null) {
 			json = Json.parse(window.localStorage.getItem(name));
@@ -78,7 +113,7 @@ class LocalData {
 
 		// if (Reflect.hasField(json, key)) {
 		Reflect.setProperty(json, key, value);
-		Reflect.setProperty(json, 'updateDate', Date.now().toString());
+		Reflect.setProperty(json, 'updated', Date.now().toString());
 		// }
 
 		saveData(name);
@@ -88,8 +123,11 @@ class LocalData {
 
 	/**
 	 * [Description]
-	 *  @param name			dataBase name
-	 * @param key
+	 * @example
+	 * 				var json = LocalData.delete('databaseName', 'test');
+	 *
+	 * @param name			dataBase name
+	 * @param key			(optional) key to get from json
 	 */
 	public static function delete(name:String, key:String) {
 		if (json == null) {
@@ -105,7 +143,8 @@ class LocalData {
 
 	/**
 	 * remove localStorage with (db)Name
-	 *  @param name			dataBase name
+	 *
+	 * @param name			dataBase name
 	 */
 	public static function clear(name:String) {
 		json = null;

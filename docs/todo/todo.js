@@ -57,6 +57,9 @@ class Std {
 Std.__name__ = true;
 class Todo {
 	constructor() {
+		this.STATE_CLOSED = "closed";
+		this.STATE_CHECKED = "checked";
+		this.STATE_DEFAULT = "";
 		this.dbName = "db-todo";
 		utils_LocalData.create(this.dbName);
 		if(utils_LocalData.read(this.dbName,"itemArray") == null) {
@@ -72,22 +75,6 @@ class Todo {
 		this.setElements();
 		this.setupTodoList();
 	}
-	setupTodoList() {
-		var arr = utils_LocalData.read(this.dbName,"itemArray");
-		if(arr.length == 0) {
-			this.randomizeTodo();
-		} else {
-			var _g = 0;
-			var _g1 = arr.length;
-			while(_g < _g1) {
-				var i = _g++;
-				var todoObj = arr[i];
-				var name = todoObj.content;
-				var link = this.createTodoElement(name);
-				this.list.appendChild(link);
-			}
-		}
-	}
 	setElements() {
 		this.todoInput = window.document.getElementById("todo-input");
 		this.list = window.document.getElementById("todo-list");
@@ -95,7 +82,7 @@ class Todo {
 		var todoBtn = window.document.getElementById("btn-todo-add");
 		var _gthis = this;
 		todoBtn.onclick = function(e) {
-			_gthis.addTodo();
+			_gthis.createTodo();
 			return;
 		};
 		var btn = window.document.getElementById("btn-random");
@@ -114,31 +101,66 @@ class Todo {
 			return;
 		};
 	}
+	setupTodoList() {
+		var arr = utils_LocalData.read(this.dbName,"itemArray");
+		if(arr.length == 0) {
+			this.randomizeTodo();
+		} else {
+			var _g = 0;
+			var _g1 = arr.length;
+			while(_g < _g1) {
+				var i = _g++;
+				var todoObj = arr[i];
+				var link = this.createTodoElement(todoObj);
+				if(link != null) {
+					this.list.appendChild(link);
+				}
+			}
+		}
+	}
 	randomizeTodo() {
 		var arr = utils_LocalData.read(this.dbName,"itemArray");
 		var name = "<b>[Random Todo]</b> " + utils_Randomize.superHeroName();
-		var link = this.createTodoElement(name);
+		var todoObj = { _id : "tododata-" + new Date().getTime() + "-" + Todo.uniqCounter, created : HxOverrides.dateStr(new Date()), updated : HxOverrides.dateStr(new Date()), content : name, state : ""};
+		var link = this.createTodoElement(todoObj);
 		this.list.appendChild(link);
-		var todoObj = { _id : "tododata-" + new Date().getTime(), created : HxOverrides.dateStr(new Date()), updated : HxOverrides.dateStr(new Date()), content : name, state : ""};
 		arr.push(todoObj);
+		Todo.uniqCounter++;
 		var name1 = "<b>[Random Todo]</b> " + utils_Randomize.superHeroName();
-		var link1 = this.createTodoElement(name1);
+		var todoObj1 = { _id : "tododata-" + new Date().getTime() + "-" + Todo.uniqCounter, created : HxOverrides.dateStr(new Date()), updated : HxOverrides.dateStr(new Date()), content : name1, state : ""};
+		var link1 = this.createTodoElement(todoObj1);
 		this.list.appendChild(link1);
-		var todoObj1 = { _id : "tododata-" + new Date().getTime(), created : HxOverrides.dateStr(new Date()), updated : HxOverrides.dateStr(new Date()), content : name1, state : ""};
 		arr.push(todoObj1);
+		Todo.uniqCounter++;
 		var name2 = "<b>[Random Todo]</b> " + utils_Randomize.superHeroName();
-		var link2 = this.createTodoElement(name2);
+		var todoObj2 = { _id : "tododata-" + new Date().getTime() + "-" + Todo.uniqCounter, created : HxOverrides.dateStr(new Date()), updated : HxOverrides.dateStr(new Date()), content : name2, state : ""};
+		var link2 = this.createTodoElement(todoObj2);
 		this.list.appendChild(link2);
-		var todoObj2 = { _id : "tododata-" + new Date().getTime(), created : HxOverrides.dateStr(new Date()), updated : HxOverrides.dateStr(new Date()), content : name2, state : ""};
 		arr.push(todoObj2);
+		Todo.uniqCounter++;
 		utils_LocalData.update(this.dbName,"itemArray",arr);
 	}
-	createTodoElement(str) {
+	createTodoElement(todoObj) {
 		var _gthis = this;
 		var link = window.document.createElement("a");
 		link.setAttribute("class","list-group-item list-group-item-action");
+		switch(todoObj.state) {
+		case "checked":
+			link.classList.add(this.STATE_CHECKED);
+			break;
+		case "closed":
+			link.classList.add(this.STATE_CLOSED);
+			break;
+		default:
+			console.log("src/Todo.hx:99:","case '" + todoObj.state + "': trace ('" + todoObj.state + "');");
+		}
+		if(todoObj.state == this.STATE_CLOSED) {
+			link.classList.add("invisible");
+			return null;
+		}
+		link.dataset.id = todoObj._id;
 		link.href = "#";
-		link.innerHTML = str;
+		link.innerHTML = todoObj.content;
 		link.onclick = function(e) {
 			_gthis.onCheckedHandler(e);
 			return;
@@ -154,17 +176,20 @@ class Todo {
 		link.appendChild(span);
 		return link;
 	}
-	addTodo() {
+	createTodo() {
 		if(this.todoInput.value == "") {
 			window.alert("You must write something!");
 		} else {
 			var str = this.todoInput.value;
 			var arr = utils_LocalData.read(this.dbName,"itemArray");
-			var todoObj = { _id : "tododata-" + new Date().getTime(), created : HxOverrides.dateStr(new Date()), updated : HxOverrides.dateStr(new Date()), content : str, state : ""};
+			var todoObj = { _id : "tododata-" + new Date().getTime() + "-" + Todo.uniqCounter, created : HxOverrides.dateStr(new Date()), updated : HxOverrides.dateStr(new Date()), content : str, state : ""};
+			Todo.uniqCounter++;
 			arr.push(todoObj);
 			utils_LocalData.update(this.dbName,"itemArray",arr);
-			var link = this.createTodoElement(str);
-			this.list.appendChild(link);
+			var link = this.createTodoElement(todoObj);
+			if(link != null) {
+				this.list.appendChild(link);
+			}
 		}
 	}
 	onSaveHandler(e) {
@@ -187,13 +212,50 @@ class Todo {
 		e.stopPropagation();
 		window.console.log("onCloseHandler" + Std.string(e));
 		window.console.log(e);
-		var el = e.currentTarget;
-		el.parentElement.style.display = "none";
+		var el = e.target;
+		var parent = el.parentElement;
+		var isChecked = parent.classList.contains(this.STATE_CLOSED);
+		parent.classList.toggle(this.STATE_CLOSED);
+		parent.parentElement.removeChild(parent);
+		var _id = parent.dataset.id;
+		var arr = utils_LocalData.read(this.dbName,"itemArray");
+		var _g = 0;
+		var _g1 = arr.length;
+		while(_g < _g1) {
+			var i = _g++;
+			var todoObj = arr[i];
+			if(todoObj._id == _id) {
+				if(isChecked) {
+					todoObj.state = this.STATE_DEFAULT;
+				} else {
+					todoObj.state = this.STATE_CLOSED;
+				}
+			}
+		}
+		utils_LocalData.update(this.dbName,"itemArray",arr);
 	}
 	onCheckedHandler(e) {
-		e.preventDefault();
-		e.target.classList.toggle("checked");
 		window.console.log("onCheckedHandler" + Std.string(e));
+		e.preventDefault();
+		var el = e.target;
+		var isChecked = el.classList.contains(this.STATE_CHECKED);
+		el.classList.toggle(this.STATE_CHECKED);
+		var _id = el.dataset.id;
+		var arr = utils_LocalData.read(this.dbName,"itemArray");
+		var _g = 0;
+		var _g1 = arr.length;
+		while(_g < _g1) {
+			var i = _g++;
+			var todoObj = arr[i];
+			if(todoObj._id == _id) {
+				if(isChecked) {
+					todoObj.state = this.STATE_DEFAULT;
+				} else {
+					todoObj.state = this.STATE_CHECKED;
+				}
+			}
+		}
+		utils_LocalData.update(this.dbName,"itemArray",arr);
 	}
 	static main() {
 		var app = new Todo();
@@ -343,6 +405,7 @@ Object.defineProperty(js__$Boot_HaxeError.prototype,"message",{ get : function()
 	return String(this.val);
 }});
 js_Boot.__toStr = ({ }).toString;
+Todo.uniqCounter = 0;
 utils_LocalData.isDebug = true;
 utils_Randomize.superHeroFirst = ["captain","turbo","galactic","the","aqua","fire","iron","super","green","phantom","dark","ghost","professor","atomic","rock","omega","rocket","shadow","agent","silver","wild","wolf","ultra","wonder","doctor","star"];
 utils_Randomize.superHeroLast = ["x","shield","machine","justice","beast","wing","arrow","skull","blade","bolt","cobra","blaze","soldier","strike","falcon","fang","king","surfer","bot","guard","thing","claw","brain","master","power","storm"];

@@ -2,6 +2,8 @@
 
 Mini projects built with HTML5, CSS &amp; JavaScript
 
+I am not a purist, so I am using Bootstrap framework for css. But the rest is vanilla JavaScript and HTML5.
+
 ## Ideas examples
 
 | Name            | type          | link                         |
@@ -60,8 +62,8 @@ Mini projects built with HTML5, CSS &amp; JavaScript
 - inlog site and share info (sockets)
 - real time chat (sockets)
 - ~~emoji favicon generator~~
-- copy example code
-- copy paste
+- ~~copy example code~~
+- ~~copy paste~~
 
 ## list mini projects
 
@@ -116,7 +118,7 @@ In principe zou de `.vscode`-folder in git zitten dus dat zou moeten werken als 
 
 ```
 {
-  "liveServer.settings.root": "bin",
+  "liveServer.settings.root": "docs",
   "liveServer.settings.port": 5501
 }
 ```

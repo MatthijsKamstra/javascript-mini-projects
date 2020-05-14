@@ -1,0 +1,44 @@
+{
+  "_id": "localdata-1589445835482",
+  "version": "0.0.1",
+  "creationDate": "2020-05-14 10:43:55",
+  "updateDate": "2020-05-14 13:38:56",
+  "itemArray": [
+    {
+      "_id": "tododata-1589473838735-0",
+      "created": "2020-05-14 18:30:38",
+      "updated": "2020-05-14 18:30:38",
+      "content": "<b>[Random Todo]</b> Omega Skull",
+      "state": "closed"
+    },
+    {
+      "_id": "tododata-1589473838736-1",
+      "created": "2020-05-14 18:30:38",
+      "updated": "2020-05-14 18:30:38",
+      "content": "<b>[Random Todo]</b> Phantom Surfer",
+      "state": "closed"
+    },
+    {
+      "_id": "tododata-1589473838736-2",
+      "created": "2020-05-14 18:30:38",
+      "updated": "2020-05-14 18:30:38",
+      "content": "<b>[Random Todo]</b> Green Claw",
+      "state": "checked"
+    },
+    {
+      "_id": "tododata-1589487212043-0",
+      "created": "2020-05-14 22:13:32",
+      "updated": "2020-05-14 22:13:32",
+      "content": "Rocket Cobra",
+      "state": ""
+    },
+    {
+      "_id": "tododata-1589487213669-1",
+      "created": "2020-05-14 22:13:33",
+      "updated": "2020-05-14 22:13:33",
+      "content": "Omega Thing",
+      "state": "closed"
+    }
+  ],
+  "updated": "2020-05-14 22:13:34"
+}

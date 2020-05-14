@@ -37,7 +37,7 @@ class DragAndDrop {
 			while(_g < _g1) {
 				var i = _g++;
 				var file = filesArray[i];
-				console.log("src/DragAndDrop.hx:48:",file);
+				console.log("/Users/matthijs/Documents/GIT/javascript-mini-projects/src/DragAndDrop.hx:48:",file);
 				var li = window.document.createElement("li");
 				list.appendChild(li);
 				var info = window.document.createElement("span");
@@ -55,7 +55,7 @@ class DragAndDrop {
 		case "text/markdown":
 			return "<i class=\"fa fa-file-text-o\"></i>";
 		default:
-			console.log("src/DragAndDrop.hx:77:","case '" + type + "': trace ('" + type + "');");
+			console.log("/Users/matthijs/Documents/GIT/javascript-mini-projects/src/DragAndDrop.hx:77:","case '" + type + "': trace ('" + type + "');");
 			return "<i class=\"fa fa-file\"></i>";
 		}
 	}

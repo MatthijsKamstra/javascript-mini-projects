@@ -45,9 +45,9 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
 - Skinning default
   - Custom video player
   - ~~Custom music player~~
-- API
-  - ~~quotes project (api)~~
-  - weather app (api)
+- API (https://github.com/public-apis/public-apis)
+  - ~~quotes project (api)~~ (https://github.com/public-apis/public-apis#personality)
+  - ~~weather app (api)~~ (https://github.com/public-apis/public-apis#weather)
 - Mini app
   - ~~SVG editor (svg exporter)~~
   - ~~classic todo list~~
@@ -63,6 +63,7 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
   - ~~share with twitter~~
   - secret message encoder/decoder
   - random name generator
+  - basic markdown converter
 - PRO
   - ar.js
   - parcel

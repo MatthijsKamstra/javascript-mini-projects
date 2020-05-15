@@ -10,3 +10,4 @@
 | Svg-editor | ? | [link](docs/svg-editor) |
 | Todo | ? | [link](docs/todo) |
 | Togglesound | ? | [link](docs/togglesound) |
+| Weather | ? | [link](docs/weather) |

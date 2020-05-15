@@ -1,0 +1,165 @@
+{
+  "consolidated_weather": [
+    {
+      "id": 6415877090050048,
+      "weather_state_name": "Heavy Cloud",
+      "weather_state_abbr": "hc",
+      "wind_direction_compass": "NW",
+      "created": "2020-05-15T09:23:56.727485Z",
+      "applicable_date": "2020-05-15",
+      "min_temp": 4.905,
+      "max_temp": 13.225,
+      "the_temp": 12.195,
+      "wind_speed": 5.598014199138365,
+      "wind_direction": 317.3284723925775,
+      "air_pressure": 1023.0,
+      "humidity": 59,
+      "visibility": 13.193263839179194,
+      "predictability": 71
+    },
+    {
+      "id": 4899270836617216,
+      "weather_state_name": "Showers",
+      "weather_state_abbr": "s",
+      "wind_direction_compass": "W",
+      "created": "2020-05-15T09:23:59.407261Z",
+      "applicable_date": "2020-05-16",
+      "min_temp": 6.119999999999999,
+      "max_temp": 15.28,
+      "the_temp": 13.805,
+      "wind_speed": 8.027253007579734,
+      "wind_direction": 279.62343077452044,
+      "air_pressure": 1023.0,
+      "humidity": 60,
+      "visibility": 11.409928517458045,
+      "predictability": 73
+    },
+    {
+      "id": 5742848265682944,
+      "weather_state_name": "Heavy Cloud",
+      "weather_state_abbr": "hc",
+      "wind_direction_compass": "W",
+      "created": "2020-05-15T09:24:02.508578Z",
+      "applicable_date": "2020-05-17",
+      "min_temp": 7.83,
+      "max_temp": 16.555,
+      "the_temp": 15.66,
+      "wind_speed": 7.547485986168776,
+      "wind_direction": 271.66194481070727,
+      "air_pressure": 1024.5,
+      "humidity": 59,
+      "visibility": 12.215846953789868,
+      "predictability": 71
+    },
+    {
+      "id": 6133498828029952,
+      "weather_state_name": "Heavy Cloud",
+      "weather_state_abbr": "hc",
+      "wind_direction_compass": "WSW",
+      "created": "2020-05-15T09:24:05.346556Z",
+      "applicable_date": "2020-05-18",
+      "min_temp": 9.370000000000001,
+      "max_temp": 17.925,
+      "the_temp": 16.375,
+      "wind_speed": 8.147914805145946,
+      "wind_direction": 253.8362430170185,
+      "air_pressure": 1023.5,
+      "humidity": 61,
+      "visibility": 13.80469309234073,
+      "predictability": 71
+    },
+    {
+      "id": 4632159992152064,
+      "weather_state_name": "Light Cloud",
+      "weather_state_abbr": "lc",
+      "wind_direction_compass": "NNW",
+      "created": "2020-05-15T09:24:08.311430Z",
+      "applicable_date": "2020-05-19",
+      "min_temp": 10.350000000000001,
+      "max_temp": 20.04,
+      "the_temp": 19.369999999999997,
+      "wind_speed": 6.029570394517353,
+      "wind_direction": 329.0748614493203,
+      "air_pressure": 1023.5,
+      "humidity": 61,
+      "visibility": 13.858752386065378,
+      "predictability": 70
+    },
+    {
+      "id": 5758059898994688,
+      "weather_state_name": "Clear",
+      "weather_state_abbr": "c",
+      "wind_direction_compass": "ENE",
+      "created": "2020-05-15T09:24:11.457195Z",
+      "applicable_date": "2020-05-20",
+      "min_temp": 9.76,
+      "max_temp": 19.990000000000002,
+      "the_temp": 19.54,
+      "wind_speed": 6.473230334844508,
+      "wind_direction": 57.5,
+      "air_pressure": 1023.0,
+      "humidity": 57,
+      "visibility": 9.999726596675416,
+      "predictability": 68
+    }
+  ],
+  "time": "2020-05-15T14:06:23.514739+02:00",
+  "sun_rise": "2020-05-15T05:44:24.743154+02:00",
+  "sun_set": "2020-05-15T21:30:10.615609+02:00",
+  "timezone_name": "LMT",
+  "parent": {
+    "title": "Netherlands",
+    "location_type": "Country",
+    "woeid": 23424909,
+    "latt_long": "52.108200,5.329860"
+  },
+  "sources": [
+    {
+      "title": "BBC",
+      "slug": "bbc",
+      "url": "http://www.bbc.co.uk/weather/",
+      "crawl_rate": 360
+    },
+    {
+      "title": "Forecast.io",
+      "slug": "forecast-io",
+      "url": "http://forecast.io/",
+      "crawl_rate": 480
+    },
+    {
+      "title": "HAMweather",
+      "slug": "hamweather",
+      "url": "http://www.hamweather.com/",
+      "crawl_rate": 360
+    },
+    {
+      "title": "Met Office",
+      "slug": "met-office",
+      "url": "http://www.metoffice.gov.uk/",
+      "crawl_rate": 180
+    },
+    {
+      "title": "OpenWeatherMap",
+      "slug": "openweathermap",
+      "url": "http://openweathermap.org/",
+      "crawl_rate": 360
+    },
+    {
+      "title": "Weather Underground",
+      "slug": "wunderground",
+      "url": "https://www.wunderground.com/?apiref=fc30dc3cd224e19b",
+      "crawl_rate": 720
+    },
+    {
+      "title": "World Weather Online",
+      "slug": "world-weather-online",
+      "url": "http://www.worldweatheronline.com/",
+      "crawl_rate": 360
+    }
+  ],
+  "title": "Amsterdam",
+  "location_type": "City",
+  "woeid": 727232,
+  "latt_long": "52.373119,4.893190",
+  "timezone": "Europe/Amsterdam"
+}

@@ -13,11 +13,13 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
 | Drag-and-drop   | ?    | [link](docs/drag-and-drop)   |
 | Emoji-favicon   | ?    | [link](docs/emoji-favicon)   |
 | Localstorage    | ?    | [link](docs/localstorage)    |
+| Markdown        | ?    | [link](docs/markdown)        |
 | Photo-watermark | ?    | [link](docs/photo-watermark) |
 | Quotes          | ?    | [link](docs/quotes)          |
 | Svg-editor      | ?    | [link](docs/svg-editor)      |
 | Todo            | ?    | [link](docs/todo)            |
 | Togglesound     | ?    | [link](docs/togglesound)     |
+| Weather         | ?    | [link](docs/weather)         |
 
 ## Ideas
 
@@ -63,7 +65,7 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
   - ~~share with twitter~~
   - secret message encoder/decoder
   - random name generator
-  - basic markdown converter
+  - ~~basic markdown converter~~
 - PRO
   - ar.js
   - parcel

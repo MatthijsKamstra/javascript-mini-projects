@@ -26,7 +26,7 @@ class Quotes {
 		};
 	}
 	static setQuote(data) {
-		console.log("src/Quotes.hx:29:","setQuote");
+		console.log("/Users/matthijs/Documents/GIT/javascript-mini-projects/src/Quotes.hx:29:","setQuote");
 		var quoteText = window.document.getElementById("quote-text");
 		quoteText.innerText = data.quoteText;
 		if(data.quoteAuthor != "") {
@@ -42,7 +42,7 @@ class Quotes {
 		};
 		var a1 = window.document.getElementById("btn-like");
 		a1.onclick = function(e1) {
-			console.log("src/Quotes.hx:51:","like!");
+			console.log("/Users/matthijs/Documents/GIT/javascript-mini-projects/src/Quotes.hx:51:","like!");
 			window.alert("Like doesn't work yet!");
 			return;
 		};

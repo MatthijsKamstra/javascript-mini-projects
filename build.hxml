@@ -57,3 +57,9 @@
 
 -main Todo
 -js docs/todo/todo.js
+
+
+--next
+
+-main Quotes
+-js docs/quotes/quotes.js

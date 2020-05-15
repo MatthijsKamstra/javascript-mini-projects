@@ -79,25 +79,25 @@ class Todo {
 		this.todoInput = window.document.getElementById("todo-input");
 		this.list = window.document.getElementById("todo-list");
 		this.list.innerHTML = "";
-		var todoBtn = window.document.getElementById("btn-todo-add");
+		var btn = window.document.getElementById("btn-todo-add");
 		var _gthis = this;
-		todoBtn.onclick = function(e) {
+		btn.onclick = function(e) {
 			_gthis.createTodo();
 			return;
 		};
-		var btn = window.document.getElementById("btn-random");
-		btn.onclick = function(e1) {
-			_gthis.onRandomHandler(e1);
+		var btn1 = window.document.getElementById("btn-random");
+		btn1.onclick = function(e1) {
+			_gthis.onClickRandomHandler(e1);
 			return;
 		};
-		var btn1 = window.document.getElementById("btn-clear");
-		btn1.onclick = function(e2) {
-			_gthis.onClearHandler(e2);
+		var btn2 = window.document.getElementById("btn-clear");
+		btn2.onclick = function(e2) {
+			_gthis.onClickClearHandler(e2);
 			return;
 		};
-		var btn2 = window.document.getElementById("btn-save");
-		btn2.onclick = function(e3) {
-			_gthis.onSaveHandler(e3);
+		var btn3 = window.document.getElementById("btn-save");
+		btn3.onclick = function(e3) {
+			_gthis.onClickSaveHandler(e3);
 			return;
 		};
 	}
@@ -162,7 +162,7 @@ class Todo {
 		link.href = "#";
 		link.innerHTML = todoObj.content;
 		link.onclick = function(e) {
-			_gthis.onCheckedHandler(e);
+			_gthis.onClickCheckedHandler(e);
 			return;
 		};
 		var span = window.document.createElement("span");
@@ -170,7 +170,7 @@ class Todo {
 		span.className = "close";
 		span.appendChild(txt);
 		span.onclick = function(e1) {
-			_gthis.onCloseHandler(e1);
+			_gthis.onClickCloseHandler(e1);
 			return;
 		};
 		link.appendChild(span);
@@ -192,7 +192,7 @@ class Todo {
 			}
 		}
 	}
-	onSaveHandler(e) {
+	onClickSaveHandler(e) {
 		var json = utils_LocalData.read(this.dbName);
 		var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json));
 		var downloadAnchorNode = window.document.createElement("a");
@@ -202,15 +202,15 @@ class Todo {
 		downloadAnchorNode.click();
 		downloadAnchorNode.remove();
 	}
-	onClearHandler(e) {
+	onClickClearHandler(e) {
 		utils_LocalData.update(this.dbName,"itemArray",[]);
 	}
-	onRandomHandler(e) {
+	onClickRandomHandler(e) {
 		this.todoInput.value = utils_Randomize.superHeroName();
 	}
-	onCloseHandler(e) {
+	onClickCloseHandler(e) {
 		e.stopPropagation();
-		window.console.log("onCloseHandler" + Std.string(e));
+		window.console.log("onClickCloseHandler" + Std.string(e));
 		window.console.log(e);
 		var el = e.target;
 		var parent = el.parentElement;
@@ -227,15 +227,17 @@ class Todo {
 			if(todoObj._id == _id) {
 				if(isChecked) {
 					todoObj.state = this.STATE_DEFAULT;
+					todoObj.updated = HxOverrides.dateStr(new Date());
 				} else {
 					todoObj.state = this.STATE_CLOSED;
+					todoObj.updated = HxOverrides.dateStr(new Date());
 				}
 			}
 		}
 		utils_LocalData.update(this.dbName,"itemArray",arr);
 	}
-	onCheckedHandler(e) {
-		window.console.log("onCheckedHandler" + Std.string(e));
+	onClickCheckedHandler(e) {
+		window.console.log("onClickCheckedHandler" + Std.string(e));
 		e.preventDefault();
 		var el = e.target;
 		var isChecked = el.classList.contains(this.STATE_CHECKED);
@@ -250,8 +252,10 @@ class Todo {
 			if(todoObj._id == _id) {
 				if(isChecked) {
 					todoObj.state = this.STATE_DEFAULT;
+					todoObj.updated = HxOverrides.dateStr(new Date());
 				} else {
 					todoObj.state = this.STATE_CHECKED;
+					todoObj.updated = HxOverrides.dateStr(new Date());
 				}
 			}
 		}

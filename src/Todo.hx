@@ -34,14 +34,14 @@ class Todo {
 		todoInput = cast document.getElementById('todo-input');
 		list = cast document.getElementById('todo-list');
 		list.innerHTML = '';
-		var todoBtn:ButtonElement = cast document.getElementById('btn-todo-add');
-		todoBtn.onclick = (e) -> createTodo();
+		var btn:ButtonElement = cast document.getElementById('btn-todo-add');
+		btn.onclick = (e) -> createTodo();
 		var btn:ButtonElement = cast document.getElementById('btn-random');
-		btn.onclick = (e) -> onRandomHandler(e);
+		btn.onclick = (e) -> onClickRandomHandler(e);
 		var btn:ButtonElement = cast document.getElementById('btn-clear');
-		btn.onclick = (e) -> onClearHandler(e);
+		btn.onclick = (e) -> onClickClearHandler(e);
 		var btn:ButtonElement = cast document.getElementById('btn-save');
-		btn.onclick = (e) -> onSaveHandler(e);
+		btn.onclick = (e) -> onClickSaveHandler(e);
 	}
 
 	// ____________________________________ setup ____________________________________
@@ -108,7 +108,7 @@ class Todo {
 		link.href = '#';
 		link.innerHTML = todoObj.content;
 		link.onclick = (e) -> {
-			onCheckedHandler(e);
+			onClickCheckedHandler(e);
 		}
 
 		// close button
@@ -118,7 +118,7 @@ class Todo {
 		span.appendChild(txt);
 
 		span.onclick = (e) -> {
-			onCloseHandler(e);
+			onClickCloseHandler(e);
 		}
 
 		link.appendChild(span);
@@ -155,7 +155,7 @@ class Todo {
 
 	// ____________________________________ handler ____________________________________
 
-	function onSaveHandler(e:MouseEvent) {
+	function onClickSaveHandler(e:MouseEvent) {
 		var json = LocalData.read(dbName);
 		var dataStr = "data:text/json;charset=utf-8," + untyped encodeURIComponent(Json.stringify(json));
 		var downloadAnchorNode = document.createElement('a');
@@ -166,17 +166,17 @@ class Todo {
 		downloadAnchorNode.remove();
 	}
 
-	function onClearHandler(e:MouseEvent) {
+	function onClickClearHandler(e:MouseEvent) {
 		LocalData.update(dbName, 'itemArray', []);
 	}
 
-	function onRandomHandler(e:MouseEvent) {
+	function onClickRandomHandler(e:MouseEvent) {
 		todoInput.value = utils.Randomize.superHeroName();
 	}
 
-	function onCloseHandler(e:MouseEvent) {
+	function onClickCloseHandler(e:MouseEvent) {
 		e.stopPropagation();
-		console.log('onCloseHandler' + e);
+		console.log('onClickCloseHandler' + e);
 		console.log(e);
 		var el:Element = cast e.target;
 		var parent:Element = el.parentElement;
@@ -193,16 +193,18 @@ class Todo {
 			if (todoObj._id == _id) {
 				if (isChecked) {
 					todoObj.state = STATE_DEFAULT;
+					todoObj.updated = Date.now().toString();
 				} else {
 					todoObj.state = STATE_CLOSED;
+					todoObj.updated = Date.now().toString();
 				}
 			}
 		}
 		LocalData.update(dbName, 'itemArray', arr);
 	}
 
-	function onCheckedHandler(e:MouseEvent) {
-		console.log('onCheckedHandler' + e);
+	function onClickCheckedHandler(e:MouseEvent) {
+		console.log('onClickCheckedHandler' + e);
 		e.preventDefault();
 		var el:Element = cast e.target;
 		var isChecked = el.classList.contains(STATE_CHECKED);
@@ -216,13 +218,17 @@ class Todo {
 			if (todoObj._id == _id) {
 				if (isChecked) {
 					todoObj.state = STATE_DEFAULT;
+					todoObj.updated = Date.now().toString();
 				} else {
 					todoObj.state = STATE_CHECKED;
+					todoObj.updated = Date.now().toString();
 				}
 			}
 		}
 		LocalData.update(dbName, 'itemArray', arr);
 	}
+
+	// ____________________________________ main ____________________________________
 
 	static public function main() {
 		var app = new Todo();
@@ -234,5 +240,5 @@ typedef TodoObj = {
 	var created:String;
 	var updated:String;
 	var content:String;
-	var state:String; // normal // closed // checked
+	var state:String; // normal // closed // checked // '' // default?
 }

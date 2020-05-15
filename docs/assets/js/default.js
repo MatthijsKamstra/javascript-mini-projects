@@ -5,14 +5,15 @@ class App {
 class Main {
 	constructor() {
 		this.infoUrl = "_post.html";
+		this.cardsUrl = "../_cards.html";
 		this.homeUrl = "../_nav.html";
 		this.INFO_ID = "mySidenav";
 		this.HOME_ID = "myHomeSideNav";
-		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-13 21:23:11");
+		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-15 10:00:32");
 		this.loadData(this.homeUrl,$bind(this,this.setupHome));
 		this.loadData(this.infoUrl,$bind(this,this.setupInfo));
 		if(window.document.getElementById("homepage") != null) {
-			this.loadData(this.homeUrl,$bind(this,this.setupHomepage));
+			this.loadData(this.cardsUrl,$bind(this,this.setupHomepage));
 		}
 	}
 	loadData(url,callback) {

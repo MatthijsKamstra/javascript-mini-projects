@@ -33,22 +33,26 @@
 			height: 100%;
 		}
 
-		body {
-			background-image: url(assets/img/jeremy-thomas-E0AHdsENmDg-unsplash.jpg);
-			background-size: cover;
-			color: white;
-			background-position: center;
-			background-attachment: fixed;
-		}
 
-		.bg-color {
-			background-color: rgba(0, 0, 0, 0.5);
-		}
 
 
 		#homepage-nav {
 			color: black;
 		}
+
+
+		.bgimage {
+			width: 100%;
+			height: 500px;
+			background-image: url(assets/img/jeremy-thomas-E0AHdsENmDg-unsplash.jpg);
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			background-attachment: fixed;
+			color: white;
+		}
+
+
 	</style>
 
 </head>
@@ -77,15 +81,26 @@
 	</nav>
 
 
-	<div class="container bg-color">
+	<section class="bgimage">
+		<div class="container d-flex align-items-center" style="height:100%">
+			<div class="row justify-content-center">
+				<div class="col-8 ">
+					<h1>JavaScript mini projects</h1>
+					<h3>Build 20+ mini projects using nothing but HTML5, CSS & JavaScript. No JS or CSS frameworks, no
+						libraries, etc</h3>
+					<p>20+ Web Projects With Vanilla JavaScript
+
+						This is the main repository for all of the projects in the course. </p>
+					<p><a href="#" class="btn btn-primary btn-large">Learn more »</a></p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<h1>JavaScript mini projects</h1>
-				<h3>Build 20+ mini projects using nothing but HTML5, CSS & JavaScript. No JS or CSS frameworks, no
-					libraries, etc</h3>
-				<p>20+ Web Projects With Vanilla JavaScript
-
-					This is the main repository for all of the projects in the course. </p>
 				<div id="homepage-nav"></div>
 			</div>
 			<div class="col-12">

@@ -1,0 +1,12 @@
+| Name | type | link |
+| --- | --- | --- |
+| Countdown | ? | [link](docs/countdown) |
+| Desktop | ? | [link](docs/desktop) |
+| Drag-and-drop | ? | [link](docs/drag-and-drop) |
+| Emoji-favicon | ? | [link](docs/emoji-favicon) |
+| Localstorage | ? | [link](docs/localstorage) |
+| Photo-watermark | ? | [link](docs/photo-watermark) |
+| Quotes | ? | [link](docs/quotes) |
+| Svg-editor | ? | [link](docs/svg-editor) |
+| Todo | ? | [link](docs/todo) |
+| Togglesound | ? | [link](docs/togglesound) |

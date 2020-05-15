@@ -70,6 +70,8 @@ class Macro {
 			return 0;
 		});
 
+		var md = '| Name | type | link |\n| --- | --- | --- |\n';
+
 		// create list
 		var ul = '<ul class="project-link">\n';
 		ul += '\t<li><a href="../">Home</a></li>\n';
@@ -84,6 +86,8 @@ class Macro {
 				if (ignoreArr.indexOf(fileName) == -1) {
 					// trace('>> ' + fileName);
 					ul += '\t<li><a href="../$fileName">' + capFirstLetter(fileName) + '</a></li>\n';
+
+					md += '| ${capFirstLetter(fileName)} | ? | [link](docs/${fileName}) |\n';
 				}
 			} else {
 				// files
@@ -92,12 +96,15 @@ class Macro {
 		ul += '</ul>';
 
 		var tempTemplateFile = folder + '/_nav.html';
+		var templateMarkdown = folder + '/_list.md';
 
 		var file = {nav: ul, title: 'Generated'};
 		var template = new haxe.Template(templateHTML);
 		var output = template.execute(file);
 
 		File.saveContent(tempTemplateFile, output);
+
+		File.saveContent(templateMarkdown, md);
 
 		// create cards
 		var templateCard = '

@@ -6,15 +6,18 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
 
 ## Ideas examples
 
-| Name            | type          | link                         |
-| --------------- | ------------- | ---------------------------- |
-| countdown       | timer         | [link](docs/countdown)       |
-| desktop         | timer         | [link](docs/desktop)         |
-| drag-and-drop   | upload        | [link](docs/drag-and-drop)   |
-| localstorage    | cookie/data   | [link](docs/localstorage)    |
-| photo watermark | canvas/upload | [link](docs/photo-watermark) |
-| svg-editor      | svg/tool      | [link](docs/svg-editor)      |
-| togglesound     | default style | [link](docs/togglesound)     |
+| Name            | type | link                         |
+| --------------- | ---- | ---------------------------- |
+| Countdown       | ?    | [link](docs/countdown)       |
+| Desktop         | ?    | [link](docs/desktop)         |
+| Drag-and-drop   | ?    | [link](docs/drag-and-drop)   |
+| Emoji-favicon   | ?    | [link](docs/emoji-favicon)   |
+| Localstorage    | ?    | [link](docs/localstorage)    |
+| Photo-watermark | ?    | [link](docs/photo-watermark) |
+| Quotes          | ?    | [link](docs/quotes)          |
+| Svg-editor      | ?    | [link](docs/svg-editor)      |
+| Todo            | ?    | [link](docs/todo)            |
+| Togglesound     | ?    | [link](docs/togglesound)     |
 
 ## Ideas
 
@@ -50,11 +53,11 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
 - parcel
 - js drawing (canvas)
 - js animation class (test, workshop)
-- classic todo list
+- ~~classic todo list~~
 - basic quiz
 - custom greetings from other sites
 - flash cards (local storage)
-- quotes project (api)
+- ~~quotes project (api)~~
 - virtual key board
 - weather app (api)
 - random name generator
@@ -64,6 +67,7 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
 - ~~emoji favicon generator~~
 - ~~copy example code~~
 - ~~copy paste~~
+- ~~share with twitter~~
 
 ## list mini projects
 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<h2>
+
+    The Technique
+</h2>
+
+<p>
+
+    To use API data hosted on a domain other than your own, you need to use a technique called JSONP. From Wikipedia:
+
+<blockquote>
+    JSONP or “JSON with padding” is a communication technique used in JavaScript programs running in web browsers to
+    request
+    data from a server in a different domain, something prohibited by typical web browsers because of the same-origin
+    policy. JSONP takes advantage of the fact that browsers do not enforce the same-origin policy on
+    <code>%3Cscript></code> tags.
+</blockquote>
+
+
+Here’s how it works: The API request URL is set as the src of a %3Cscript> tag, which gets appended to the DOM.That data
+is then passed into a callback method on load.The callback is included in the request url as
+?callback=callbackMethodName;
+</p>

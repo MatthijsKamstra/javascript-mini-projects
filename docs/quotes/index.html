@@ -21,6 +21,34 @@
     <link rel="stylesheet" href="../assets/css/default.css">
 
     <title>[mck] quotes</title>
+
+    <style>
+        q {
+            quotes: "“""”""‘""’";
+        }
+
+        q::before {
+            content: open-quote;
+        }
+
+        q::after {
+            content: close-quote;
+        }
+
+        #quote-text {
+            color: black;
+        }
+
+        #quote-author {
+            font-weight: bold;
+            color: gray;
+        }
+
+        #quote-author a {
+            color: gray;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body id="page-quotes">
@@ -30,7 +58,18 @@
             <div class="row justify-content-center">
                 <div class="col-6">
                     <h1>quotes</h1>
-                    <img src="https://placeimg.com/1024/480/nature" class="rounded img-fluid" alt="Responsive image">
+                    <div class="card">
+                        <img src="https://placeimg.com/1024/480/nature" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <p class="card-text"><q id="quote-text"></q></p>
+                            <p class="card-text"><span id="quote-author"></span></p>
+                            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+
+
+                            <a href="#" id="btn-twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" id="btn-like"><i class="fa fa-heart"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

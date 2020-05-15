@@ -11,7 +11,7 @@ import sys.io.File;
 using StringTools;
 
 class Macro {
-	public static var html = '<!DOCTYPE html>
+	public static var templateHTML = '<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -70,7 +70,9 @@ class Macro {
 			return 0;
 		});
 
+		// create list
 		var ul = '<ul class="project-link">\n';
+		ul += '\t<li><a href="../">Home</a></li>\n';
 		for (fileName in fileNames) {
 			if (FileSystem.isDirectory(folder + '/' + fileName)) {
 				// folders
@@ -90,8 +92,62 @@ class Macro {
 		ul += '</ul>';
 
 		var tempTemplateFile = folder + '/_nav.html';
+
 		var file = {nav: ul, title: 'Generated'};
-		var template = new haxe.Template(html);
+		var template = new haxe.Template(templateHTML);
+		var output = template.execute(file);
+
+		File.saveContent(tempTemplateFile, output);
+
+		// create cards
+		var templateCard = '
+<div class="col-3">
+<div class="card">
+<img src="::imgsource::" class="card-img-top" alt="::title::">
+<div class="card-body">
+<p class="card-text">::content::</p>
+<a href="::url::" class="card-link">Visit ::title::</a>
+</div>
+</div>
+</div>';
+
+		var row = '<div class="row">\n';
+		for (fileName in fileNames) {
+			if (FileSystem.isDirectory(folder + '/' + fileName)) {
+				// folders
+
+				// ignore folder that start with `_`
+				if (fileName.startsWith("_"))
+					continue;
+
+				if (ignoreArr.indexOf(fileName) == -1) {
+					// trace('>> ' + fileName);
+					// ul += '\t<li><a href="../$fileName">' + capFirstLetter(fileName) + '</a></li>\n';
+
+					var defaultImg = '../assets/svg/imagecap.svg';
+
+					var file = {
+						url: '../$fileName',
+						// imgsource: '../$fileName/screenshot.png',
+						imgsource: defaultImg,
+						title: capFirstLetter(fileName),
+						content: 'bla bla'
+					};
+					var template = new haxe.Template(templateCard);
+					var output = template.execute(file);
+
+					row += output;
+				}
+			} else {
+				// files
+			}
+		}
+		row += '</div>';
+
+		var tempTemplateFile = folder + '/_cards.html';
+
+		var file = {nav: row, title: 'Generated'};
+		var template = new haxe.Template(templateHTML);
 		var output = template.execute(file);
 
 		File.saveContent(tempTemplateFile, output);

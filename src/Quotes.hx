@@ -30,8 +30,10 @@ class Quotes {
 		// trace(data);
 		var quoteText:SpanElement = cast document.getElementById('quote-text');
 		quoteText.innerText = data.quoteText;
-		var quoteAuthor:SpanElement = cast document.getElementById('quote-author');
-		quoteAuthor.innerHTML = '<a href="https://en.wikipedia.org/wiki/${data.quoteAuthor}" target="_blank">${data.quoteAuthor} <i class="fa fa-wikipedia-w"></i></a>';
+		if (data.quoteAuthor != '') {
+			var quoteAuthor:SpanElement = cast document.getElementById('quote-author');
+			quoteAuthor.innerHTML = '<a href="https://en.wikipedia.org/wiki/${data.quoteAuthor}" target="_blank">${data.quoteAuthor} <i class="fa fa-wikipedia-w"></i></a>';
+		}
 
 		var a:AnchorElement = cast document.getElementById('btn-twitter');
 		a.onclick = (e) -> {
@@ -47,6 +49,7 @@ class Quotes {
 		var a:AnchorElement = cast document.getElementById('btn-like');
 		a.onclick = (e) -> {
 			trace('like!');
+			window.alert('Like doesn\'t work yet!');
 		}
 	}
 

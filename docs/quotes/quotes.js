@@ -29,8 +29,10 @@ class Quotes {
 		console.log("src/Quotes.hx:29:","setQuote");
 		var quoteText = window.document.getElementById("quote-text");
 		quoteText.innerText = data.quoteText;
-		var quoteAuthor = window.document.getElementById("quote-author");
-		quoteAuthor.innerHTML = "<a href=\"https://en.wikipedia.org/wiki/" + data.quoteAuthor + "\" target=\"_blank\">" + data.quoteAuthor + " <i class=\"fa fa-wikipedia-w\"></i></a>";
+		if(data.quoteAuthor != "") {
+			var quoteAuthor = window.document.getElementById("quote-author");
+			quoteAuthor.innerHTML = "<a href=\"https://en.wikipedia.org/wiki/" + data.quoteAuthor + "\" target=\"_blank\">" + data.quoteAuthor + " <i class=\"fa fa-wikipedia-w\"></i></a>";
+		}
 		var a = window.document.getElementById("btn-twitter");
 		a.onclick = function(e) {
 			e.preventDefault();
@@ -40,7 +42,8 @@ class Quotes {
 		};
 		var a1 = window.document.getElementById("btn-like");
 		a1.onclick = function(e1) {
-			console.log("src/Quotes.hx:49:","like!");
+			console.log("src/Quotes.hx:51:","like!");
+			window.alert("Like doesn't work yet!");
 			return;
 		};
 	}

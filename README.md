@@ -21,9 +21,6 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
 
 ## Ideas
 
-- Mini SPA website
-- Interactive online store
-- Check out shop/shopping card
 - Games (basic and simple)
   - Tick tack toe
   - Hang man
@@ -40,7 +37,6 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
   - meditation clock
   - ~~progress bar~~
   - 7 min app
-- ~~SVG editor (svg exporter)~~
 - Form
   - ~~basic form validator~~
   - ~~drag and drop image/file~~
@@ -49,25 +45,34 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
 - Skinning default
   - Custom video player
   - ~~Custom music player~~
-- ar.js
-- parcel
-- js drawing (canvas)
-- js animation class (test, workshop)
-- ~~classic todo list~~
-- basic quiz
-- custom greetings from other sites
-- flash cards (local storage)
-- ~~quotes project (api)~~
-- virtual key board
-- weather app (api)
-- random name generator
-- secret message encoder/decoder
-- inlog site and share info (sockets)
-- real time chat (sockets)
-- ~~emoji favicon generator~~
-- ~~copy example code~~
-- ~~copy paste~~
-- ~~share with twitter~~
+- API
+  - ~~quotes project (api)~~
+  - weather app (api)
+- Mini app
+  - ~~SVG editor (svg exporter)~~
+  - ~~classic todo list~~
+  - flash cards (local storage)
+  - basic quiz
+  - Mini SPA website
+  - Interactive online store
+  - Check out shop/shopping card
+  - ~~emoji favicon generator~~
+- Tools
+  - ~~copy example code~~
+  - ~~copy paste~~
+  - ~~share with twitter~~
+  - secret message encoder/decoder
+  - random name generator
+- PRO
+  - ar.js
+  - parcel
+- Misc
+  - js drawing (canvas)
+  - js animation class (test, workshop)
+  - custom greetings from other sites
+  - virtual key board
+  - inlog site and share info (sockets)
+  - real time chat (sockets)
 
 ## list mini projects
 

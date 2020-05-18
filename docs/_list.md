@@ -12,3 +12,4 @@
 | Todo | ? | [link](docs/todo) |
 | Togglesound | ? | [link](docs/togglesound) |
 | Weather | ? | [link](docs/weather) |
+| Webcam | ? | [link](docs/webcam) |

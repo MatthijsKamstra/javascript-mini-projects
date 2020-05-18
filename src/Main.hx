@@ -11,7 +11,7 @@ class Main {
 	var INFO_ID = 'mySidenav';
 	// load
 	var homeUrl = "../_nav.html";
-	var cardsUrl = "../_cards.html";
+	var cardsUrl = "_cards.html";
 	var infoUrl = "_post.html";
 
 	// @:build(macro.Macro.buildTemplate(true))

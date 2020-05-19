@@ -1,5 +1,6 @@
 package tools;
 
+import sys.FileStat;
 import haxe.Json;
 #if macro
 import haxe.io.Path;
@@ -182,13 +183,42 @@ class Macro {
 				if (ignoreArr.indexOf(fileName) == -1) {
 					trace('>> ' + fileName);
 
-					arr.push(capFirstLetter(fileName));
+					var filestat:FileStat = FileSystem.stat(folder + '/' + fileName);
+					// trace(filestat);
+					// var lastModivicationTime:Date = filestat.mtime;
+					// var creationTime:Date = filestat.ctime;
+
+					// trace(filestat.mtime);
+					// trace(filestat.ctime);
+					// trace(filestat.atime);
+
+					/**
+						{
+												 img:"Screenshot.jpg",
+												 title: "Example",
+												 path: "docs",
+												 desciption:'xxxx',
+												 tags:['xx','bbb'],
+
+												}
+					 */
+
+					var obj = {};
+
+					Reflect.setField(obj, 'title', capFirstLetter(fileName));
 
 					var __fileNames:Array<String> = FileSystem.readDirectory(folder + '/' + fileName);
+
 					for (i in 0...__fileNames.length) {
 						var ___fileNames = __fileNames[i];
 						trace('\t>> ' + ___fileNames);
+
+						// Screenshot.png / Screenshot.jpg
+						if (___fileNames.toLowerCase().indexOf('screenshot') != -1) {
+							Reflect.setField(obj, 'img', '${___fileNames}');
+						}
 					}
+					arr.push(obj);
 				}
 			} else {
 				// files

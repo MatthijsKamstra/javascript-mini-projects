@@ -1,1 +1,18 @@
-{"data":["Countdown","Desktop","Drag-and-drop","Emoji-favicon","Localstorage","Markdown","Photo-watermark","Quotes","Svg-editor","Todo","Togglesound","Weather"],"updated":"2020-05-19 21:57:05","folder":"/Users/matthijs/Documents/GIT/javascript-mini-projects/docs"}
+{
+  "data": [
+    { "title": "Countdown", "img": "Screenshot.png" },
+    { "title": "Desktop", "img": "Screenshot.jpg" },
+    { "title": "Drag-and-drop", "img": "Screenshot.png" },
+    { "title": "Emoji-favicon", "img": "Screenshot.jpg" },
+    { "title": "Localstorage", "img": "Screenshot.jpg" },
+    { "title": "Markdown", "img": "Screenshot.png" },
+    { "title": "Photo-watermark", "img": "Screenshot.png" },
+    { "title": "Quotes", "img": "Screenshot.png" },
+    { "title": "Svg-editor", "img": "Screenshot.png" },
+    { "title": "Todo", "img": "Screenshot.jpg" },
+    { "title": "Togglesound", "img": "Screenshot.png" },
+    { "title": "Weather", "img": "Screenshot.png" }
+  ],
+  "updated": "2020-05-19 22:14:00",
+  "folder": "/Users/matthijs/Documents/GIT/javascript-mini-projects/docs"
+}

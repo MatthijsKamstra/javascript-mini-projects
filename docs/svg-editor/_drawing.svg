@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 297" height="297mm" width="210mm">
-<g style="mix-blend-mode:normal">
-   <ellipse ry="58.525" rx="64.002" cy="107.126" cx="98.911" fill="purple"/>
-   <path fill="purple" d="M49.969 201.93h112.944v58.868H49.969z"/>
-   <path d="M49.97 21.22l108.836-6.16-5.476 43.123z" fill="#0ff" stroke="#000" stroke-width=".265"/>
-</g>
-<path fill="#fff" fill-rule="evenodd" d="M0 0h210v297H0z"/>
-</svg>
+<svg height="297mm" viewBox="0 0 210 297" width="210mm" xmlns="http://www.w3.org/2000/svg"><ellipse cx="98.911" cy="107.126" fill="#800080" rx="64.002" ry="58.525"/><path d="m49.969 201.93h112.944v58.868h-112.944z" fill="#800080"/><path d="m49.97 21.22 108.836-6.16-5.476 43.123z" fill="#0ff" stroke="#000" stroke-width=".265"/><path d="m0 0h210v297h-210z" fill="#fff" fill-rule="evenodd"/></svg>

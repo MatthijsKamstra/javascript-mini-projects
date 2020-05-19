@@ -1,5 +1,6 @@
 package tools;
 
+import haxe.Json;
 #if macro
 import haxe.io.Path;
 import haxe.macro.Context;
@@ -30,6 +31,8 @@ class Macro {
 </body>
 </html>';
 
+	private static var ignoreArr = ['_example', 'assets'];
+
 	/**
 	 * @example
 	 * 			--macro tools.Macro.buildTemplate(true)
@@ -55,7 +58,6 @@ class Macro {
 	}
 
 	public static function generateFromFolder(folder):Void {
-		var ignoreArr = ['_example', 'assets'];
 		// var fileNames = FileSystem.readDirectory(folder);
 
 		var fileNames:Array<String> = FileSystem.readDirectory(folder);
@@ -69,6 +71,8 @@ class Macro {
 				return 1;
 			return 0;
 		});
+
+		generateJson(folder, fileNames);
 
 		var md = '| Name | type | link |\n| --- | --- | --- |\n';
 
@@ -158,6 +162,41 @@ class Macro {
 		var output = template.execute(file);
 
 		File.saveContent(tempTemplateFile, output);
+	}
+
+	private static function generateJson(folder:String, fileNames:Array<String>) {
+		var json = {};
+		Reflect.setField(json, 'updated', Date.now().toString());
+		Reflect.setField(json, 'folder', folder);
+		var arr = [];
+		// create list
+
+		for (fileName in fileNames) {
+			if (FileSystem.isDirectory(folder + '/' + fileName)) {
+				// folders
+
+				// ignore folder that start with `_`
+				if (fileName.startsWith("_"))
+					continue;
+
+				if (ignoreArr.indexOf(fileName) == -1) {
+					trace('>> ' + fileName);
+
+					arr.push(capFirstLetter(fileName));
+
+					var __fileNames:Array<String> = FileSystem.readDirectory(folder + '/' + fileName);
+					for (i in 0...__fileNames.length) {
+						var ___fileNames = __fileNames[i];
+						trace('\t>> ' + ___fileNames);
+					}
+				}
+			} else {
+				// files
+			}
+		}
+		Reflect.setField(json, 'data', arr);
+		var jsonName = folder + '/data.json';
+		File.saveContent(jsonName, Json.stringify(json));
 	}
 
 	private static function capFirstLetter(str:String):String {

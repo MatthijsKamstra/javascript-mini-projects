@@ -20,8 +20,7 @@
 	<!-- default styling (navigation) -->
 	<link rel="stylesheet" href="assets/css/default.css">
 
-	<title>JavaScript mini projects | Matthijs Kamstra aka [mck]</title>
-
+	<title>JavaScript Mini Projects | Matthijs Kamstra aka [mck]</title>
 
 	<style>
 		html {
@@ -33,13 +32,9 @@
 			height: 100%;
 		}
 
-
-
-
 		#homepage-nav {
 			color: black;
 		}
-
 
 		.bgimage {
 			width: 100%;
@@ -57,52 +52,84 @@
 
 <body id="homepage">
 
+	<!-- vue.js app -->
+	<div id="app">
 
-	<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
-		<div class="container">
-			<a class="navbar-brand" href="#">🚀</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+		<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+			<div class="container">
+				<a class="navbar-brand" href="#">🚀</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
 
-					<li class="nav-item">
-						<a class="nav-link" href="#about">About</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#link">Link</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
-
-	<section class="bgimage">
-		<div class="container d-flex align-items-center" style="height:100%">
-			<div class="row justify-content-center">
-				<div class="col-8 ">
-					<h1>JavaScript mini projects</h1>
-					<h3>Build 20+ mini projects using nothing but HTML5, CSS & JavaScript. No JS or CSS frameworks, no
-						libraries, etc</h3>
-					<p>20+ Web Projects With Vanilla JavaScript
-
-						This is the main repository for all of the projects in the course. </p>
-					<p><a href="#" class="btn btn-primary btn-large">Learn more »</a></p>
+						<li class="nav-item">
+							<a class="nav-link" href="#about">About</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#link">Link</a>
+						</li>
+					</ul>
 				</div>
 			</div>
+		</nav>
+
+
+		<section class="bgimage">
+			<div class="container d-flex align-items-center" style="height:100%">
+				<div class="row justify-content-center">
+					<div class="col-12 col-lg-8">
+						<h1>JavaScript Mini Projects</h1>
+						<h3>Build {{count}} mini projects using HTML5, CSS (with a little help of Bootstrap) &
+							JavaScript. </h3>
+						<p>{{count}} Web Projects With Vanilla JavaScript<br> This is the main repository for all of the
+							projects in the course. </p>
+						<p><a href="#" class="btn btn-primary btn-large">Learn more »</a></p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--
+			<ol>
+				<li v-for="project in json.data">
+					<img v-bind:src="[project.url + '/' + project.img]" v-bind:title="project.title" width="20px">
+					<a v-bind:href="project.url"> {{project.title}}</a>
+				</li>
+			</ol>
+		-->
+
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="project in json.data">
+					<div class="card">
+
+						<img v-bind:src="[project.url + '/' + project.img]" v-bind:title="project.title"
+							v-bind:alt="project.title" class="card-img-top">
+
+						<div class="card-body">
+							<p class="card-text">{{project.shortdesc}}</p>
+							<a v-bind:href="project.url" class="card-link">Visit {{project.title}}</a>
+						</div>
+					</div>
+					<!-- /.card -->
+				</div>
+				<!-- /.col-3 -->
+			</div>
 		</div>
-	</section>
+
+
+	</div>
+	<!-- /#app -->
 
 
 	<div class="container">
 		<div class="row">
-			<div class="col-12">
-				<div id="homepage-nav"></div>
-			</div>
+
 			<div class="col-12">
 
 				<h2>
@@ -146,6 +173,12 @@
 
 	</div>
 	<!-- /.container -->
+
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+	<!-- production version, optimized for size and speed -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
 
 	<!-- Code generated using Haxe -->
 	<script type="text/javascript" src="assets/js/default.js"></script>

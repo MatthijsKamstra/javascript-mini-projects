@@ -1,3 +1,4 @@
+-lib vue
 --class-path src
 --dce full
 -D js-es=6
@@ -70,5 +71,10 @@
 
 --next
 
--main Markdown
--js docs/markdown/markdown.js
+-main ConvertMarkdown
+-js docs/convert-markdown/convert-markdown.js
+
+# --next
+
+# -main ConvertText
+# -js docs/convert-text/convert-text.js

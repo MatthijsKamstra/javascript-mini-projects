@@ -3,12 +3,12 @@ import haxe.Constraints.Function;
 
 using StringTools;
 
-class Markdown {
-	var url = 'test.md';
+class ConvertText {
+	var url = 'example.txt';
 
 	public function new() {
 		document.addEventListener("DOMContentLoaded", function(event) {
-			console.log('Markdown - Dom ready');
+			console.log('ConvertText - Dom ready');
 			loadData(url, markdown2html);
 		});
 	}
@@ -90,6 +90,6 @@ class Markdown {
 	}
 
 	static public function main() {
-		var app = new Markdown();
+		var app = new ConvertText();
 	}
 }

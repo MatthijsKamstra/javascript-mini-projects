@@ -4,16 +4,18 @@ class App {
 }
 class Main {
 	constructor() {
+		this.json = "data.json";
 		this.infoUrl = "_post.html";
-		this.cardsUrl = "_cards.html";
 		this.homeUrl = "../_nav.html";
 		this.INFO_ID = "mySidenav";
 		this.HOME_ID = "myHomeSideNav";
-		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-19 10:04:59");
-		this.loadData(this.homeUrl,$bind(this,this.setupHome));
-		this.loadData(this.infoUrl,$bind(this,this.setupInfo));
+		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-20 13:37:37");
+		this.vm = new Vue({ el : "#app", data : { message : "Hello Vue.js!", count : 20, json : { }}});
 		if(window.document.getElementById("homepage") != null) {
-			this.loadData(this.cardsUrl,$bind(this,this.setupHomepage));
+			this.loadData(this.json,$bind(this,this.setupJsonData));
+		} else {
+			this.loadData(this.homeUrl,$bind(this,this.setupHome));
+			this.loadData(this.infoUrl,$bind(this,this.setupInfo));
 		}
 	}
 	loadData(url,callback) {
@@ -49,6 +51,20 @@ class Main {
 		window.document.body.prepend(span);
 		this.setupPanel(this.INFO_ID,body);
 	}
+	setupJsonData(data) {
+		var _json = JSON.parse(data);
+		var arr = _json.data;
+		console.log("src/Main.hx:93:",arr.length);
+		var _g = 0;
+		var _g1 = arr.length;
+		while(_g < _g1) {
+			var i = _g++;
+			var _arr = arr[i];
+			console.log("src/Main.hx:96:",_arr.title);
+		}
+		this.vm.$data.count = arr.length;
+		this.vm.$data.json = _json;
+	}
 	setupHome(body) {
 		var _gthis = this;
 		var span = window.document.createElement("span");
@@ -60,10 +76,6 @@ class Main {
 		};
 		window.document.body.prepend(span);
 		this.setupPanel(this.HOME_ID,body);
-	}
-	setupHomepage(body) {
-		var container = window.document.getElementById("homepage-nav");
-		this.processHTML(body,container);
 	}
 	setupPanel(id,body) {
 		var _gthis = this;

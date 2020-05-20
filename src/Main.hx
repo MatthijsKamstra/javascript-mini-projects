@@ -1,5 +1,8 @@
 package;
 
+import AST.ProjectObj;
+import vue.Vue;
+import haxe.Json;
 import haxe.Constraints.Function;
 import js.Lib;
 import js.Browser.*;
@@ -11,19 +14,31 @@ class Main {
 	var INFO_ID = 'mySidenav';
 	// load
 	var homeUrl = "../_nav.html";
-	var cardsUrl = "_cards.html";
+
 	var infoUrl = "_post.html";
+	// should replace `.html` files
+	var json = "data.json";
+	var vm:Vue;
 
 	// @:build(macro.Macro.buildTemplate(true))
 	public function new() {
 		console.log('${App.NAME} - Navigation - Dom ready :: build: ${App.getBuildDate()}');
 
-		loadData(homeUrl, setupHome);
-		loadData(infoUrl, setupInfo);
+		vm = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello Vue.js!',
+				count: 20,
+				json: {}
+			}
+		});
 
 		// only on homepage
 		if (document.getElementById('homepage') != null) {
-			loadData(cardsUrl, setupHomepage);
+			loadData(json, setupJsonData);
+		} else {
+			loadData(homeUrl, setupHome);
+			loadData(infoUrl, setupInfo);
 		}
 	}
 
@@ -69,6 +84,19 @@ class Main {
 		document.body.prepend(span);
 
 		setupPanel(INFO_ID, body);
+	}
+
+	function setupJsonData(data:String) {
+		var _json = Json.parse(data);
+		// trace(_json);
+		var arr:Array<ProjectObj> = _json.data;
+		trace(arr.length);
+		for (i in 0...arr.length) {
+			var _arr = arr[i];
+			trace(untyped _arr.title);
+		}
+		vm.data.count = arr.length;
+		vm.data.json = _json;
 	}
 
 	/**

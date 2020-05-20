@@ -1,14 +1,15 @@
 package tools;
 
-import sys.FileStat;
-import haxe.Json;
 #if macro
+import haxe.Json;
 import haxe.io.Path;
 import haxe.macro.Context;
 import haxe.macro.Expr;
 import haxe.macro.Type;
 import sys.FileSystem;
+import sys.FileStat;
 import sys.io.File;
+import AST.ProjectObj;
 
 using StringTools;
 
@@ -32,6 +33,7 @@ class Macro {
 </body>
 </html>';
 
+	// folders I know I don't need to be generated
 	private static var ignoreArr = ['_example', 'assets'];
 
 	/**
@@ -43,15 +45,10 @@ class Macro {
 	 */
 	public static function buildTemplate(?overwrite:Bool = false) {
 		var cwd:String = Sys.getCwd();
-
 		// trace(cwd);
-
 		var docFolder = Path.join([cwd, 'docs']);
 
 		if (FileSystem.exists(docFolder)) {
-			// [mck] just generate that folder... I don't care!
-			// if (!FileSystem.exists(templateDstFolder))
-			// 	FileSystem.createDirectory(templateDstFolder);
 			generateFromFolder(docFolder);
 		} else {
 			Context.warning('You might be using a different folder structure: this will not work!', Context.currentPos());
@@ -59,8 +56,6 @@ class Macro {
 	}
 
 	public static function generateFromFolder(folder):Void {
-		// var fileNames = FileSystem.readDirectory(folder);
-
 		var fileNames:Array<String> = FileSystem.readDirectory(folder);
 		// sort alfabetical
 		fileNames.sort(function(a:String, b:String):Int {
@@ -74,6 +69,7 @@ class Macro {
 		});
 
 		generateJson(folder, fileNames);
+		// generateCardsHTML(folder, fileNames); // don't need that anymore
 
 		var md = '| Name | type | link |\n| --- | --- | --- |\n';
 
@@ -110,7 +106,9 @@ class Macro {
 		File.saveContent(tempTemplateFile, output);
 
 		File.saveContent(templateMarkdown, md);
+	}
 
+	private static function generateCardsHTML(folder:String, fileNames:Array<String>) {
 		// create cards
 		var templateCard = '
 <div class="col-3">
@@ -173,7 +171,8 @@ class Macro {
 		// create list
 
 		for (fileName in fileNames) {
-			if (FileSystem.isDirectory(folder + '/' + fileName)) {
+			var path = folder + '/' + fileName;
+			if (FileSystem.isDirectory(path)) {
 				// folders
 
 				// ignore folder that start with `_`
@@ -181,41 +180,62 @@ class Macro {
 					continue;
 
 				if (ignoreArr.indexOf(fileName) == -1) {
-					trace('>> ' + fileName);
+					// trace('>> foldername: ' + fileName);
 
-					var filestat:FileStat = FileSystem.stat(folder + '/' + fileName);
-					// trace(filestat);
-					// var lastModivicationTime:Date = filestat.mtime;
-					// var creationTime:Date = filestat.ctime;
-
+					var filestat:FileStat = FileSystem.stat(path);
 					// trace(filestat.mtime);
 					// trace(filestat.ctime);
 					// trace(filestat.atime);
 
-					/**
-						{
-												 img:"Screenshot.jpg",
-												 title: "Example",
-												 path: "docs",
-												 desciption:'xxxx',
-												 tags:['xx','bbb'],
+					// create ProjectObj
+					var obj:ProjectObj = {'title': ''};
 
-												}
-					 */
+					// Reflect.setField(obj, 'title', capFirstLetter(fileName));
+					obj.title = capFirstLetter(fileName);
+					obj.path = '$folder/$fileName'.replace('${Sys.getCwd()}', '');
+					obj.url = '$fileName'.replace('${Sys.getCwd()}', '');
 
-					var obj = {};
+					// just being lazy, make sure every project has these
 
-					Reflect.setField(obj, 'title', capFirstLetter(fileName));
+					var tagPath = Path.join([path, 'tags.md']);
+					var descPath = Path.join([path, 'description.md']);
+					if (!FileSystem.exists(tagPath)) {
+						trace('----> no tags.md? ${tagPath}');
+						File.write(tagPath);
+					}
+					if (!FileSystem.exists(descPath)) {
+						trace('----> no description.md? ${descPath}');
+						File.write(descPath);
+					}
 
-					var __fileNames:Array<String> = FileSystem.readDirectory(folder + '/' + fileName);
-
-					for (i in 0...__fileNames.length) {
-						var ___fileNames = __fileNames[i];
-						trace('\t>> ' + ___fileNames);
+					// read folder
+					var projectFolderFiles:Array<String> = FileSystem.readDirectory(path);
+					for (i in 0...projectFolderFiles.length) {
+						var _projectFolderFiles = projectFolderFiles[i];
+						// trace('\t>> ' + _projectFolderFiles);
 
 						// Screenshot.png / Screenshot.jpg
-						if (___fileNames.toLowerCase().indexOf('screenshot') != -1) {
-							Reflect.setField(obj, 'img', '${___fileNames}');
+						if (_projectFolderFiles.toLowerCase().indexOf('screenshot') != -1) {
+							// Reflect.setField(obj, 'img', '${_projectFolderFiles}');
+							obj.img = _projectFolderFiles;
+						}
+						if (_projectFolderFiles.toLowerCase().indexOf('description') != -1) {
+							// Reflect.setField(obj, 'img', '${_projectFolderFiles}');
+							var content = File.getContent(folder + '/' + fileName + '/' + _projectFolderFiles);
+							if (content == '') {
+								content = obj.title;
+							}
+							obj.description = content;
+
+							var maxChar = 150; // might need to be bigger?
+							obj.shortdesc = content.substring(0, maxChar) + " ...";
+						}
+						if (_projectFolderFiles.toLowerCase().indexOf('tags') != -1) {
+							// Reflect.setField(obj, 'img', '${_projectFolderFiles}');
+							var content = File.getContent(folder + '/' + fileName + '/' + _projectFolderFiles);
+							var arr = content.replace('- ', '').split('\n');
+							arr.remove('');
+							obj.tags = arr;
 						}
 					}
 					arr.push(obj);

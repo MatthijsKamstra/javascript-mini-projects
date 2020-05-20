@@ -1,18 +1,1 @@
-{
-  "data": [
-    { "title": "Countdown", "img": "Screenshot.png" },
-    { "title": "Desktop", "img": "Screenshot.jpg" },
-    { "title": "Drag-and-drop", "img": "Screenshot.png" },
-    { "title": "Emoji-favicon", "img": "Screenshot.jpg" },
-    { "title": "Localstorage", "img": "Screenshot.jpg" },
-    { "title": "Markdown", "img": "Screenshot.png" },
-    { "title": "Photo-watermark", "img": "Screenshot.png" },
-    { "title": "Quotes", "img": "Screenshot.png" },
-    { "title": "Svg-editor", "img": "Screenshot.png" },
-    { "title": "Todo", "img": "Screenshot.jpg" },
-    { "title": "Togglesound", "img": "Screenshot.png" },
-    { "title": "Weather", "img": "Screenshot.png" }
-  ],
-  "updated": "2020-05-19 22:14:00",
-  "folder": "/Users/matthijs/Documents/GIT/javascript-mini-projects/docs"
-}
+{"data":[{"description":"Convert-markdown","title":"Convert-markdown","shortdesc":"Convert-markdown ...","img":"Screenshot.png","url":"convert-markdown","path":"docs/convert-markdown","tags":[]},{"description":"# Countdown\n\nSimple countdown, with ticking sound per second and a big finally when the countdown has reached zero.\n\nPossible to set the countdown from 10/30/60/80 seconds. And the besides counting down, there is also a progressbar.\n","title":"Countdown","shortdesc":"# Countdown\n\nSimple countdown, with ticking sound per second and a big finally when the countdown has reached zero.\n\nPossible to set the countdown fro ...","img":"Screenshot.png","url":"countdown","path":"docs/countdown","tags":["timer","countdown","audio"]},{"description":"Desktop","title":"Desktop","shortdesc":"Desktop ...","img":"Screenshot.jpg","url":"desktop","path":"docs/desktop","tags":[]},{"description":"Drag-and-drop","title":"Drag-and-drop","shortdesc":"Drag-and-drop ...","img":"Screenshot.png","url":"drag-and-drop","path":"docs/drag-and-drop","tags":[]},{"description":"Emoji-favicon","title":"Emoji-favicon","shortdesc":"Emoji-favicon ...","img":"Screenshot.jpg","url":"emoji-favicon","path":"docs/emoji-favicon","tags":[]},{"description":"Localstorage","title":"Localstorage","shortdesc":"Localstorage ...","img":"Screenshot.jpg","url":"localstorage","path":"docs/localstorage","tags":[]},{"description":"Photo-watermark","title":"Photo-watermark","shortdesc":"Photo-watermark ...","img":"Screenshot.png","url":"photo-watermark","path":"docs/photo-watermark","tags":[]},{"description":"Quotes","title":"Quotes","shortdesc":"Quotes ...","img":"Screenshot.png","url":"quotes","path":"docs/quotes","tags":[]},{"description":"Svg-editor","title":"Svg-editor","shortdesc":"Svg-editor ...","img":"Screenshot.png","url":"svg-editor","path":"docs/svg-editor","tags":[]},{"description":"Todo","title":"Todo","shortdesc":"Todo ...","img":"Screenshot.jpg","url":"todo","path":"docs/todo","tags":[]},{"description":"Togglesound","title":"Togglesound","shortdesc":"Togglesound ...","img":"Screenshot.png","url":"togglesound","path":"docs/togglesound","tags":[]},{"description":"Weather","title":"Weather","shortdesc":"Weather ...","img":"Screenshot.png","url":"weather","path":"docs/weather","tags":[]}],"updated":"2020-05-20 13:37:37","folder":"/Users/matthijs/Documents/GIT/javascript-mini-projects/docs"}

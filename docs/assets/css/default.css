@@ -13,6 +13,17 @@ h6 {
   font-family: "Domine", serif;
 }
 
+h1 {
+  background-color: #6497b1;
+  text-align: center;
+  color: #011f4b;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-radius: 0.2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 /* The side navigation menu */
 .sidenav {
   height: 100%; /* 100% Full-height */

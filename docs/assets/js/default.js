@@ -9,7 +9,7 @@ class Main {
 		this.homeUrl = "../_nav.html";
 		this.INFO_ID = "mySidenav";
 		this.HOME_ID = "myHomeSideNav";
-		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-20 13:37:37");
+		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-20 13:55:08");
 		this.vm = new Vue({ el : "#app", data : { message : "Hello Vue.js!", count : 20, json : { }}});
 		if(window.document.getElementById("homepage") != null) {
 			this.loadData(this.json,$bind(this,this.setupJsonData));

@@ -13,7 +13,7 @@ h6 {
   font-family: "Domine", serif;
 }
 
-h1 {
+h1:first-child {
   background-color: #6497b1;
   text-align: center;
   color: #011f4b;

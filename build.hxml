@@ -83,3 +83,8 @@
 
 -main JsonP
 -js docs/jsonp/jsonp.js
+
+--next
+
+-main Webcam
+-js docs/webcam/webcam.js

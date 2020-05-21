@@ -27,6 +27,7 @@ class Main {
 		// only on homepage
 		if (document.getElementById('homepage') != null) {
 			console.log('homepage');
+			// set vm dom
 			vm = new Vue({
 				el: '#app',
 				data: {

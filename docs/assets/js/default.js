@@ -9,11 +9,13 @@ class Main {
 		this.homeUrl = "../_nav.html";
 		this.INFO_ID = "mySidenav";
 		this.HOME_ID = "myHomeSideNav";
-		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-20 13:55:08");
-		this.vm = new Vue({ el : "#app", data : { message : "Hello Vue.js!", count : 20, json : { }}});
+		window.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-21 14:29:21");
 		if(window.document.getElementById("homepage") != null) {
+			window.console.log("homepage");
+			this.vm = new Vue({ el : "#app", data : { message : "Hello Vue.js!", count : 20, json : { }}});
 			this.loadData(this.json,$bind(this,this.setupJsonData));
 		} else {
+			window.console.log("other pages");
 			this.loadData(this.homeUrl,$bind(this,this.setupHome));
 			this.loadData(this.infoUrl,$bind(this,this.setupInfo));
 		}
@@ -54,14 +56,6 @@ class Main {
 	setupJsonData(data) {
 		var _json = JSON.parse(data);
 		var arr = _json.data;
-		console.log("src/Main.hx:93:",arr.length);
-		var _g = 0;
-		var _g1 = arr.length;
-		while(_g < _g1) {
-			var i = _g++;
-			var _arr = arr[i];
-			console.log("src/Main.hx:96:",_arr.title);
-		}
 		this.vm.$data.count = arr.length;
 		this.vm.$data.json = _json;
 	}

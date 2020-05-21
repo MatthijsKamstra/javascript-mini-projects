@@ -22,12 +22,16 @@ class JsonP {
 		console.log(json.data);
 
 		var html = '
+<div class="col-auto">
 <img src="${json.data.avatar_url}" class="rounded"><br>
+</div>
+<div class="col-6">
 Name: ${json.data.name}<br>
 Bio: ${json.data.bio}<br>
 Public repos: ${json.data.public_repos}<br>
 Blog: <a href="${json.data.blog}" target="_blank">Check out blog</a><br>
 Repos: <a href="${json.data.html_url}?tab=repositories" target="_blank">Check out repos</a><br>
+</div>
 ';
 
 		div.innerHTML = html;

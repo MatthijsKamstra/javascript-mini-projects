@@ -23,7 +23,7 @@ class JsonP {
 	static onCompleteHandler(json) {
 		var div = window.document.getElementById("container-jsonp-data");
 		window.console.log(json.data);
-		var html = "\n<img src=\"" + Std.string(json.data.avatar_url) + "\" class=\"rounded\"><br>\nName: " + Std.string(json.data.name) + "<br>\nBio: " + Std.string(json.data.bio) + "<br>\nPublic repos: " + Std.string(json.data.public_repos) + "<br>\nBlog: <a href=\"" + Std.string(json.data.blog) + "\" target=\"_blank\">Check out blog</a><br>\nRepos: <a href=\"" + Std.string(json.data.html_url) + "?tab=repositories\" target=\"_blank\">Check out repos</a><br>\n";
+		var html = "\n<div class=\"col-auto\">\n<img src=\"" + Std.string(json.data.avatar_url) + "\" class=\"rounded\"><br>\n</div>\n<div class=\"col-6\">\nName: " + Std.string(json.data.name) + "<br>\nBio: " + Std.string(json.data.bio) + "<br>\nPublic repos: " + Std.string(json.data.public_repos) + "<br>\nBlog: <a href=\"" + Std.string(json.data.blog) + "\" target=\"_blank\">Check out blog</a><br>\nRepos: <a href=\"" + Std.string(json.data.html_url) + "?tab=repositories\" target=\"_blank\">Check out repos</a><br>\n</div>\n";
 		div.innerHTML = html;
 	}
 	static main() {

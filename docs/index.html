@@ -46,6 +46,11 @@
 			background-attachment: fixed;
 			color: white;
 		}
+
+
+		.list span.badge {
+			margin-left: 2px;
+		}
 	</style>
 
 </head>
@@ -88,7 +93,8 @@
 							JavaScript. </h3>
 						<p>{{count}} Web Projects With Vanilla JavaScript<br> This is the main repository for all of the
 							projects in the course. </p>
-						<p><a href="#" class="btn btn-primary btn-large">Learn more »</a></p>
+						<p><a href="https://github.com/MatthijsKamstra/javascript-mini-projects"
+								class="btn btn-primary btn-large" target="_blank">Learn more »</a></p>
 					</div>
 				</div>
 			</div>
@@ -113,6 +119,10 @@
 
 						<div class="card-body">
 							<p class="card-text">{{project.shortdesc}}</p>
+							<div class="list">
+								<span class="badge badge-dark" v-for="badge in project.tags">{{badge}}</span>
+
+							</div>
 							<a v-bind:href="project.url" class="card-link">Visit {{project.title}}</a>
 						</div>
 					</div>
@@ -121,6 +131,8 @@
 				<!-- /.col-3 -->
 			</div>
 		</div>
+
+
 
 
 	</div>
@@ -175,10 +187,10 @@
 	<!-- /.container -->
 
 	<!-- development version, includes helpful console warnings -->
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
 
 	<!-- production version, optimized for size and speed -->
-	<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 	<!-- Code generated using Haxe -->
 	<script type="text/javascript" src="assets/js/default.js"></script>

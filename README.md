@@ -6,21 +6,22 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
 
 ## Ideas examples
 
-| Name             | type                          | link                          |
-| ---------------- | ----------------------------- | ----------------------------- |
-| Convert-markdown |                               | [link](docs/convert-markdown) |
-| Countdown        | timer,countdown,audio         | [link](docs/countdown)        |
-| Desktop          |                               | [link](docs/desktop)          |
-| Drag-and-drop    |                               | [link](docs/drag-and-drop)    |
-| Emoji-favicon    |                               | [link](docs/emoji-favicon)    |
-| Jsonp            | jsonp,api,github,json,loading | [link](docs/jsonp)            |
-| Localstorage     |                               | [link](docs/localstorage)     |
-| Photo-watermark  |                               | [link](docs/photo-watermark)  |
-| Quotes           |                               | [link](docs/quotes)           |
-| Svg-editor       |                               | [link](docs/svg-editor)       |
-| Todo             | todo,DOM,localStorage,random  | [link](docs/todo)             |
-| Togglesound      | audio,toggle,loading          | [link](docs/togglesound)      |
-| Weather          | api,weather,json,loading      | [link](docs/weather)          |
+| #   | Name             | type                          | link                          |
+| --- | ---------------- | ----------------------------- | ----------------------------- |
+| 1   | Convert-markdown |                               | [link](docs/convert-markdown) |
+| 2   | Countdown        | timer,countdown,audio         | [link](docs/countdown)        |
+| 3   | Desktop          |                               | [link](docs/desktop)          |
+| 4   | Drag-and-drop    |                               | [link](docs/drag-and-drop)    |
+| 5   | Emoji-favicon    |                               | [link](docs/emoji-favicon)    |
+| 6   | Jsonp            | jsonp,api,github,json,loading | [link](docs/jsonp)            |
+| 7   | Localstorage     |                               | [link](docs/localstorage)     |
+| 8   | Photo-watermark  |                               | [link](docs/photo-watermark)  |
+| 9   | Quotes           |                               | [link](docs/quotes)           |
+| 10  | Svg-editor       |                               | [link](docs/svg-editor)       |
+| 11  | Todo             | todo,DOM,localStorage,random  | [link](docs/todo)             |
+| 12  | Togglesound      | audio,toggle,loading          | [link](docs/togglesound)      |
+| 13  | Weather          | api,weather,json,loading      | [link](docs/weather)          |
+| 14  | Webcam           | webcam,canvas,snapshot        | [link](docs/webcam)           |
 
 ## Ideas
 
@@ -56,7 +57,7 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
   - ~~classic todo list~~
   - flash cards (local storage)
   - basic quiz
-  - Mini SPA website
+  - ~~Mini SPA website~~
   - Interactive online store
   - Check out shop/shopping card
   - ~~emoji favicon generator~~
@@ -68,6 +69,7 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
   - random name generator
   - ~~basic markdown converter~~
 - PRO
+  - ~~vue.js~~
   - ar.js
   - parcel
 - Misc
@@ -77,6 +79,7 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
   - virtual key board
   - inlog site and share info (sockets)
   - real time chat (sockets)
+  - ~~snapshot webcam~~
 
 ## list mini projects
 

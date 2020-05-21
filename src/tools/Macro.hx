@@ -79,7 +79,7 @@ class Macro {
 	}
 
 	private static function generateMD(folder:String, fileNames:Array<String>) {
-		var md = '| Name | type | link |\n| --- | --- | --- |\n';
+		var md = '| # | Name | type | link |\n| --- | --- | --- |\n';
 
 		if (Macro.json == null)
 			return;
@@ -89,7 +89,7 @@ class Macro {
 		for (i in 0..._arr.length) {
 			var _projectObj = _arr[i];
 			// trace(_projectObj);
-			md += '| ${capFirstLetter(_projectObj.title)} | ${_projectObj.tags.toString().replace('[', '').replace(']', '')} | [link](docs/${_projectObj.url}) |\n';
+			md += '| ${i + 1} | ${capFirstLetter(_projectObj.title)} | ${_projectObj.tags.toString().replace('[', '').replace(']', '')} | [link](docs/${_projectObj.url}) |\n';
 		}
 
 		var templateMarkdown = folder + '/_list.md';
@@ -140,6 +140,8 @@ class Macro {
 						trace('----> no description.md? ${descPath}');
 						File.write(descPath);
 					}
+					// use default image, if there is a `screenshot` file, use that!
+					// obj.img = '../docs/assets/img/Screenshot.png';
 
 					// read folder
 					var projectFolderFiles:Array<String> = FileSystem.readDirectory(path);

@@ -1,0 +1,4 @@
+- todo
+- DOM
+- localStorage
+- random

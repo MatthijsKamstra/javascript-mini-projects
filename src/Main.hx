@@ -24,19 +24,20 @@ class Main {
 	public function new() {
 		console.log('${App.NAME} - Navigation - Dom ready :: build: ${App.getBuildDate()}');
 
-		vm = new Vue({
-			el: '#app',
-			data: {
-				message: 'Hello Vue.js!',
-				count: 20,
-				json: {}
-			}
-		});
-
 		// only on homepage
 		if (document.getElementById('homepage') != null) {
+			console.log('homepage');
+			vm = new Vue({
+				el: '#app',
+				data: {
+					message: 'Hello Vue.js!',
+					count: 20,
+					json: {}
+				}
+			});
 			loadData(json, setupJsonData);
 		} else {
+			console.log('other pages');
 			loadData(homeUrl, setupHome);
 			loadData(infoUrl, setupInfo);
 		}
@@ -88,13 +89,7 @@ class Main {
 
 	function setupJsonData(data:String) {
 		var _json = Json.parse(data);
-		// trace(_json);
 		var arr:Array<ProjectObj> = _json.data;
-		trace(arr.length);
-		for (i in 0...arr.length) {
-			var _arr = arr[i];
-			trace(untyped _arr.title);
-		}
 		vm.data.count = arr.length;
 		vm.data.json = _json;
 	}

@@ -6,25 +6,42 @@ class JsonP {
 		window.document.addEventListener("DOMContentLoaded",function(event) {
 			window.console.log("JsonP - Dom ready");
 			_gthis.getData();
+			_gthis.getRepos();
 		});
 	}
 	getData() {
 		var url = "https://api.github.com/users/MatthijsKamstra";
-		this.loadDataJsonP(url,"JsonP.onCompleteHandler");
+		JsonP.loadDataJsonP(url,"JsonP.onCompleteHandler");
 	}
-	loadDataJsonP(url,callback) {
+	getRepos() {
+		var url = "https://api.github.com/users/MatthijsKamstra/repos?page=1&per_page=100";
+		JsonP.loadDataJsonP(url,"JsonP.onTestCompleteHandler");
+	}
+	static onTestCompleteHandler(json) {
+		window.console.log("onTestCompleteHandler");
+		window.console.log(json);
+		window.console.log(json.meta.Link[0][0]);
+		window.console.log(json.meta.Link[0][1].rel);
+	}
+	static onCompleteHandler(json) {
+		var div = window.document.getElementById("container-jsonp-data");
+		window.console.log("onCompleteHandler");
+		window.console.log(json);
+		var html = "\n<div class=\"col-auto\">\n<img src=\"" + Std.string(json.data.avatar_url) + "\" class=\"rounded\"><br>\n</div>\n<div class=\"col-6\">\nName: " + Std.string(json.data.name) + "<br>\nBio: " + Std.string(json.data.bio) + "<br>\nPublic repos: " + Std.string(json.data.public_repos) + "<br>\nBlog: <a href=\"" + Std.string(json.data.blog) + "\" target=\"_blank\">Check out blog</a><br>\nRepos: <a href=\"" + Std.string(json.data.html_url) + "?tab=repositories\" target=\"_blank\">Check out repos</a><br>\n</div>\n";
+		div.innerHTML = html;
+	}
+	static loadDataJsonP(url,callback) {
 		var script = window.document.createElement("script");
-		script.src = "" + url + "?callback=" + callback;
+		if(callback != null) {
+			var foo = url.indexOf("?") != -1 ? "&" : "?";
+			script.src = "" + url + foo + "callback=" + callback;
+		} else {
+			script.src = "" + url;
+		}
 		window.document.head.appendChild(script);
 		script.onload = function(e) {
 			this.remove();
 		};
-	}
-	static onCompleteHandler(json) {
-		var div = window.document.getElementById("container-jsonp-data");
-		window.console.log(json.data);
-		var html = "\n<div class=\"col-auto\">\n<img src=\"" + Std.string(json.data.avatar_url) + "\" class=\"rounded\"><br>\n</div>\n<div class=\"col-6\">\nName: " + Std.string(json.data.name) + "<br>\nBio: " + Std.string(json.data.bio) + "<br>\nPublic repos: " + Std.string(json.data.public_repos) + "<br>\nBlog: <a href=\"" + Std.string(json.data.blog) + "\" target=\"_blank\">Check out blog</a><br>\nRepos: <a href=\"" + Std.string(json.data.html_url) + "?tab=repositories\" target=\"_blank\">Check out repos</a><br>\n</div>\n";
-		div.innerHTML = html;
 	}
 	static main() {
 		var app = new JsonP();

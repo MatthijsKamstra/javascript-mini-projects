@@ -4,6 +4,13 @@ typedef Point = {
 	var y:Float;
 }
 
+typedef JsonObj = {
+	@:optional var _id:String;
+	var updated:String;
+	@:optional var folder:String;
+	@:optional var data:Array<ProjectObj>;
+}
+
 typedef ProjectObj = {
 	@:optional var _id:String;
 	var title:String;

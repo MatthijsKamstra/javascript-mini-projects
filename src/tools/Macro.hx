@@ -1,5 +1,6 @@
 package tools;
 
+import AST.JsonObj;
 #if macro
 import haxe.Json;
 import haxe.io.Path;
@@ -36,6 +37,9 @@ class Macro {
 	// folders I know I don't need to be generated
 	private static var ignoreArr = ['_example', 'assets'];
 
+	//
+	public static var json:Dynamic = null;
+
 	/**
 	 * @example
 	 * 			--macro tools.Macro.buildTemplate(true)
@@ -69,8 +73,126 @@ class Macro {
 		});
 
 		generateJson(folder, fileNames);
+		// generateNav(folder, fileNames);
 		// generateCardsHTML(folder, fileNames); // don't need that anymore
+		generateMD(folder, fileNames);
+	}
 
+	private static function generateMD(folder:String, fileNames:Array<String>) {
+		var md = '| Name | type | link |\n| --- | --- | --- |\n';
+
+		if (Macro.json == null)
+			return;
+
+		var _json:JsonObj = Macro.json;
+		var _arr:Array<ProjectObj> = _json.data;
+		for (i in 0..._arr.length) {
+			var _projectObj = _arr[i];
+			// trace(_projectObj);
+			md += '| ${capFirstLetter(_projectObj.title)} | ${_projectObj.tags.toString().replace('[', '').replace(']', '')} | [link](docs/${_projectObj.url}) |\n';
+		}
+
+		var templateMarkdown = folder + '/_list.md';
+		File.saveContent(templateMarkdown, md);
+	}
+
+	private static function generateJson(folder:String, fileNames:Array<String>) {
+		var json = {};
+		Reflect.setField(json, 'updated', Date.now().toString());
+		// Reflect.setField(json, 'folder', folder);
+		var arr:Array<ProjectObj> = [];
+		// create list
+
+		for (fileName in fileNames) {
+			var path = folder + '/' + fileName;
+			if (FileSystem.isDirectory(path)) {
+				// folders
+
+				// ignore folder that start with `_`
+				if (fileName.startsWith("_"))
+					continue;
+
+				if (ignoreArr.indexOf(fileName) == -1) {
+					// trace('>> foldername: ' + fileName);
+
+					var filestat:FileStat = FileSystem.stat(path);
+					// trace(filestat.mtime);
+					// trace(filestat.ctime);
+					// trace(filestat.atime);
+
+					// create ProjectObj
+					var obj:ProjectObj = {'title': ''};
+
+					// Reflect.setField(obj, 'title', capFirstLetter(fileName));
+					obj.title = capFirstLetter(fileName);
+					obj.path = '$folder/$fileName'.replace('${Sys.getCwd()}', '');
+					obj.url = '$fileName'.replace('${Sys.getCwd()}', '');
+
+					// just being lazy, make sure every project has these
+
+					var tagPath = Path.join([path, 'tags.md']);
+					var descPath = Path.join([path, 'description.md']);
+					if (!FileSystem.exists(tagPath)) {
+						trace('----> no tags.md? ${tagPath}');
+						File.write(tagPath);
+					}
+					if (!FileSystem.exists(descPath)) {
+						trace('----> no description.md? ${descPath}');
+						File.write(descPath);
+					}
+
+					// read folder
+					var projectFolderFiles:Array<String> = FileSystem.readDirectory(path);
+					for (i in 0...projectFolderFiles.length) {
+						var _projectFolderFiles = projectFolderFiles[i];
+						// trace('\t>> ' + _projectFolderFiles);
+
+						// Screenshot.png / Screenshot.jpg
+						if (_projectFolderFiles.toLowerCase().indexOf('screenshot') != -1) {
+							// Reflect.setField(obj, 'img', '${_projectFolderFiles}');
+							obj.img = _projectFolderFiles;
+						}
+						if (_projectFolderFiles.toLowerCase().indexOf('description') != -1) {
+							// Reflect.setField(obj, 'img', '${_projectFolderFiles}');
+							var content = File.getContent(folder + '/' + fileName + '/' + _projectFolderFiles);
+							if (content == '') {
+								content = obj.title;
+							}
+							obj.description = content;
+
+							var maxChar = 150; // might need to be bigger?
+							obj.shortdesc = content.substring(0, maxChar) + " ...";
+						}
+						if (_projectFolderFiles.toLowerCase().indexOf('tags') != -1) {
+							// Reflect.setField(obj, 'img', '${_projectFolderFiles}');
+							var content = File.getContent(folder + '/' + fileName + '/' + _projectFolderFiles);
+							var _arr = content.replace('- ', '').split('\n');
+							_arr.remove('');
+							obj.tags = _arr;
+						}
+					}
+					arr.push(obj);
+				}
+			} else {
+				// files
+			}
+		}
+		Reflect.setField(json, 'data', arr);
+		var jsonName = folder + '/data.json';
+		File.saveContent(jsonName, Json.stringify(json));
+
+		Macro.json = json;
+	}
+
+	private static function capFirstLetter(str:String):String {
+		var tempstr = '';
+		tempstr = str.substring(0, 1).toUpperCase() + str.substring(1, str.length);
+		return tempstr;
+	}
+
+	// ____________________________________ deprecated ____________________________________
+
+	private static function generateNav(folder:String, fileNames:Array<String>) {
 		var md = '| Name | type | link |\n| --- | --- | --- |\n';
 
 		// create list
@@ -161,98 +283,6 @@ class Macro {
 		var output = template.execute(file);
 
 		File.saveContent(tempTemplateFile, output);
-	}
-
-	private static function generateJson(folder:String, fileNames:Array<String>) {
-		var json = {};
-		Reflect.setField(json, 'updated', Date.now().toString());
-		Reflect.setField(json, 'folder', folder);
-		var arr = [];
-		// create list
-
-		for (fileName in fileNames) {
-			var path = folder + '/' + fileName;
-			if (FileSystem.isDirectory(path)) {
-				// folders
-
-				// ignore folder that start with `_`
-				if (fileName.startsWith("_"))
-					continue;
-
-				if (ignoreArr.indexOf(fileName) == -1) {
-					// trace('>> foldername: ' + fileName);
-
-					var filestat:FileStat = FileSystem.stat(path);
-					// trace(filestat.mtime);
-					// trace(filestat.ctime);
-					// trace(filestat.atime);
-
-					// create ProjectObj
-					var obj:ProjectObj = {'title': ''};
-
-					// Reflect.setField(obj, 'title', capFirstLetter(fileName));
-					obj.title = capFirstLetter(fileName);
-					obj.path = '$folder/$fileName'.replace('${Sys.getCwd()}', '');
-					obj.url = '$fileName'.replace('${Sys.getCwd()}', '');
-
-					// just being lazy, make sure every project has these
-
-					var tagPath = Path.join([path, 'tags.md']);
-					var descPath = Path.join([path, 'description.md']);
-					if (!FileSystem.exists(tagPath)) {
-						trace('----> no tags.md? ${tagPath}');
-						File.write(tagPath);
-					}
-					if (!FileSystem.exists(descPath)) {
-						trace('----> no description.md? ${descPath}');
-						File.write(descPath);
-					}
-
-					// read folder
-					var projectFolderFiles:Array<String> = FileSystem.readDirectory(path);
-					for (i in 0...projectFolderFiles.length) {
-						var _projectFolderFiles = projectFolderFiles[i];
-						// trace('\t>> ' + _projectFolderFiles);
-
-						// Screenshot.png / Screenshot.jpg
-						if (_projectFolderFiles.toLowerCase().indexOf('screenshot') != -1) {
-							// Reflect.setField(obj, 'img', '${_projectFolderFiles}');
-							obj.img = _projectFolderFiles;
-						}
-						if (_projectFolderFiles.toLowerCase().indexOf('description') != -1) {
-							// Reflect.setField(obj, 'img', '${_projectFolderFiles}');
-							var content = File.getContent(folder + '/' + fileName + '/' + _projectFolderFiles);
-							if (content == '') {
-								content = obj.title;
-							}
-							obj.description = content;
-
-							var maxChar = 150; // might need to be bigger?
-							obj.shortdesc = content.substring(0, maxChar) + " ...";
-						}
-						if (_projectFolderFiles.toLowerCase().indexOf('tags') != -1) {
-							// Reflect.setField(obj, 'img', '${_projectFolderFiles}');
-							var content = File.getContent(folder + '/' + fileName + '/' + _projectFolderFiles);
-							var arr = content.replace('- ', '').split('\n');
-							arr.remove('');
-							obj.tags = arr;
-						}
-					}
-					arr.push(obj);
-				}
-			} else {
-				// files
-			}
-		}
-		Reflect.setField(json, 'data', arr);
-		var jsonName = folder + '/data.json';
-		File.saveContent(jsonName, Json.stringify(json));
-	}
-
-	private static function capFirstLetter(str:String):String {
-		var tempstr = '';
-		tempstr = str.substring(0, 1).toUpperCase() + str.substring(1, str.length);
-		return tempstr;
 	}
 }
 #end

@@ -1,6 +1,8 @@
 import haxe.Constraints.Function;
 import js.Lib;
 
+using StringTools;
+
 // https://gomakethings.com/working-with-jsonp/
 
 @:expose
@@ -29,9 +31,29 @@ class JsonP {
 		console.log(json.meta.Link[0][0]);
 		console.log(json.meta.Link[0][1].rel);
 
-		// if (json.meta.Link[0][1].rel == 'next') {
-		// 	loadDataJsonP(json.meta.Link[0][0]);
-		// }
+		if (json.meta.Link[0][1].rel == 'next') {
+			loadDataJsonP(json.meta.Link[0][0]);
+		}
+
+		var div:DivElement = cast document.getElementById('container-jsonp-data');
+		var html = div.innerHTML;
+		html += '<ul>';
+		for (i in 0...json.data.length) {
+			var obj:GithubRepoObj = json.data[i];
+			var createdDate = Date.fromString(obj.created_at.replace('T', ' ').replace('Z', '')); // "2015-03-24T14:18:50Z",
+			trace(createdDate);
+			if (obj.created_at == obj.updated_at)
+				continue;
+			if (obj.fork != true) {
+				html += '<li><a href="${obj.html_url}">${obj.name}</a>';
+				if (obj.homepage != null) {
+					html += ' - <a href="${obj.homepage}">homepage</a>';
+				}
+				html += '</li>';
+			}
+		}
+		html += '</ul>';
+		div.innerHTML = html;
 	}
 
 	static public function onCompleteHandler(json:Dynamic) {
@@ -84,10 +106,14 @@ Repos: <a href="${json.data.html_url}?tab=repositories" target="_blank">Check ou
 	}
 }
 
-typedef QuoteObj = {
-	var quoteAuthor:String;
-	var quoteLink:String;
-	var quoteText:String;
-	var senderLink:String;
-	var senderName:String;
+typedef GithubRepoObj = {
+	var created_at:String; // 2015-03-24T14:18:08Z
+	var updated_at:String; // 2015-03-24T14:18:50Z
+	var pushed_at:String; // 2015-03-24T14:20:44Z
+	@:optional var homepage:String; // null or
+	var html_url:String; // "https://github.com/MatthijsKamstra/abc-mvc",
+	var name:String;
+	var description:String; // "Automatically exported from code.google.com/p/abc-mvc",
+	var fork:Bool;
+	var language:String; // ActionScript",
 }

@@ -100,6 +100,9 @@ class JsonP {
 }
 $hx_exports["JsonP"] = JsonP;
 JsonP.__name__ = true;
+Object.assign(JsonP.prototype, {
+	__class__: JsonP
+});
 Math.__name__ = true;
 class Std {
 	static string(s) {
@@ -123,6 +126,9 @@ class js__$Boot_HaxeError extends Error {
 	}
 }
 js__$Boot_HaxeError.__name__ = true;
+Object.assign(js__$Boot_HaxeError.prototype, {
+	__class__: js__$Boot_HaxeError
+});
 class js_Boot {
 	static __string_rec(o,s) {
 		if(o == null) {
@@ -191,12 +197,14 @@ class js_Boot {
 	}
 }
 js_Boot.__name__ = true;
+String.prototype.__class__ = String;
 String.__name__ = true;
 Array.__name__ = true;
+Date.prototype.__class__ = Date;
 Date.__name__ = "Date";
 Object.defineProperty(js__$Boot_HaxeError.prototype,"message",{ get : function() {
 	return String(this.val);
 }});
 js_Boot.__toStr = ({ }).toString;
 JsonP.main();
-})(typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this, {});
+})(typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this, typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);

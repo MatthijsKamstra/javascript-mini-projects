@@ -29,7 +29,7 @@ class Webcam {
 		};
 	}
 	getWebcam() {
-		console.log("src/Webcam.hx:50:",($_=window.navigator.mediaDevices,$bind($_,$_.getUserMedia)));
+		console.log("/Users/matthijs/Documents/GIT/javascript-mini-projects/src/Webcam.hx:50:",($_=window.navigator.mediaDevices,$bind($_,$_.getUserMedia)));
 		var _gthis = this;
 		if(window.navigator.mediaDevices.getUserMedia != null) {
 			window.navigator.mediaDevices.getUserMedia({ video : true}).then(function(stream) {

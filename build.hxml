@@ -88,3 +88,13 @@
 
 -main Webcam
 -js docs/webcam/webcam.js
+
+--next
+
+-main Geolocation
+-js docs/geolocation/geolocation.js
+
+--next
+
+-main Sketch
+-js docs/sketch/sketch.js

@@ -266,6 +266,9 @@ class Todo {
 	}
 }
 Todo.__name__ = true;
+Object.assign(Todo.prototype, {
+	__class__: Todo
+});
 class js__$Boot_HaxeError extends Error {
 	constructor(val) {
 		super();
@@ -276,6 +279,9 @@ class js__$Boot_HaxeError extends Error {
 	}
 }
 js__$Boot_HaxeError.__name__ = true;
+Object.assign(js__$Boot_HaxeError.prototype, {
+	__class__: js__$Boot_HaxeError
+});
 class js_Boot {
 	static __string_rec(o,s) {
 		if(o == null) {
@@ -402,8 +408,10 @@ class utils_Randomize {
 	}
 }
 utils_Randomize.__name__ = true;
+String.prototype.__class__ = String;
 String.__name__ = true;
 Array.__name__ = true;
+Date.prototype.__class__ = Date;
 Date.__name__ = "Date";
 Object.defineProperty(js__$Boot_HaxeError.prototype,"message",{ get : function() {
 	return String(this.val);
@@ -414,4 +422,4 @@ utils_LocalData.isDebug = true;
 utils_Randomize.superHeroFirst = ["captain","turbo","galactic","the","aqua","fire","iron","super","green","phantom","dark","ghost","professor","atomic","rock","omega","rocket","shadow","agent","silver","wild","wolf","ultra","wonder","doctor","star"];
 utils_Randomize.superHeroLast = ["x","shield","machine","justice","beast","wing","arrow","skull","blade","bolt","cobra","blaze","soldier","strike","falcon","fang","king","surfer","bot","guard","thing","claw","brain","master","power","storm"];
 Todo.main();
-})({});
+})(typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);

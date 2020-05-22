@@ -13,15 +13,17 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
 | 3   | Desktop          |                               | [link](docs/desktop)          |
 | 4   | Drag-and-drop    |                               | [link](docs/drag-and-drop)    |
 | 5   | Emoji-favicon    |                               | [link](docs/emoji-favicon)    |
-| 6   | Jsonp            | jsonp,api,github,json,loading | [link](docs/jsonp)            |
-| 7   | Localstorage     |                               | [link](docs/localstorage)     |
-| 8   | Photo-watermark  |                               | [link](docs/photo-watermark)  |
-| 9   | Quotes           |                               | [link](docs/quotes)           |
-| 10  | Svg-editor       |                               | [link](docs/svg-editor)       |
-| 11  | Todo             | todo,DOM,localStorage,random  | [link](docs/todo)             |
-| 12  | Togglesound      | audio,toggle,loading          | [link](docs/togglesound)      |
-| 13  | Weather          | api,weather,json,loading      | [link](docs/weather)          |
-| 14  | Webcam           | webcam,canvas,snapshot        | [link](docs/webcam)           |
+| 6   | Geolocation      |                               | [link](docs/geolocation)      |
+| 7   | Jsonp            | jsonp,api,github,json,loading | [link](docs/jsonp)            |
+| 8   | Localstorage     |                               | [link](docs/localstorage)     |
+| 9   | Photo-watermark  |                               | [link](docs/photo-watermark)  |
+| 10  | Quotes           |                               | [link](docs/quotes)           |
+| 11  | Sketch           | canvas,sketching,save png     | [link](docs/sketch)           |
+| 12  | Svg-editor       |                               | [link](docs/svg-editor)       |
+| 13  | Todo             | todo,DOM,localStorage,random  | [link](docs/todo)             |
+| 14  | Togglesound      | audio,toggle,loading          | [link](docs/togglesound)      |
+| 15  | Weather          | api,weather,json,loading      | [link](docs/weather)          |
+| 16  | Webcam           | webcam,canvas,snapshot        | [link](docs/webcam)           |
 
 ## Ideas
 
@@ -73,7 +75,7 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
   - ar.js
   - parcel
 - Misc
-  - js drawing (canvas)
+  - ~~js drawing (canvas)~~
   - js animation class (test, workshop)
   - custom greetings from other sites
   - virtual key board

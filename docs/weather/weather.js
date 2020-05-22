@@ -85,6 +85,9 @@ class Weather {
 	}
 }
 Weather.__name__ = true;
+Object.assign(Weather.prototype, {
+	__class__: Weather
+});
 class js__$Boot_HaxeError extends Error {
 	constructor(val) {
 		super();
@@ -95,11 +98,16 @@ class js__$Boot_HaxeError extends Error {
 	}
 }
 js__$Boot_HaxeError.__name__ = true;
+Object.assign(js__$Boot_HaxeError.prototype, {
+	__class__: js__$Boot_HaxeError
+});
 var $_;
 function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $global.$haxeUID++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = m.bind(o); o.hx__closures__[m.__id__] = f; } return f; }
 $global.$haxeUID |= 0;
+String.prototype.__class__ = String;
 String.__name__ = true;
 Array.__name__ = true;
+Date.prototype.__class__ = Date;
 Date.__name__ = "Date";
 Object.defineProperty(js__$Boot_HaxeError.prototype,"message",{ get : function() {
 	return String(this.val);

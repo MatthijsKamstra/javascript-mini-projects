@@ -116,6 +116,9 @@ class PhotoWatermark {
 	}
 }
 PhotoWatermark.__name__ = true;
+Object.assign(PhotoWatermark.prototype, {
+	__class__: PhotoWatermark
+});
 class Std {
 	static string(s) {
 		return js_Boot.__string_rec(s,"");
@@ -132,6 +135,9 @@ class js__$Boot_HaxeError extends Error {
 	}
 }
 js__$Boot_HaxeError.__name__ = true;
+Object.assign(js__$Boot_HaxeError.prototype, {
+	__class__: js__$Boot_HaxeError
+});
 class js_Boot {
 	static __string_rec(o,s) {
 		if(o == null) {
@@ -203,6 +209,7 @@ js_Boot.__name__ = true;
 var $_;
 function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $global.$haxeUID++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = m.bind(o); o.hx__closures__[m.__id__] = f; } return f; }
 $global.$haxeUID |= 0;
+String.prototype.__class__ = String;
 String.__name__ = true;
 Array.__name__ = true;
 Object.defineProperty(js__$Boot_HaxeError.prototype,"message",{ get : function() {

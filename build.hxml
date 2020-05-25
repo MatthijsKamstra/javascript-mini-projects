@@ -98,3 +98,8 @@
 
 -main Sketch
 -js docs/sketch/sketch.js
+
+--next
+
+-main Darkmode
+-js docs/darkmode/darkmode.js

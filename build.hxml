@@ -74,10 +74,6 @@
 -main ConvertMarkdown
 -js docs/convert-markdown/convert-markdown.js
 
-# --next
-
-# -main ConvertText
-# -js docs/convert-text/convert-text.js
 
 --next
 

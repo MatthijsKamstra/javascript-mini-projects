@@ -14,6 +14,7 @@ class Geolocation {
 	var latt:Float;
 
 	var div:DivElement;
+	var divCities:DivElement;
 
 	public function new() {
 		document.addEventListener("DOMContentLoaded", function(event) {
@@ -29,6 +30,7 @@ class Geolocation {
 
 	function getElement() {
 		div = cast document.getElementById('longlatt');
+		divCities = cast document.getElementById('cities');
 	}
 
 	function getData() {
@@ -103,22 +105,21 @@ class Geolocation {
 
 	// amsterdam   52.349744609646166,4.788564319130978
 	function onLoadCompleteHandler(data) {
-		trace(data);
+		// trace(data);
 
 		var json = Json.parse(data);
-
 		var arr:Array<LongLattObj> = json;
+		var html = '<ul>';
 		for (i in 0...arr.length) {
-			var _LongLattObj:LongLattObj = arr[i];
-			trace(_LongLattObj);
+			var llObj:LongLattObj = arr[i];
+			// trace(llObj);
 
-			// var div:DivElement = document.createDivElement();
-
-			// var date = Date.fromString(_WeatherObj.applicable_date);
-
-			// div.innerHTML = '<img src="https://www.metaweather.com/static/img/weather/${_WeatherObj.weather_state_abbr}.svg" alt="${_WeatherObj.weather_state_name}" width="30px"> ${daysOfTheWeek[date.getDay()]},  min: ${Math.floor(_WeatherObj.min_temp)}℃, max: ${Math.floor(_WeatherObj.max_temp)}℃';
-			// weatherDiv.appendChild(div);
+			html += '<li>';
+			html += '${llObj.title} (${llObj.location_type}) - distance: ${llObj.distance} - latt/long: ${llObj.latt_long}';
+			html += '</li>';
 		}
+		html += '</ul>';
+		divCities.innerHTML = html;
 	}
 
 	static public function main() {

@@ -16,10 +16,11 @@ class Geolocation {
 	}
 	getElement() {
 		this.div = window.document.getElementById("longlatt");
+		this.divCities = window.document.getElementById("cities");
 	}
 	getData() {
 		let url = "" + this.corsUrl + this.searchUrl + "?lattlong=" + this.latt + "," + this.long;
-		console.log("src/Geolocation.hx:37:",url);
+		console.log("src/Geolocation.hx:39:",url);
 		this.loadData(url,$bind(this,this.onLoadCompleteHandler));
 	}
 	getPosition() {
@@ -65,16 +66,20 @@ class Geolocation {
 		req.send();
 	}
 	onLoadCompleteHandler(data) {
-		console.log("src/Geolocation.hx:106:",data);
 		let json = JSON.parse(data);
 		let arr = json;
+		let html = "<ul>";
 		let _g = 0;
 		let _g1 = arr.length;
 		while(_g < _g1) {
 			let i = _g++;
-			let _LongLattObj = arr[i];
-			console.log("src/Geolocation.hx:113:",_LongLattObj);
+			let llObj = arr[i];
+			html += "<li>";
+			html += "" + llObj.title + " (" + llObj.location_type + ") - distance: " + llObj.distance + " - latt/long: " + llObj.latt_long;
+			html += "</li>";
 		}
+		html += "</ul>";
+		this.divCities.innerHTML = html;
 	}
 	static main() {
 		let app = new Geolocation();

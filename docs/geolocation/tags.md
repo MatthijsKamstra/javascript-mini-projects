@@ -1,0 +1,4 @@
+- weather
+- geolocation
+- api
+- cors

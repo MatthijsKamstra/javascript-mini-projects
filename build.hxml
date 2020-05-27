@@ -99,3 +99,8 @@
 
 -main Darkmode
 -js docs/darkmode/darkmode.js
+
+--next
+
+-main Memory
+-js docs/memory/memory.js

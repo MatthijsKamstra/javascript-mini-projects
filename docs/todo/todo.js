@@ -151,7 +151,7 @@ class Todo {
 			link.classList.add(this.STATE_CLOSED);
 			break;
 		default:
-			console.log("src/Todo.hx:99:","case '" + todoObj.state + "': trace ('" + todoObj.state + "');");
+			console.log("/Users/matthijs/Documents/GIT/javascript-mini-projects/src/Todo.hx:99:","case '" + todoObj.state + "': trace ('" + todoObj.state + "');");
 		}
 		if(todoObj.state == this.STATE_CLOSED) {
 			link.classList.add("invisible");

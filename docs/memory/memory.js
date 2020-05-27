@@ -6,8 +6,8 @@ class Memory {
 		this.isCardLocked = false;
 		this.flipCardArray = [];
 		this.emojiArr = [];
-		this.backCard = "";
 		this.emojies = "abcdefgh";
+		this.backCard = "";
 		let _gthis = this;
 		window.document.addEventListener("DOMContentLoaded",function(event) {
 			$global.console.log("Memory - Dom ready");
@@ -17,9 +17,9 @@ class Memory {
 	init() {
 		this.emojiArr = this.emojies.split("").concat(this.emojies.split(""));
 		if(!this.isDebug) {
-			console.log("src/Memory.hx:22:",this.emojiArr);
+			console.log("/Users/matthijs/Documents/GIT/javascript-mini-projects/src/Memory.hx:22:",this.emojiArr);
 			this.shuffle(this.emojiArr);
-			console.log("src/Memory.hx:24:",this.emojiArr);
+			console.log("/Users/matthijs/Documents/GIT/javascript-mini-projects/src/Memory.hx:24:",this.emojiArr);
 		}
 		this.setElements();
 		this.setDeck();
@@ -41,7 +41,7 @@ class Memory {
 				if(!_gthis.isCardLocked) {
 					_gthis.flipCard(e);
 				} else {
-					console.log("src/Memory.hx:45:","wait for it!");
+					console.log("/Users/matthijs/Documents/GIT/javascript-mini-projects/src/Memory.hx:45:","wait for it!");
 				}
 			};
 			this.wrapper.appendChild(memoryCardDiv);
@@ -66,7 +66,7 @@ class Memory {
 		}
 	}
 	hideCards() {
-		console.log("src/Memory.hx:75:","hideCards");
+		console.log("/Users/matthijs/Documents/GIT/javascript-mini-projects/src/Memory.hx:79:","hideCards");
 		let _g = 0;
 		let _g1 = this.flipCardArray.length;
 		while(_g < _g1) {
@@ -78,7 +78,7 @@ class Memory {
 		this.flipCardArray = [];
 	}
 	checkCards() {
-		console.log("src/Memory.hx:85:","checkCards()");
+		console.log("/Users/matthijs/Documents/GIT/javascript-mini-projects/src/Memory.hx:91:","checkCards()");
 		this.isCardLocked = true;
 		let el1 = this.flipCardArray[0].getElementsByClassName("front-face")[0].innerText;
 		let el2 = this.flipCardArray[1].getElementsByClassName("front-face")[0].innerText;

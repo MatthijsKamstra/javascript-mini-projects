@@ -14,7 +14,8 @@
 | 12 | Quotes |  | [link](docs/quotes) |
 | 13 | Sketch | canvas,sketching,save png | [link](docs/sketch) |
 | 14 | Svg-editor |  | [link](docs/svg-editor) |
-| 15 | Todo | todo,DOM,localStorage,random | [link](docs/todo) |
-| 16 | Togglesound | audio,toggle,loading | [link](docs/togglesound) |
-| 17 | Weather | api,weather,json,loading | [link](docs/weather) |
-| 18 | Webcam | webcam,canvas,snapshot | [link](docs/webcam) |
+| 15 | Tictactoe |  | [link](docs/tictactoe) |
+| 16 | Todo | todo,DOM,localStorage,random | [link](docs/todo) |
+| 17 | Togglesound | audio,toggle,loading | [link](docs/togglesound) |
+| 18 | Weather | api,weather,json,loading | [link](docs/weather) |
+| 19 | Webcam | webcam,canvas,snapshot | [link](docs/webcam) |

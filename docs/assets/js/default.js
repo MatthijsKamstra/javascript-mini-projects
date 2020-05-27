@@ -9,7 +9,7 @@ class Main {
 		this.homeUrl = "../_nav.html";
 		this.INFO_ID = "mySidenav";
 		this.HOME_ID = "myHomeSideNav";
-		$global.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-27 09:07:10");
+		$global.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-05-27 20:13:00");
 		if(window.document.getElementById("homepage") != null) {
 			$global.console.log("homepage");
 			this.vm = new Vue({ el : "#app", data : { message : "Hello Vue.js!", count : 20, json : { }}});

@@ -104,3 +104,8 @@
 
 -main Memory
 -js docs/memory/memory.js
+
+--next
+
+-main TicTacToe
+-js docs/tictactoe/tictactoe.js

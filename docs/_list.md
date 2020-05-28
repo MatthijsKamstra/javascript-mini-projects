@@ -12,10 +12,12 @@
 | 10 | Memory |  | [link](docs/memory) |
 | 11 | Photo-watermark |  | [link](docs/photo-watermark) |
 | 12 | Quotes |  | [link](docs/quotes) |
-| 13 | Sketch | canvas,sketching,save png | [link](docs/sketch) |
-| 14 | Svg-editor |  | [link](docs/svg-editor) |
-| 15 | Tictactoe |  | [link](docs/tictactoe) |
-| 16 | Todo | todo,DOM,localStorage,random | [link](docs/todo) |
-| 17 | Togglesound | audio,toggle,loading | [link](docs/togglesound) |
-| 18 | Weather | api,weather,json,loading | [link](docs/weather) |
-| 19 | Webcam | webcam,canvas,snapshot | [link](docs/webcam) |
+| 13 | Randomuser | DOM,api,json | [link](docs/randomuser) |
+| 14 | Sidemenu |  | [link](docs/sidemenu) |
+| 15 | Sketch | canvas,sketching,save png | [link](docs/sketch) |
+| 16 | Svg-editor |  | [link](docs/svg-editor) |
+| 17 | Tictactoe |  | [link](docs/tictactoe) |
+| 18 | Todo | todo,DOM,localStorage,random | [link](docs/todo) |
+| 19 | Togglesound | audio,toggle,loading | [link](docs/togglesound) |
+| 20 | Weather | api,weather,json,loading | [link](docs/weather) |
+| 21 | Webcam | webcam,canvas,snapshot | [link](docs/webcam) |

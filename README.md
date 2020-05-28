@@ -6,33 +6,36 @@ I am not a purist, so I am using Bootstrap framework for css. But the rest is va
 
 ## Ideas examples
 
-| #   | Name             | type                          | link                          |
-| --- | ---------------- | ----------------------------- | ----------------------------- |
-| 1   | Convert-markdown |                               | [link](docs/convert-markdown) |
-| 2   | Countdown        | timer,countdown,audio         | [link](docs/countdown)        |
-| 3   | Desktop          |                               | [link](docs/desktop)          |
-| 4   | Drag-and-drop    |                               | [link](docs/drag-and-drop)    |
-| 5   | Emoji-favicon    |                               | [link](docs/emoji-favicon)    |
-| 6   | Geolocation      |                               | [link](docs/geolocation)      |
-| 7   | Jsonp            | jsonp,api,github,json,loading | [link](docs/jsonp)            |
-| 8   | Localstorage     |                               | [link](docs/localstorage)     |
-| 9   | Photo-watermark  |                               | [link](docs/photo-watermark)  |
-| 10  | Quotes           |                               | [link](docs/quotes)           |
-| 11  | Sketch           | canvas,sketching,save png     | [link](docs/sketch)           |
-| 12  | Svg-editor       |                               | [link](docs/svg-editor)       |
-| 13  | Todo             | todo,DOM,localStorage,random  | [link](docs/todo)             |
-| 14  | Togglesound      | audio,toggle,loading          | [link](docs/togglesound)      |
-| 15  | Weather          | api,weather,json,loading      | [link](docs/weather)          |
-| 16  | Webcam           | webcam,canvas,snapshot        | [link](docs/webcam)           |
+| #   | Name             | type                                 | link                          |
+| --- | ---------------- | ------------------------------------ | ----------------------------- |
+| 1   | Convert-markdown |                                      | [link](docs/convert-markdown) |
+| 2   | Countdown        | timer,countdown,audio                | [link](docs/countdown)        |
+| 3   | Darkmode         | toggle,css,darkmode,localStorage,DOM | [link](docs/darkmode)         |
+| 4   | Desktop          |                                      | [link](docs/desktop)          |
+| 5   | Drag-and-drop    |                                      | [link](docs/drag-and-drop)    |
+| 6   | Emoji-favicon    |                                      | [link](docs/emoji-favicon)    |
+| 7   | Geolocation      | weather,geolocation,api,cors         | [link](docs/geolocation)      |
+| 8   | Jsonp            | jsonp,api,github,json,loading        | [link](docs/jsonp)            |
+| 9   | Localstorage     |                                      | [link](docs/localstorage)     |
+| 10  | Memory           |                                      | [link](docs/memory)           |
+| 11  | Photo-watermark  |                                      | [link](docs/photo-watermark)  |
+| 12  | Quotes           |                                      | [link](docs/quotes)           |
+| 13  | Sketch           | canvas,sketching,save png            | [link](docs/sketch)           |
+| 14  | Svg-editor       |                                      | [link](docs/svg-editor)       |
+| 15  | Tictactoe        |                                      | [link](docs/tictactoe)        |
+| 16  | Todo             | todo,DOM,localStorage,random         | [link](docs/todo)             |
+| 17  | Togglesound      | audio,toggle,loading                 | [link](docs/togglesound)      |
+| 18  | Weather          | api,weather,json,loading             | [link](docs/weather)          |
+| 19  | Webcam           | webcam,canvas,snapshot               | [link](docs/webcam)           |
 
 ## Ideas
 
 - Games (basic and simple)
-  - Tick tack toe
+  - ~~Tick tack toe~~
   - Hang man
   - rock paper scissors
   - pong game
-  - memory
+  - ~~memory~~
 - Counters/clock/countdown
   - ~~current time~~
   - ~~countdown~~

@@ -109,3 +109,13 @@
 
 -main TicTacToe
 -js docs/tictactoe/tictactoe.js
+
+--next
+
+-main RandomUser
+-js docs/randomuser/randomuser.js
+
+--next
+
+-main SideMenu
+-js docs/sidemenu/sidemenu.js

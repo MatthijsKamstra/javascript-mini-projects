@@ -3,7 +3,7 @@
     "Content-Type": "application/javascript; charset=utf-8",
     "Cache-Control": "public, max-age=60, s-maxage=60",
     "Vary": "Accept",
-    "ETag": "\"06edb01d5d15a43bdd605fd2b7fb200b\"",
+    "ETag": "\"ed577ca3782758dfb75a442dd2a5b2bb\"",
     "X-GitHub-Media-Type": "github.v3; format=json",
     "Link": [
       [
@@ -1848,7 +1848,7 @@
       "releases_url": "https://api.github.com/repos/MatthijsKamstra/skeletor-sheet/releases{/id}",
       "deployments_url": "https://api.github.com/repos/MatthijsKamstra/skeletor-sheet/deployments",
       "created_at": "2018-01-30T19:03:36Z",
-      "updated_at": "2020-05-20T14:09:19Z",
+      "updated_at": "2020-05-24T16:38:56Z",
       "pushed_at": "2020-05-20T14:09:16Z",
       "git_url": "git://github.com/MatthijsKamstra/skeletor-sheet.git",
       "ssh_url": "git@github.com:MatthijsKamstra/skeletor-sheet.git",

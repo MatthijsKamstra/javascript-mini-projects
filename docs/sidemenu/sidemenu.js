@@ -28,28 +28,28 @@ class SideMenu {
 		};
 		let btn = window.document.getElementById("btn-sidenav-overlay");
 		btn.onclick = function(e) {
-			console.log("src/SideMenu.hx:36:",e.target.id);
+			console.log("src/SideMenu.hx:37:",e.target.id);
 			e.preventDefault();
 			_gthis.isOffcanvas = false;
 			_gthis.toggleNav();
 		};
 		let btn1 = window.document.getElementById("btn-sidenav-offcanvas");
 		btn1.onclick = function(e) {
-			console.log("src/SideMenu.hx:43:",e.target.id);
+			console.log("src/SideMenu.hx:44:",e.target.id);
 			e.preventDefault();
 			_gthis.isOffcanvas = true;
 			_gthis.toggleNav();
 		};
 		let btn2 = window.document.getElementById("btn-sidenav-fullwidth");
 		btn2.onclick = function(e) {
-			console.log("src/SideMenu.hx:50:",e.target.id);
+			console.log("src/SideMenu.hx:51:",e.target.id);
 			e.preventDefault();
 			_gthis.isOffcanvas = false;
 			_gthis.toggleNav();
 		};
 		let btn3 = window.document.getElementById("btn-sidenav-rightside");
 		btn3.onclick = function(e) {
-			console.log("src/SideMenu.hx:57:",e.target.id);
+			console.log("src/SideMenu.hx:58:",e.target.id);
 			e.preventDefault();
 			_gthis.isOffcanvas = false;
 			_gthis.toggleNav();

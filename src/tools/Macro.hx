@@ -35,7 +35,7 @@ class Macro {
 </html>';
 
 	// folders I know I don't need to be generated
-	private static var ignoreArr = ['_example', 'assets'];
+	private static var ignoreArr = ['_example', 'assets', 'cgi-bin'];
 
 	//
 	public static var json:Dynamic = null;

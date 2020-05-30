@@ -22,43 +22,15 @@ class RandomUser {
 	function setElements() {}
 
 	function getData() {
-		// // window.fetch('https://randomuser.me/api/?results=10')
-		// // 	// .then(handleErrors)
-		// // 	.then(parseJSON)
-		// // 	.then(updateProfile)
-		// // 	.catchError(printError);
-
 		// var url = 'https://randomuser.me/api';
-		// // The data we are going to send in our request
-		// var data = {
-		// 	name: 'Sara'
-		// }
-		// // Create our request constructor with all the parameters we need
-		// var r:RequestInit = {
-		// 	method: 'POST',
-		// 	body: Json.stringify(data),
-		// 	headers: new Headers()
-		// }
-		// var request = new Request(url, r);
-
-		// window.fetch(request)
-		// 	.then(function(data) {
-		// 		// Here you get the data to modify as you please
-		// 	})
-		// 	.catchError(function(error) {
-		// 		// If there is any error you will catch them here
-		// 	});
-
-		untyped $.ajax({
-			url: 'https://randomuser.me/api/',
-			dataType: 'json',
-			success: function(data) {
-				console.log(data);
-			}
-		});
+		window.fetch('https://randomuser.me/api/?results=10')
+			.then(handleErrors)
+			.then(parseJSON)
+			.then(updateProfile)
+			.catchError(printError);
 	}
 
-	function handleErrors(res) {
+	function handleErrors(res:Response) {
 		if (!res.ok) {
 			console.log(res.status);
 		}
@@ -66,11 +38,12 @@ class RandomUser {
 		return res;
 	}
 
-	function parseJSON(res) {
+	function parseJSON(res:Response) {
 		return res.json();
 	}
 
 	function updateProfile(profile) {
+		trace(profile);
 		// avatar.src = profile.results[0].picture.medium;
 		// fullname.innerHTML = profile.results[0].name.first + " " + profile.results[0].name.last;
 		// username.innerHTML = profile.results[0].login.username;

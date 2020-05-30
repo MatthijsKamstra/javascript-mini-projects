@@ -15,9 +15,16 @@ class RandomUser {
 	setElements() {
 	}
 	getData() {
-		$.ajax({ url : "https://randomuser.me/api/", dataType : "json", success : function(data) {
-			$global.console.log(data);
-		}});
+		window.fetch("https://randomuser.me/api/?results=10").then($bind(this,this.parseJSON)).then($bind(this,this.updateProfile)).catch($bind(this,this.printError));
+	}
+	parseJSON(res) {
+		return res.json();
+	}
+	updateProfile(profile) {
+		console.log("src/RandomUser.hx:74:",profile);
+	}
+	printError(error) {
+		$global.console.log(error);
 	}
 	static main() {
 		let app = new RandomUser();
@@ -35,5 +42,8 @@ class haxe_iterators_ArrayIterator {
 		return this.array[this.current++];
 	}
 }
+var $_;
+function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $global.$haxeUID++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = m.bind(o); o.hx__closures__[m.__id__] = f; } return f; }
+$global.$haxeUID |= 0;
 RandomUser.main();
 })(typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);

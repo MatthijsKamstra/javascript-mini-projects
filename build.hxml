@@ -119,3 +119,13 @@
 
 -main SideMenu
 -js docs/sidemenu/sidemenu.js
+
+--next
+
+-main DummyData
+-js docs/dummydata/dummydata.js
+
+--next
+
+-main Shoppingcard
+-js docs/shoppingcard/shoppingcard.js

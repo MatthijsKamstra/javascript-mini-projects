@@ -1,3 +1,4 @@
 - DOM
 - api
 - json
+- Promise

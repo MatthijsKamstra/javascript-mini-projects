@@ -1,5 +1,6 @@
 package;
 
+import js.Syntax;
 import haxe.Json;
 
 using StringTools;
@@ -24,6 +25,8 @@ class DummyData {
 		document.addEventListener("DOMContentLoaded", function(event) {
 			console.log('DummyData - Dom ready');
 			getElements();
+			console.log(guid());
+			console.log(guid(15));
 		});
 	}
 
@@ -35,7 +38,7 @@ class DummyData {
 
 		var btn:AnchorElement = cast document.getElementById('btn-download-json');
 		btn.onclick = (e) -> {
-			download('dummy-data.json', html);
+			download('dummy-data.json', Json.stringify(html));
 		}
 	}
 
@@ -44,8 +47,9 @@ class DummyData {
 		var items = [];
 		for (i in 0...coffeeImages.length) {
 			var img = coffeeImages[i];
-			var name = img.replace('front', '').replace('.png', '').replace('_', '');
+			var name = img.replace('front_', '').replace('.png', '').replace('_', ' ');
 			var obj = {
+				guid: guid(),
 				name: '${capFirstLetter(name)}',
 				img: 'img/${img}',
 				description: getDescription(),
@@ -79,6 +83,21 @@ class DummyData {
 		var tempstr = '';
 		tempstr = str.substring(0, 1).toUpperCase() + str.substring(1, str.length);
 		return tempstr;
+	}
+
+	/**
+	 * just a simple script to create random data/id, don't use in production
+	 * @param len
+	 */
+	function guid(?len:Int = 32) {
+		var buf = [];
+		var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		var charlen = chars.length;
+		for (i in 0...len) {
+			buf[i] = chars.charAt(Math.floor(Math.random() * charlen));
+		}
+
+		return buf.join('');
 	}
 
 	// ____________________________________ download ____________________________________

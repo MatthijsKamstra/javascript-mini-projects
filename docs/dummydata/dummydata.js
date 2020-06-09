@@ -8,6 +8,8 @@ class DummyData {
 		window.document.addEventListener("DOMContentLoaded",function(event) {
 			$global.console.log("DummyData - Dom ready");
 			_gthis.getElements();
+			$global.console.log(_gthis.guid());
+			$global.console.log(_gthis.guid(15));
 		});
 	}
 	getElements() {
@@ -17,7 +19,7 @@ class DummyData {
 		div.innerHTML = JSON.stringify(html,null,"  ");
 		let btn = window.document.getElementById("btn-download-json");
 		btn.onclick = function(e) {
-			_gthis.download("dummy-data.json",html);
+			_gthis.download("dummy-data.json",JSON.stringify(html));
 		};
 	}
 	convert() {
@@ -28,8 +30,8 @@ class DummyData {
 		while(_g < _g1) {
 			let i = _g++;
 			let img = this.coffeeImages[i];
-			let name = StringTools.replace(StringTools.replace(StringTools.replace(img,"front",""),".png",""),"_","");
-			let obj = { name : "" + DummyData.capFirstLetter(name), img : "img/" + img, description : this.getDescription(), intensity : this.getIntensity(), price : this.getPrice()};
+			let name = StringTools.replace(StringTools.replace(StringTools.replace(img,"front_",""),".png",""),"_"," ");
+			let obj = { guid : this.guid(), name : "" + DummyData.capFirstLetter(name), img : "img/" + img, description : this.getDescription(), intensity : this.getIntensity(), price : this.getPrice()};
 			items.push(obj);
 		}
 		json["items"] = items;
@@ -46,6 +48,21 @@ class DummyData {
 	getPrice() {
 		let price = Math.round(Math.random() * 100) / 100;
 		return price;
+	}
+	guid(len) {
+		if(len == null) {
+			len = 32;
+		}
+		let buf = [];
+		let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		let charlen = chars.length;
+		let _g = 0;
+		let _g1 = len;
+		while(_g < _g1) {
+			let i = _g++;
+			buf[i] = chars.charAt(Math.floor(Math.random() * charlen));
+		}
+		return buf.join("");
 	}
 	download(filename,text) {
 		let element = window.document.createElement("a");

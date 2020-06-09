@@ -1,1 +1,100 @@
-[object Object]
+{
+  "items": [
+    {
+      "guid": "ewrYor5OCYE6kAzchSAiOy1jcxaqI8Kg",
+      "name": "Arpeggio",
+      "img": "img/front_arpeggio.png",
+      "description": "Balanced and with a full body coffee",
+      "intensity": 5,
+      "price": 0.75
+    },
+    {
+      "guid": "bDiQkLW7ZONfbUrbUIBb91P50Nyjw6ni",
+      "name": "Livanto",
+      "img": "img/front_livanto.png",
+      "description": "Full and delicately toasted coffee",
+      "intensity": 4,
+      "price": 0.85
+    },
+    {
+      "guid": "9xb254mpE7xlyZm5ExwEVc3UNvqMAwyA",
+      "name": "Capriccio",
+      "img": "img/front_capriccio.png",
+      "description": "Rich and creamy coffee",
+      "intensity": 1,
+      "price": 0.53
+    },
+    {
+      "guid": "E5T6atOHDej34cDngTrToKkferFv6foz",
+      "name": "Ristretto",
+      "img": "img/front_ristretto.png",
+      "description": "Intense and full-bodied coffee",
+      "intensity": 0,
+      "price": 0.09
+    },
+    {
+      "guid": "iYDLBKhZ2xUI6sy9V4wxXHYXIaUs3mpX",
+      "name": "Cosi",
+      "img": "img/front_cosi.png",
+      "description": "Round and mild coffee",
+      "intensity": 1,
+      "price": 0.56
+    },
+    {
+      "guid": "I1cgBUQHrkdcNZFaiS9Ly9EW2VWflqvD",
+      "name": "Roma",
+      "img": "img/front_roma.png",
+      "description": "Delicately toasted and fruity coffee",
+      "intensity": 9,
+      "price": 0.2
+    },
+    {
+      "guid": "dsNlDZrKiaifWTg236IIWowASyTwM7Jl",
+      "name": "Fortissio lungo",
+      "img": "img/front_fortissio_lungo.png",
+      "description": "Fruity and fruity coffee",
+      "intensity": 9,
+      "price": 0.23
+    },
+    {
+      "guid": "BW5eFrkSHftNCnROPCosfYqZsYs1pN0n",
+      "name": "Vivalto lungo",
+      "img": "img/front_vivalto_lungo.png",
+      "description": "Complex and balanced coffee",
+      "intensity": 2,
+      "price": 0.44
+    },
+    {
+      "guid": "JcuLYvzKIr4oo3YssbZoC0HUqyV1Bl4J",
+      "name": "Kazaar",
+      "img": "img/front_kazaar.png",
+      "description": "Round and smokey coffee",
+      "intensity": 7,
+      "price": 0.79
+    },
+    {
+      "guid": "Vc0rzoKc1pJM4084oZmxb6dPzClcZ3wA",
+      "name": "Vivalto lungo decaf Striped",
+      "img": "img/front_vivalto_lungo_decaf_Striped.png",
+      "description": "With a full body and light coffee",
+      "intensity": 5,
+      "price": 0.51
+    },
+    {
+      "guid": "qLftW9p3IMAIbufQyfBsy6jUkWAOjVTx",
+      "name": "Linizio lungo",
+      "img": "img/front_linizio_lungo.png",
+      "description": "Delicately toasted and rich coffee",
+      "intensity": 7,
+      "price": 0.35
+    },
+    {
+      "guid": "QyGG6kTA2s9E2aPXF3ZJADpz01j33ki9",
+      "name": "Volluto",
+      "img": "img/front_volluto.png",
+      "description": "Balanced and round coffee",
+      "intensity": 3,
+      "price": 0.45
+    }
+  ]
+}

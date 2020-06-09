@@ -22,7 +22,48 @@
 
     <title>[mck] shoppingcard</title>
 
-    <style></style>
+    <style>
+        .shoppingnav {
+            width: 800px;
+            height: 100%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+
+        .innershoppingnav {
+            width: calc(800px - 60px);
+            height: 100%;
+            background-color: #FFFFFF;
+            -webkit-box-shadow: 3px 0px 21px 5px rgba(0, 0, 0, 0.35);
+            -moz-box-shadow: 3px 0px 21px 5px rgba(0, 0, 0, 0.35);
+            box-shadow: 3px 0px 21px 5px rgba(0, 0, 0, 0.35);
+            padding: 50px;
+
+        }
+
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            height: 100%;
+            display: block;
+            width: 60px;
+            position: absolute;
+            top: 0;
+            right: 0px;
+            text-align: center;
+        }
+
+        .closebtn {
+            position: absolute;
+            right: 80px;
+            top: 10px;
+
+        }
+    </style>
 </head>
 
 <body id="page-shoppingcard">
@@ -37,6 +78,91 @@
             </div>
         </div>
         <!-- /.container -->
+
+        <div id="app">
+
+            <div id="shoppingnav" class="shoppingnav">
+
+                <span id="btn-sidenav-open" class="openbtn iconbtn">
+                    <i class="fa fa-2x fa-shopping-cart"></i><span class="badge badge-pill badge-dark">9</span>
+                </span>
+
+                <div class="innershoppingnav">
+
+                    <a href="#" id="btn-sidenav-close" class="closebtn iconbtn">&#10005;</a>
+
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-2"><img class="img-responsive" src="http://placehold.it/100x70"></div>
+                            <div class="col-4">
+                                <h4 class="product-name"><strong>Product name</strong></h4>
+                                <h4><small>Product description</small></h4>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6 text-right">
+                                        <h6><strong>€ 25.00 <span class="text-muted">x</span></strong></h6>
+                                    </div>
+                                    <div class="col-4">
+                                        <input type="number" min="1" max="100" class="form-control" value="1">
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-link btn-xs">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /.innershoppingnav -->
+
+            </div>
+
+            <a name="list"></a>
+            <div class="container">
+                {{message}}
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3" v-for="item in json.items">
+                        <a v-bind:href="item.url">
+
+                            <div class="card">
+                                <img v-bind:src="item.img" v-bind:title="item.name" v-bind:alt="item.name"
+                                    class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{item.name}}</h5>
+                                    <p class="card-text">{{item.description}}</p>
+                                    <p class="card-text">Intensity: {{item.intensity}}/12
+
+                                    <div class="progress" style="height: 3px;">
+                                        <div class="progress-bar" role="progressbar"
+                                            v-bind:style="'width:' + ((item.intensity/12)*100) + '%;'"
+                                            v-bind:aria-valuenow="((item.intensity/12)*100) " aria-valuemin="0"
+                                            aria-valuemax="100"></div>
+                                    </div>
+
+                                    </p>
+                                    <p class="card-text">€ {{item.price}}</p>
+
+                                    <!-- <a v-bind:href="item.url" class="card-link">Visit {{item.name}}</a> -->
+                                    <a href="#" v-on:click="greet" v-bind:data-id="item.guid" class="btn btn-primary"
+                                        v-bind:title="'add ' + item.name">+</a>
+                                </div>
+                            </div>
+                            <!-- /.card -->
+
+                        </a>
+                    </div>
+                    <!-- /.col-3 -->
+                </div>
+            </div>
+        </div>
+        <!-- /#app -->
+
     </div>
     <!-- /#main -->
 
@@ -56,8 +182,10 @@
     <!-- default script (navigation) -->
     <script src="../assets/js/default.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
     <!-- production version, optimized for size and speed -->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script> -->
 
     <!-- custom script -->
     <script src="shoppingcard.js"></script>

@@ -14,9 +14,7 @@ class Shoppingcard {
 	var map:Map<String, CoffeeObj> = [];
 	var vm:Vue;
 	var sideNav:DivElement;
-	var sideNavOuterWidth = 800;
-	var sideNavThingWidth = 60;
-	var sideNavInnerWidth = 800 - 60;
+	var sideNavInnerWidth = 800;
 
 	public function new() {
 		document.addEventListener("DOMContentLoaded", function(event) {

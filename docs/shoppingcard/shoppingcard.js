@@ -2,7 +2,7 @@
 (function ($global) { "use strict";
 class Shoppingcard {
 	constructor() {
-		this.sideNavInnerWidth = 740;
+		this.sideNavInnerWidth = 800;
 		this.map = new haxe_ds_StringMap();
 		this.json = "coffee.json";
 		let _gthis = this;
@@ -37,7 +37,7 @@ class Shoppingcard {
 	test(e) {
 		$global.console.log(e);
 		let link = e.currentTarget;
-		console.log("src/Shoppingcard.hx:69:",link.dataset.id);
+		console.log("src/Shoppingcard.hx:68:",link.dataset.id);
 		let coffeeObj = this.map.h[link.dataset.id];
 		$global.console.log(coffeeObj.name);
 	}
@@ -71,7 +71,7 @@ class Shoppingcard {
 		req.send();
 	}
 	toggleNav() {
-		console.log("src/Shoppingcard.hx:127:","toggleNav " + this.sideNav.style.left);
+		console.log("src/Shoppingcard.hx:126:","toggleNav " + this.sideNav.style.left);
 		if(this.sideNav.style.left != "-" + this.sideNavInnerWidth + "px") {
 			this.sideNav.style.left = "-" + this.sideNavInnerWidth + "px";
 		} else {

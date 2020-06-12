@@ -129,3 +129,8 @@
 
 -main Shoppingcard
 -js docs/shoppingcard/shoppingcard.js
+
+--next
+
+-main Fullscreen
+-js docs/fullscreen/fullscreen.js

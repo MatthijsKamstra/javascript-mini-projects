@@ -39,8 +39,8 @@ class Main {
 			loadData(json, setupJsonData);
 		} else {
 			console.log('other pages');
-			loadData(homeUrl, setupHome);
 			loadData(infoUrl, setupInfo);
+			loadData('../${json}', setupNav);
 		}
 	}
 
@@ -98,19 +98,45 @@ class Main {
 	/**
 	 * is always present, nav?
 	 */
-	function setupHome(body:String) {
-		var span = document.createSpanElement();
-		span.className = "btn-home-open";
-		span.innerHTML = '<i class="fa fa-home"></i>';
-		span.onclick = () -> openPanel(HOME_ID);
-		document.body.prepend(span);
+	function setupNav(data:String) {
+		var app = document.createDivElement();
+		app.id = 'app-nav';
+		document.body.prepend(app);
 
-		setupPanel(HOME_ID, body);
-	}
+		var _json = Json.parse(data);
+		var arr:Array<ProjectObj> = _json.data;
 
-	function setupHomepage(body:String) {
-		var container = document.getElementById('homepage-nav');
-		processHTML(body, container);
+		// set vm dom
+		var vm = new Vue({
+			el: '#app-nav',
+			template: utils.Template.nav(),
+			data: {
+				json: _json
+			},
+			methods: {
+				folderUp: function(url) {
+					return '../' + url;
+				}
+			}
+		});
+
+		// get the navigation based upon the `smart-scroll` class
+		var nav = cast document.getElementsByClassName('smart-scroll-nav')[0];
+
+		// add padding top to show content behind navbar
+		document.body.style.paddingTop = '${nav.offsetHeight}px';
+
+		// scroll down and the class `scrolled-down` is added (hides the nav with animation), scroll up it's removed again
+		var prevScrollpos = window.pageYOffset;
+		window.onscroll = function() {
+			var currentScrollPos = window.pageYOffset;
+			if (prevScrollpos > currentScrollPos) {
+				nav.classList.remove('scrolled-down-nav');
+			} else {
+				nav.classList.add('scrolled-down-nav');
+			}
+			prevScrollpos = currentScrollPos;
+		}
 	}
 
 	// ____________________________________ set panel ____________________________________

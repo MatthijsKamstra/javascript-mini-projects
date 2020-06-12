@@ -6,18 +6,16 @@ class Main {
 	constructor() {
 		this.json = "data.json";
 		this.infoUrl = "_post.html";
-		this.homeUrl = "../_nav.html";
 		this.INFO_ID = "mySidenav";
-		this.HOME_ID = "myHomeSideNav";
-		$global.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-06-12 12:13:52");
+		$global.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2020-06-12 15:55:57");
 		if(window.document.getElementById("homepage") != null) {
 			$global.console.log("homepage");
 			this.vm = new Vue({ el : "#app", data : { message : "Hello Vue.js!", count : 20, json : { }}});
 			this.loadData(this.json,$bind(this,this.setupJsonData));
 		} else {
 			$global.console.log("other pages");
-			this.loadData(this.homeUrl,$bind(this,this.setupHome));
 			this.loadData(this.infoUrl,$bind(this,this.setupInfo));
+			this.loadData("../" + this.json,$bind(this,this.setupNav));
 		}
 	}
 	loadData(url,callback) {
@@ -58,16 +56,28 @@ class Main {
 		this.vm.$data.count = arr.length;
 		this.vm.$data.json = _json;
 	}
-	setupHome(body) {
-		let _gthis = this;
-		let span = window.document.createElement("span");
-		span.className = "btn-home-open";
-		span.innerHTML = "<i class=\"fa fa-home\"></i>";
-		span.onclick = function() {
-			_gthis.openPanel(_gthis.HOME_ID);
+	setupNav(data) {
+		let app = window.document.createElement("div");
+		app.id = "app-nav";
+		window.document.body.prepend(app);
+		let _json = JSON.parse(data);
+		let arr = _json.data;
+		let vm = new Vue({ el : "#app-nav", template : utils_Template.nav(), data : { json : _json}, methods : { folderUp : function(url) {
+			return "../" + url;
+		}}});
+		let nav = window.document.getElementsByClassName("smart-scroll-nav")[0];
+		let tmp = "" + nav.offsetHeight;
+		window.document.body.style.paddingTop = tmp + "px";
+		let prevScrollpos = window.pageYOffset;
+		window.onscroll = function() {
+			let currentScrollPos = window.pageYOffset;
+			if(prevScrollpos > currentScrollPos) {
+				nav.classList.remove("scrolled-down-nav");
+			} else {
+				nav.classList.add("scrolled-down-nav");
+			}
+			prevScrollpos = currentScrollPos;
 		};
-		window.document.body.prepend(span);
-		this.setupPanel(this.HOME_ID,body);
 	}
 	setupPanel(id,body) {
 		let _gthis = this;
@@ -131,6 +141,11 @@ class haxe_iterators_ArrayIterator {
 	}
 	next() {
 		return this.array[this.current++];
+	}
+}
+class utils_Template {
+	static nav() {
+		return "<nav class=\"navbar sticky-top navbar-expand-md navbar-dark bg-dark smart-scroll-nav\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<a class=\"navbar-brand\" href=\"../\">🚀</a>\n\t\t\t\t<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\"\n\t\t\t\t\tdata-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\"\n\t\t\t\t\taria-label=\"Toggle navigation\">\n\t\t\t\t\t<span class=\"navbar-toggler-icon\"></span>\n\t\t\t\t</button>\n\n\t\t\t\t<div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n\t\t\t\t\t<ul class=\"navbar-nav mr-auto\">\n\n\t\t\t\t\t\t<li class=\"nav-item\">\n\t\t\t\t\t\t\t<a class=\"nav-link\" href=\"../\">Home</a>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t\t<li class=\"nav-item dropdown\">\n\t\t\t\t\t\t\t<a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\"\n\t\t\t\t\t\t\t\tdata-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n\t\t\t\t\t\t\t\tMini Projects\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t<div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n\t\t\t\t\t\t\t\t<a v-for=\"(project, index) in json.data\" class=\"dropdown-item\"\n\t\t\t\t\t\t\t\t\tv-bind:href=\"folderUp(project.url)\">{{index+1}}. {{project.title}}</a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</li>\n\n\n\t\t\t\t\t</ul>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</nav>";
 	}
 }
 var $_;

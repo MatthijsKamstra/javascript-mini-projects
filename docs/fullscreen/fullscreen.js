@@ -14,7 +14,6 @@ class Fullscreen {
 		this.btn = window.document.getElementById("fullscreen-btn");
 		let _gthis = this;
 		this.btn.onclick = function(e) {
-			console.log("src/Fullscreen.hx:17:",_gthis.isFullscreen);
 			e.preventDefault();
 			_gthis.toggleButton();
 		};

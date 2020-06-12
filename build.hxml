@@ -134,3 +134,8 @@
 
 -main Fullscreen
 -js docs/fullscreen/fullscreen.js
+
+--next
+
+-main Hidenavbar
+-js docs/hidenavbar/hidenavbar.js

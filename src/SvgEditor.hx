@@ -17,7 +17,7 @@ class SvgEditor {
 
 	var offset:Point;
 
-	var map:Map<String, Point> = [];
+	// var map:Map<String, Point> = [];
 	var jsmap = new js.lib.Map();
 
 	public function new() {
@@ -55,15 +55,15 @@ class SvgEditor {
 			x: 435,
 			y: 200
 		}
-		map.set('circle0', p0);
-		map.set('circle1', p1);
-		map.set('circle2', p2);
-		map.set('circle3', p3);
-		map.set('circle4', p4);
+		// map.set('circle0', p0);
+		// map.set('circle1', p1);
+		// map.set('circle2', p2);
+		// map.set('circle3', p3);
+		// map.set('circle4', p4);
 
-		jsmap.set('circle0', p0);
-		jsmap.set('circle1', p1);
-		jsmap.set('circle2', p2);
+		jsmap.set('circle0_A', p0);
+		jsmap.set('circle1_B', p1);
+		jsmap.set('circle2_C', p2);
 		jsmap.set('circle3', p3);
 		jsmap.set('circle4', p4);
 
@@ -106,9 +106,9 @@ class SvgEditor {
 		// 	svg.appendChild(circle);
 		// }
 
-		var p0 = jsmap.get('circle0');
-		var p1 = jsmap.get('circle1');
-		var p2 = jsmap.get('circle2');
+		var p0 = jsmap.get('circle0_A');
+		var p1 = jsmap.get('circle1_B');
+		var p2 = jsmap.get('circle2_C');
 		var p3 = jsmap.get('circle3');
 		var p4 = jsmap.get('circle4');
 
@@ -144,9 +144,9 @@ class SvgEditor {
 	}
 
 	function updatePolygon() {
-		var p0 = jsmap.get('circle0');
-		var p1 = jsmap.get('circle1');
-		var p2 = jsmap.get('circle2');
+		var p0 = jsmap.get('circle0_A');
+		var p1 = jsmap.get('circle1_B');
+		var p2 = jsmap.get('circle2_C');
 
 		var points:Array<Point> = [p0, p1, p2];
 		polygon.setAttribute("points", updatePolygonPoints(points));
@@ -167,10 +167,7 @@ class SvgEditor {
 	function onMouseDownHandler(e:MouseEvent) {
 		var el:SVGElement = cast e.target;
 		if (el.classList.contains('draggable')) {
-			// trace('onMouseDownHandler($e)');
-			// console.log(e);
 			selectedElement = el;
-			// trace(el.nodeName);
 			offset = getMousePosition(e);
 			offset.x -= Std.parseFloat(selectedElement.getAttributeNS(null, "cx"));
 			offset.y -= Std.parseFloat(selectedElement.getAttributeNS(null, "cy"));
@@ -179,8 +176,6 @@ class SvgEditor {
 
 	function onMouseMoveHandler(e:MouseEvent) {
 		if (selectedElement != null) {
-			// trace('Drag');
-			var el:SVGElement = cast e.target;
 			e.preventDefault();
 			var coord = getMousePosition(e);
 			var p:Point = {
@@ -188,11 +183,10 @@ class SvgEditor {
 				y: coord.y - offset.y
 			}
 
-			var id = (el.id);
-			map.set(id, p);
+			var id = (selectedElement.id);
 			jsmap.set(id, p);
 
-			switch (el.nodeName) {
+			switch (selectedElement.nodeName) {
 				case 'circle':
 					selectedElement.setAttributeNS(null, "cx", '${coord.x - offset.x}');
 					selectedElement.setAttributeNS(null, "cy", '${coord.y - offset.y}');
@@ -205,7 +199,6 @@ class SvgEditor {
 	}
 
 	function onMouseUpHandler(e:MouseEvent) {
-		// trace('onMouseUpHandler');
 		selectedElement = null;
 	}
 

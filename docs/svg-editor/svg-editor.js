@@ -3,7 +3,6 @@
 class SvgEditor {
 	constructor() {
 		this.jsmap = new Map();
-		this.map = new haxe_ds_StringMap();
 		this.svgH = 300;
 		this.svgW = 600;
 		let _gthis = this;
@@ -24,14 +23,9 @@ class SvgEditor {
 		let p2 = { x : 175, y : 55};
 		let p3 = { x : 166, y : 250};
 		let p4 = { x : 435, y : 200};
-		this.map.h["circle0"] = p0;
-		this.map.h["circle1"] = p1;
-		this.map.h["circle2"] = p2;
-		this.map.h["circle3"] = p3;
-		this.map.h["circle4"] = p4;
-		this.jsmap.set("circle0",p0);
-		this.jsmap.set("circle1",p1);
-		this.jsmap.set("circle2",p2);
+		this.jsmap.set("circle0_A",p0);
+		this.jsmap.set("circle1_B",p1);
+		this.jsmap.set("circle2_C",p2);
 		this.jsmap.set("circle3",p3);
 		this.jsmap.set("circle4",p4);
 	}
@@ -50,9 +44,9 @@ class SvgEditor {
 		this.svg.onmouseup = $bind(this,this.onMouseUpHandler);
 	}
 	setupGraphics() {
-		let p0 = this.jsmap.get("circle0");
-		let p1 = this.jsmap.get("circle1");
-		let p2 = this.jsmap.get("circle2");
+		let p0 = this.jsmap.get("circle0_A");
+		let p1 = this.jsmap.get("circle1_B");
+		let p2 = this.jsmap.get("circle2_C");
 		let p3 = this.jsmap.get("circle3");
 		let p4 = this.jsmap.get("circle4");
 		let _gthis = this;
@@ -83,9 +77,9 @@ class SvgEditor {
 		this.line.setAttribute("y2","" + p4.y);
 	}
 	updatePolygon() {
-		let p0 = this.jsmap.get("circle0");
-		let p1 = this.jsmap.get("circle1");
-		let p2 = this.jsmap.get("circle2");
+		let p0 = this.jsmap.get("circle0_A");
+		let p1 = this.jsmap.get("circle1_B");
+		let p2 = this.jsmap.get("circle2_C");
 		let points = [p0,p1,p2];
 		this.polygon.setAttribute("points",this.updatePolygonPoints(points));
 	}
@@ -111,14 +105,12 @@ class SvgEditor {
 	}
 	onMouseMoveHandler(e) {
 		if(this.selectedElement != null) {
-			let el = e.target;
 			e.preventDefault();
 			let coord = this.getMousePosition(e);
 			let p = { x : coord.x - this.offset.x, y : coord.y - this.offset.y};
-			let id = el.id;
-			this.map.h[id] = p;
+			let id = this.selectedElement.id;
 			this.jsmap.set(id,p);
-			switch(el.nodeName) {
+			switch(this.selectedElement.nodeName) {
 			case "circle":
 				this.selectedElement.setAttributeNS(null,"cx","" + (coord.x - this.offset.x));
 				this.selectedElement.setAttributeNS(null,"cy","" + (coord.y - this.offset.y));
@@ -183,11 +175,6 @@ class SvgEditor {
 	}
 	static main() {
 		let app = new SvgEditor();
-	}
-}
-class haxe_ds_StringMap {
-	constructor() {
-		this.h = Object.create(null);
 	}
 }
 class haxe_iterators_ArrayIterator {

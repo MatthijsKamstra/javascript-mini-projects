@@ -15,6 +15,25 @@
 -js docs/assets/js/default.js
 
 --next
+
+--cmd echo CopyPaste
+-main CopyPaste
+-js docs/copypaste/copypaste.js
+
+--next
+
+--cmd echo CsvConverter
+-main CsvConverter
+-js docs/csvconverter/csvconverter.js
+
+--next
+
+--cmd echo Csv2Md
+-main Csv2Md
+-js docs/csv2md/csv2md.js
+
+--next
+
 --cmd echo PhotoWatermark
 -main PhotoWatermark
 -js docs/photo-watermark/photo-watermark.js
@@ -84,7 +103,6 @@
 --cmd echo ConvertMarkdown
 -main ConvertMarkdown
 -js docs/convert-markdown/convert-markdown.js
-
 
 --next
 
@@ -163,3 +181,5 @@
 --cmd echo Hidenavbar
 -main Hidenavbar
 -js docs/hidenavbar/hidenavbar.js
+
+

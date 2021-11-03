@@ -15,7 +15,8 @@
 			"group": {
 				"kind": "build",
 				"isDefault": true
-			}
+			},
+			"label": "haxe: build.hxml"
 		}
 	]
 }

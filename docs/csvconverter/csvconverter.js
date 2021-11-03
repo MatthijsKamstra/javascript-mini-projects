@@ -2,14 +2,32 @@
 (function ($global) { "use strict";
 class CsvConverter {
 	constructor() {
-		this.csvArr = [];
 		this.csv2 = "FistName,LastName,Age\nHenk,\"de Boer\", 3\nJan,Rood , 20\nMien ,\" Fiets \", 45";
 		console.log("src/CsvConverter.hx:20:","CsvConverter");
-		this.csvArr = this.convert(this.csv2);
-		console.log("src/CsvConverter.hx:22:","column names: " + Std.string(this.csvArr[0]));
-		console.log("src/CsvConverter.hx:23:","nr colums: " + this.csvArr[0].length);
-		console.log("src/CsvConverter.hx:24:","nr rows: " + (this.csvArr.length - 1));
-		this.generateMarkdownTable(this.csvArr);
+		let csvArr = this.convert(this.csv2);
+		console.log("src/CsvConverter.hx:22:","column names: " + Std.string(csvArr[0]));
+		console.log("src/CsvConverter.hx:23:","nr colums: " + csvArr[0].length);
+		console.log("src/CsvConverter.hx:24:","nr rows: " + (csvArr.length - 1));
+		let md = this.generateMarkdownTable(csvArr);
+		let inArea = window.document.getElementById("js-input-textarea");
+		inArea.value = this.csv2;
+		let outArea = window.document.getElementById("js-output-textarea");
+		outArea.value = md;
+		this.textArea = outArea;
+		let button = window.document.getElementById("js-copy-btn");
+		button.onclick = $bind(this,this.onClickHandler);
+		let converBtn = window.document.getElementById("js-convert-btn");
+		converBtn.onclick = $bind(this,this.onConvertClickHandler);
+	}
+	onClickHandler(e) {
+		this.textArea.select();
+		window.document.execCommand("copy");
+	}
+	onConvertClickHandler(e) {
+		let str = this.textArea.value;
+		let csvArr = this.convert(str);
+		let md = this.generateMarkdownTable(csvArr);
+		this.textArea.value = md;
 	}
 	generateMarkdownTable(arr) {
 		let md = "";
@@ -35,6 +53,7 @@ class CsvConverter {
 			}
 		}
 		$global.console.info(md);
+		return md;
 	}
 	convert(csv) {
 		let arr = [];
@@ -217,6 +236,9 @@ class js_Boot {
 	}
 }
 js_Boot.__name__ = true;
+var $_;
+function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $global.$haxeUID++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = m.bind(o); o.hx__closures__[m.__id__] = f; } return f; }
+$global.$haxeUID |= 0;
 if(typeof(performance) != "undefined" ? typeof(performance.now) == "function" : false) {
 	HxOverrides.now = performance.now.bind(performance);
 }

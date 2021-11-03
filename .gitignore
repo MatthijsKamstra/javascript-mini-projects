@@ -23,4 +23,4 @@ BUILD.MD
 test.hxml
 
 # just some files we don't want to add to git
-docs/csv2md/[WUB] Content structuur - Pagina's & componenten.csv
+docs/csv2md/content-structuur.csv

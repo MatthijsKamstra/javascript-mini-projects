@@ -15,6 +15,7 @@ class CopyPaste {
 	}
 
 	function onClickHandler(e) {
+		e.preventDefault();
 		textArea.select();
 		document.execCommand('copy');
 

@@ -10,6 +10,7 @@ class CopyPaste {
 		button.onclick = $bind(this,this.onClickHandler);
 	}
 	onClickHandler(e) {
+		e.preventDefault();
 		this.textArea.select();
 		window.document.execCommand("copy");
 		let toastLiveExample = window.document.getElementById("liveToast");

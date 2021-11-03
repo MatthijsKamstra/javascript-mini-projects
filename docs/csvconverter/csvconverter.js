@@ -20,6 +20,7 @@ class CsvConverter {
 		converBtn.onclick = $bind(this,this.onConvertClickHandler);
 	}
 	onClickHandler(e) {
+		e.preventDefault();
 		this.textArea.select();
 		window.document.execCommand("copy");
 	}

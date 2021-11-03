@@ -38,6 +38,7 @@ Mien ," Fiets ", 45';
 	}
 
 	function onClickHandler(e) {
+		e.preventDefault();
 		textArea.select();
 		document.execCommand('copy');
 	}

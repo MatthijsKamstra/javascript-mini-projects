@@ -66,6 +66,9 @@ class Darkmode {
 	}
 }
 Darkmode.__name__ = true;
+Object.assign(Darkmode.prototype, {
+	__class__: Darkmode
+});
 Math.__name__ = true;
 class Std {
 	static string(s) {
@@ -86,6 +89,9 @@ class haxe_iterators_ArrayIterator {
 	}
 }
 haxe_iterators_ArrayIterator.__name__ = true;
+Object.assign(haxe_iterators_ArrayIterator.prototype, {
+	__class__: haxe_iterators_ArrayIterator
+});
 class js_Boot {
 	static __string_rec(o,s) {
 		if(o == null) {
@@ -154,8 +160,10 @@ class js_Boot {
 }
 js_Boot.__name__ = true;
 {
+	String.prototype.__class__ = String;
 	String.__name__ = true;
 	Array.__name__ = true;
+	Date.prototype.__class__ = Date;
 	Date.__name__ = "Date";
 }
 js_Boot.__toStr = ({ }).toString;

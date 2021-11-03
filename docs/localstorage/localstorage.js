@@ -208,6 +208,9 @@ class LocalStorage {
 	}
 }
 LocalStorage.__name__ = true;
+Object.assign(LocalStorage.prototype, {
+	__class__: LocalStorage
+});
 Math.__name__ = true;
 class Reflect {
 	static getProperty(o,field) {
@@ -294,7 +297,8 @@ class haxe_Exception extends Error {
 }
 haxe_Exception.__name__ = true;
 Object.assign(haxe_Exception.prototype, {
-	__properties__: {get_native: "get_native",get_message: "get_message"}
+	__class__: haxe_Exception
+	,__properties__: {get_native: "get_native",get_message: "get_message"}
 });
 class haxe_ValueException extends haxe_Exception {
 	constructor(value,previous,native) {
@@ -303,6 +307,9 @@ class haxe_ValueException extends haxe_Exception {
 	}
 }
 haxe_ValueException.__name__ = true;
+Object.assign(haxe_ValueException.prototype, {
+	__class__: haxe_ValueException
+});
 class haxe_exceptions_PosException extends haxe_Exception {
 	constructor(message,previous,pos) {
 		super(message,previous);
@@ -317,6 +324,9 @@ class haxe_exceptions_PosException extends haxe_Exception {
 	}
 }
 haxe_exceptions_PosException.__name__ = true;
+Object.assign(haxe_exceptions_PosException.prototype, {
+	__class__: haxe_exceptions_PosException
+});
 class haxe_exceptions_NotImplementedException extends haxe_exceptions_PosException {
 	constructor(message,previous,pos) {
 		if(message == null) {
@@ -326,6 +336,9 @@ class haxe_exceptions_NotImplementedException extends haxe_exceptions_PosExcepti
 	}
 }
 haxe_exceptions_NotImplementedException.__name__ = true;
+Object.assign(haxe_exceptions_NotImplementedException.prototype, {
+	__class__: haxe_exceptions_NotImplementedException
+});
 class haxe_iterators_ArrayIterator {
 	constructor(array) {
 		this.current = 0;
@@ -339,6 +352,9 @@ class haxe_iterators_ArrayIterator {
 	}
 }
 haxe_iterators_ArrayIterator.__name__ = true;
+Object.assign(haxe_iterators_ArrayIterator.prototype, {
+	__class__: haxe_iterators_ArrayIterator
+});
 class js_Boot {
 	static __string_rec(o,s) {
 		if(o == null) {
@@ -476,8 +492,10 @@ if(typeof(performance) != "undefined" ? typeof(performance.now) == "function" : 
 	HxOverrides.now = performance.now.bind(performance);
 }
 {
+	String.prototype.__class__ = String;
 	String.__name__ = true;
 	Array.__name__ = true;
+	Date.prototype.__class__ = Date;
 	Date.__name__ = "Date";
 }
 js_Boot.__toStr = ({ }).toString;

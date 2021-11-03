@@ -162,6 +162,9 @@ class TicTacToe {
 	}
 }
 TicTacToe.__name__ = true;
+Object.assign(TicTacToe.prototype, {
+	__class__: TicTacToe
+});
 class haxe_iterators_ArrayIterator {
 	constructor(array) {
 		this.current = 0;
@@ -175,6 +178,9 @@ class haxe_iterators_ArrayIterator {
 	}
 }
 haxe_iterators_ArrayIterator.__name__ = true;
+Object.assign(haxe_iterators_ArrayIterator.prototype, {
+	__class__: haxe_iterators_ArrayIterator
+});
 class js_Boot {
 	static __string_rec(o,s) {
 		if(o == null) {
@@ -246,6 +252,7 @@ var $_;
 function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $global.$haxeUID++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = m.bind(o); o.hx__closures__[m.__id__] = f; } return f; }
 $global.$haxeUID |= 0;
 {
+	String.prototype.__class__ = String;
 	String.__name__ = true;
 	Array.__name__ = true;
 }

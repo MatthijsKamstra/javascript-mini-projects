@@ -104,6 +104,9 @@ class JsonP {
 }
 $hx_exports["JsonP"] = JsonP;
 JsonP.__name__ = true;
+Object.assign(JsonP.prototype, {
+	__class__: JsonP
+});
 Math.__name__ = true;
 class Std {
 	static string(s) {
@@ -139,6 +142,9 @@ class haxe_Exception extends Error {
 	}
 }
 haxe_Exception.__name__ = true;
+Object.assign(haxe_Exception.prototype, {
+	__class__: haxe_Exception
+});
 class haxe_ValueException extends haxe_Exception {
 	constructor(value,previous,native) {
 		super(String(value),previous,native);
@@ -146,6 +152,9 @@ class haxe_ValueException extends haxe_Exception {
 	}
 }
 haxe_ValueException.__name__ = true;
+Object.assign(haxe_ValueException.prototype, {
+	__class__: haxe_ValueException
+});
 class haxe_iterators_ArrayIterator {
 	constructor(array) {
 		this.current = 0;
@@ -159,6 +168,9 @@ class haxe_iterators_ArrayIterator {
 	}
 }
 haxe_iterators_ArrayIterator.__name__ = true;
+Object.assign(haxe_iterators_ArrayIterator.prototype, {
+	__class__: haxe_iterators_ArrayIterator
+});
 class js_Boot {
 	static __string_rec(o,s) {
 		if(o == null) {
@@ -230,8 +242,10 @@ if(typeof(performance) != "undefined" ? typeof(performance.now) == "function" : 
 	HxOverrides.now = performance.now.bind(performance);
 }
 {
+	String.prototype.__class__ = String;
 	String.__name__ = true;
 	Array.__name__ = true;
+	Date.prototype.__class__ = Date;
 	Date.__name__ = "Date";
 }
 js_Boot.__toStr = ({ }).toString;

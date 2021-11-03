@@ -263,6 +263,9 @@ class Todo {
 	}
 }
 Todo.__name__ = true;
+Object.assign(Todo.prototype, {
+	__class__: Todo
+});
 class haxe_iterators_ArrayIterator {
 	constructor(array) {
 		this.current = 0;
@@ -276,6 +279,9 @@ class haxe_iterators_ArrayIterator {
 	}
 }
 haxe_iterators_ArrayIterator.__name__ = true;
+Object.assign(haxe_iterators_ArrayIterator.prototype, {
+	__class__: haxe_iterators_ArrayIterator
+});
 class js_Boot {
 	static __string_rec(o,s) {
 		if(o == null) {
@@ -405,8 +411,10 @@ if(typeof(performance) != "undefined" ? typeof(performance.now) == "function" : 
 	HxOverrides.now = performance.now.bind(performance);
 }
 {
+	String.prototype.__class__ = String;
 	String.__name__ = true;
 	Array.__name__ = true;
+	Date.prototype.__class__ = Date;
 	Date.__name__ = "Date";
 }
 js_Boot.__toStr = ({ }).toString;

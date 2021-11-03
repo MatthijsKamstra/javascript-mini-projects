@@ -21,3 +21,6 @@ bin_release
 # Misc
 BUILD.MD
 test.hxml
+
+# just some files we don't want to add to git
+docs/csv2md/[WUB] Content structuur - Pagina's & componenten.csv

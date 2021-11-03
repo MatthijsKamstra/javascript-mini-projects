@@ -15,127 +15,151 @@
 -js docs/assets/js/default.js
 
 --next
-
+--cmd echo PhotoWatermark
 -main PhotoWatermark
 -js docs/photo-watermark/photo-watermark.js
 
 --next
 
+--cmd echo DragAndDrop
 -main DragAndDrop
 -js docs/drag-and-drop/drag-and-drop.js
 
 --next
 
+--cmd echo Desktop
 -main Desktop
 -js docs/desktop/desktop.js
 
 --next
 
+--cmd echo ToggleSound
 -main ToggleSound
 -js docs/togglesound/togglesound.js
 
 --next
 
+--cmd echo SvgEditor
 -main SvgEditor
 -js docs/svg-editor/svg-editor.js
 
 --next
 
+--cmd echo LocalStorage
 -main LocalStorage
 -js docs/localstorage/localstorage.js
 
 --next
 
+--cmd echo Countdown
 -main Countdown
 -js docs/countdown/countdown.js
 
 --next
 
+--cmd echo EmojiFavicon
 -main EmojiFavicon
 -js docs/emoji-favicon/emoji-favicon.js
 
 --next
 
+--cmd echo Todo
 -main Todo
 -js docs/todo/todo.js
 
 --next
 
+--cmd echo Quotes
 -main Quotes
 -js docs/quotes/quotes.js
 
 --next
 
+--cmd echo Weather
 -main Weather
 -js docs/weather/weather.js
 
 --next
 
+--cmd echo ConvertMarkdown
 -main ConvertMarkdown
 -js docs/convert-markdown/convert-markdown.js
 
 
 --next
 
+--cmd echo JsonP
 -main JsonP
 -js docs/jsonp/jsonp.js
 
 --next
 
+--cmd echo Webcam
 -main Webcam
 -js docs/webcam/webcam.js
 
 --next
 
+--cmd echo Geolocation
 -main Geolocation
 -js docs/geolocation/geolocation.js
 
 --next
 
+--cmd echo Sketch
 -main Sketch
 -js docs/sketch/sketch.js
 
 --next
 
+--cmd echo Darkmode
 -main Darkmode
 -js docs/darkmode/darkmode.js
 
 --next
 
+--cmd echo Memory
 -main Memory
 -js docs/memory/memory.js
 
 --next
 
+--cmd echo TicTacToe
 -main TicTacToe
 -js docs/tictactoe/tictactoe.js
 
 --next
 
+--cmd echo RandomUser
 -main RandomUser
 -js docs/randomuser/randomuser.js
 
 --next
 
+--cmd echo SideMenu
 -main SideMenu
 -js docs/sidemenu/sidemenu.js
 
 --next
 
+--cmd echo DummyData
 -main DummyData
 -js docs/dummydata/dummydata.js
 
 --next
 
+--cmd echo Shoppingcard
 -main Shoppingcard
 -js docs/shoppingcard/shoppingcard.js
 
 --next
 
+--cmd echo Fullscreen
 -main Fullscreen
 -js docs/fullscreen/fullscreen.js
 
 --next
 
+--cmd echo Hidenavbar
 -main Hidenavbar
 -js docs/hidenavbar/hidenavbar.js

@@ -1,0 +1,14 @@
+-lib vue
+--class-path src
+--dce full
+-D js-es=6
+
+
+
+-main CsvConverter
+-js docs/csvconverter/csvconverter.js
+
+--cmd echo CsvConverter
+
+
+--cmd node docs/csvconverter/csvconverter.js

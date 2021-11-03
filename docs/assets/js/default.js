@@ -7,7 +7,7 @@ class Main {
 		this.json = "data.json";
 		this.infoUrl = "_post.html";
 		this.INFO_ID = "mySidenav";
-		$global.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2021-11-03 09:01:52");
+		$global.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2021-11-03 10:52:50");
 		if(window.document.getElementById("homepage") != null) {
 			$global.console.log("homepage");
 			this.vm = new Vue({ el : "#app", data : { message : "Hello Vue.js!", count : 20, json : { }}});

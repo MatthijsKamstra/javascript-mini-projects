@@ -1,9 +1,7 @@
 package utils;
 
 class Convert {
-	public function new() {
-		// your code
-	}
+	public function new() {}
 
 	/**
 	 * @example

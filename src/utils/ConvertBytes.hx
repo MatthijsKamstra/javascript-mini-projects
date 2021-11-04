@@ -1,9 +1,7 @@
 package utils;
 
 class ConvertBytes {
-	public function new() {
-		// your code
-	}
+	public function new() {}
 
 	/**
 	 * bytes to size

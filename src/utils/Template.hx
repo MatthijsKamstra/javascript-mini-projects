@@ -1,9 +1,7 @@
 package utils;
 
 class Template {
-	public function new() {
-		// your code
-	}
+	public function new() {}
 
 	/**
 	 * bug in VSCode haxe extension, the autocomplete stops working when using a emoji..

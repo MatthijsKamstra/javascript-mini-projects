@@ -3,32 +3,31 @@
 class CsvConverter {
 	constructor() {
 		this.csv2 = "FistName,LastName,Age\nHenk,\"de Boer\", 3\nJan,Rood , 20\nMien ,\" Fiets \", 45";
-		console.log("src/CsvConverter.hx:20:","CsvConverter");
+		console.log("src/CsvConverter.hx:21:","CsvConverter");
 		let csvArr = this.convert(this.csv2);
-		console.log("src/CsvConverter.hx:22:","column names: " + Std.string(csvArr[0]));
-		console.log("src/CsvConverter.hx:23:","nr colums: " + csvArr[0].length);
-		console.log("src/CsvConverter.hx:24:","nr rows: " + (csvArr.length - 1));
+		console.log("src/CsvConverter.hx:23:","column names: " + Std.string(csvArr[0]));
+		console.log("src/CsvConverter.hx:24:","nr colums: " + csvArr[0].length);
+		console.log("src/CsvConverter.hx:25:","nr rows: " + (csvArr.length - 1));
 		let md = this.generateMarkdownTable(csvArr);
-		let inArea = window.document.getElementById("js-input-textarea");
-		inArea.value = this.csv2;
-		let outArea = window.document.getElementById("js-output-textarea");
-		outArea.value = md;
-		this.textArea = outArea;
-		let button = window.document.getElementById("js-copy-btn");
-		button.onclick = $bind(this,this.onClickHandler);
-		let converBtn = window.document.getElementById("js-convert-btn");
-		converBtn.onclick = $bind(this,this.onConvertClickHandler);
+		this.inArea = window.document.getElementById("js-input-textarea");
+		this.inArea.value = this.csv2;
+		this.outArea = window.document.getElementById("js-output-textarea");
+		this.outArea.value = md;
+		let copyBtn = window.document.getElementById("js-copy-btn");
+		copyBtn.onclick = $bind(this,this.onClickHandler);
+		let convertBtn = window.document.getElementById("js-convert-btn");
+		convertBtn.onclick = $bind(this,this.onConvertClickHandler);
 	}
 	onClickHandler(e) {
 		e.preventDefault();
-		this.textArea.select();
+		this.outArea.select();
 		window.document.execCommand("copy");
 	}
 	onConvertClickHandler(e) {
-		let str = this.textArea.value;
+		let str = this.inArea.value;
 		let csvArr = this.convert(str);
 		let md = this.generateMarkdownTable(csvArr);
-		this.textArea.value = md;
+		this.outArea.value = md;
 	}
 	generateMarkdownTable(arr) {
 		let md = "";

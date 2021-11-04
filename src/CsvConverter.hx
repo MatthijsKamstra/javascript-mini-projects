@@ -14,7 +14,8 @@ Mien ," Fiets ", 45';
 "Jan","Rood ", "20"
 "Mien" ," Fiets ", "45"';
 
-	var textArea:TextAreaElement;
+	var inArea:TextAreaElement;
+	var outArea:TextAreaElement;
 
 	public function new() {
 		trace('CsvConverter');
@@ -24,30 +25,30 @@ Mien ," Fiets ", 45';
 		trace('nr rows: ${csvArr.length - 1}');
 		var md = generateMarkdownTable(csvArr);
 
-		var inArea:TextAreaElement = cast document.getElementById('js-input-textarea');
+		inArea = cast document.getElementById('js-input-textarea');
 		inArea.value = csv2;
-		var outArea:TextAreaElement = cast document.getElementById('js-output-textarea');
+
+		outArea = cast document.getElementById('js-output-textarea');
 		outArea.value = md;
-		textArea = outArea;
 
-		var button = cast document.getElementById('js-copy-btn');
-		button.onclick = onClickHandler;
+		var copyBtn = cast document.getElementById('js-copy-btn');
+		copyBtn.onclick = onClickHandler;
 
-		var converBtn = cast document.getElementById('js-convert-btn');
-		converBtn.onclick = onConvertClickHandler;
+		var convertBtn = cast document.getElementById('js-convert-btn');
+		convertBtn.onclick = onConvertClickHandler;
 	}
 
 	function onClickHandler(e) {
 		e.preventDefault();
-		textArea.select();
+		outArea.select();
 		document.execCommand('copy');
 	}
 
 	function onConvertClickHandler(e) {
-		var str = textArea.value;
+		var str = inArea.value;
 		var csvArr = convert(str);
 		var md = generateMarkdownTable(csvArr);
-		textArea.value = md;
+		outArea.value = md;
 	}
 
 	/**

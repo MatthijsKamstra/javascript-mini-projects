@@ -142,11 +142,12 @@ class HxOverrides {
 	}
 }
 HxOverrides.__name__ = true;
-class LocalStorage {
+Math.__name__ = true;
+class QuickLinks {
 	constructor() {
 		this.superHeroLast = ["x","shield","machine","justice","beast","wing","arrow","skull","blade","bolt","cobra","blaze","soldier","strike","falcon","fang","king","surfer","bot","guard","thing","claw","brain","master","power","storm"];
 		this.superHeroFirst = ["captain","turbo","galactic","the","aqua","fire","iron","super","green","phantom","dark","ghost","professor","atomic","rock","omega","rocket","shadow","agent","silver","wild","wolf","ultra","wonder","doctor","star"];
-		this.dbName = "test-localstorage";
+		this.dbName = "test-QuickLinks";
 		utils_LocalData.create(this.dbName);
 		if(utils_LocalData.read(this.dbName,"itemArray") == null) {
 			utils_LocalData.update(this.dbName,"itemArray",[]);
@@ -187,11 +188,11 @@ class LocalStorage {
 	}
 	onAddHandler(e) {
 		let arr = utils_LocalData.read(this.dbName,"itemArray");
-		console.log("src/LocalStorage.hx:86:",arr);
+		console.log("src/QuickLinks.hx:86:",arr);
 		let superHeroName = this.superHeroFirst[Math.floor(Math.random() * this.superHeroFirst.length)] + " " + this.superHeroLast[Math.floor(Math.random() * this.superHeroLast.length)];
 		let obj = { name : superHeroName, created : HxOverrides.dateStr(new Date())};
 		arr.push(obj);
-		console.log("src/LocalStorage.hx:97:",arr);
+		console.log("src/QuickLinks.hx:97:",arr);
 		utils_LocalData.update(this.dbName,"itemArray",arr);
 		this.updateOutput();
 	}
@@ -200,14 +201,13 @@ class LocalStorage {
 	}
 	onReadHandler(e) {
 		let json = utils_LocalData.load(this.dbName);
-		console.log("src/LocalStorage.hx:108:",json);
+		console.log("src/QuickLinks.hx:108:",json);
 	}
 	static main() {
-		let app = new LocalStorage();
+		let app = new QuickLinks();
 	}
 }
-LocalStorage.__name__ = true;
-Math.__name__ = true;
+QuickLinks.__name__ = true;
 class Reflect {
 	static getProperty(o,field) {
 		let tmp;
@@ -485,5 +485,5 @@ DateTools.DAY_NAMES = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Frida
 DateTools.MONTH_SHORT_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 DateTools.MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 utils_LocalData.isDebug = true;
-LocalStorage.main();
+QuickLinks.main();
 })(typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);

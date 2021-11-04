@@ -7,15 +7,15 @@ class Main {
 		this.json = "data.json";
 		this.infoUrl = "_post.html";
 		this.INFO_ID = "mySidenav";
-		$global.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2021-11-03 10:52:50");
+		$global.console.log("" + App.NAME + " - Navigation - Dom ready :: build: " + "2021-11-04 11:14:51");
 		if(window.document.getElementById("homepage") != null) {
 			$global.console.log("homepage");
 			this.vm = new Vue({ el : "#app", data : { message : "Hello Vue.js!", count : 20, json : { }}});
 			this.loadData(this.json,$bind(this,this.setupJsonData));
 		} else {
 			$global.console.log("other pages");
-			this.loadData(this.infoUrl,$bind(this,this.setupInfo));
 			this.loadData("../" + this.json,$bind(this,this.setupNav));
+			this.loadData(this.infoUrl,$bind(this,this.setupInfo));
 		}
 	}
 	loadData(url,callback) {

@@ -16,6 +16,12 @@
 
 --next
 
+--cmd echo Gitlab
+-main Gitlab
+-js docs/gitlab/gitlab.js
+
+--next
+
 --cmd echo CopyPaste
 -main CopyPaste
 -js docs/copypaste/copypaste.js

@@ -39,8 +39,8 @@ class Main {
 			loadData(json, setupJsonData);
 		} else {
 			console.log('other pages');
-			loadData(infoUrl, setupInfo);
 			loadData('../${json}', setupNav);
+			loadData(infoUrl, setupInfo);
 		}
 	}
 

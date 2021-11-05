@@ -28,28 +28,29 @@ class Gitlab {
 		while(_g < _g1) {
 			let i = _g++;
 			let obj = json.data[i];
+			if(obj.pushed_at == null) {
+				continue;
+			}
 			obj._created_at = Gitlab.dateConverter(obj.created_at);
 			obj._updated_at = Gitlab.dateConverter(obj.updated_at);
+			obj._pushed_at = Gitlab.dateConverter(obj.pushed_at);
 			obj._created_at_time = Gitlab.dateConverter(obj.created_at).getTime();
-			obj._updated_at_time = Gitlab.dateConverter(obj.created_at).getTime();
+			obj._updated_at_time = Gitlab.dateConverter(obj.updated_at).getTime();
+			obj._pushed_at_time = Gitlab.dateConverter(obj.pushed_at).getTime();
 			Gitlab.repoArr.push(obj);
 		}
 		if(json.meta.Link[0][1].rel == "next") {
 			utils_LoadJsonP.load(json.meta.Link[0][0]);
 		}
-		$global.console.log(Gitlab.repoArr.length);
 		Gitlab.generateCompleteRepoList();
-	}
-	static dateConverter(str) {
-		return HxOverrides.strDate(StringTools.replace(StringTools.replace(str,"T"," "),"Z",""));
 	}
 	static generateCompleteRepoList() {
 		let div = window.document.getElementById("js-gitlab-projects");
 		div.innerHTML = "";
 		let html = div.innerHTML;
-		html += "<ul>";
+		html += "<div class=\"list-group\">";
 		Gitlab.repoArr.sort(function(a,b) {
-			if(a._updated_at_time < b._updated_at_time) {
+			if(a._pushed_at_time < b._pushed_at_time) {
 				return 1;
 			} else {
 				return -1;
@@ -60,27 +61,26 @@ class Gitlab {
 		while(_g < _g1) {
 			let i = _g++;
 			let obj = Gitlab.repoArr[i];
-			$global.console.log(obj._created_at);
-			$global.console.log(obj._updated_at);
-			if(obj.created_at == obj.updated_at) {
-				continue;
-			}
 			if(obj.fork != true) {
-				html += "<li><a href=\"" + obj.html_url + "\">" + obj.name + "</a>";
+				let home = "";
 				if(obj.homepage != null) {
-					html += " - <a href=\"" + obj.homepage + "\">homepage</a>";
+					home += " <i class=\"fa fa-home\"></i>";
 				}
-				html += "</li>";
+				html += "<a href=\"" + obj.html_url + "\" target=\"_blank\" class=\"list-group-item list-group-item-action\">" + obj.name + home + "</a>";
 			}
 		}
-		html += "</ul>";
+		html += "</div>";
 		div.innerHTML = html;
+		$global.console.info(Gitlab.repoArr);
 	}
 	static onProfileCompleteHandler(json) {
 		let div = window.document.getElementById("js-gitlab-profile");
 		let data = json.data;
 		let html = "\n<div class=\"col-auto\">\n<img src=\"" + data.avatar_url + "\" class=\"rounded\"><br>\n</div>\n<div class=\"col-6\">\nName: " + data.name + "<br>\nBio: " + data.bio + "<br>\nPublic repos: " + data.public_repos + "<br>\nBlog: <a href=\"" + data.blog + "\" target=\"_blank\">Check out blog</a><br>\nRepos: <a href=\"" + data.html_url + "?tab=repositories\" target=\"_blank\">Check out repos</a><br>\n</div>\n";
 		div.innerHTML = html;
+	}
+	static dateConverter(str) {
+		return HxOverrides.strDate(StringTools.replace(StringTools.replace(str,"T"," "),"Z",""));
 	}
 	static main() {
 		let app = new Gitlab();

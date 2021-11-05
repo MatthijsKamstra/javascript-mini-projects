@@ -35,11 +35,20 @@ class Gitlab {
 
 		for (i in 0...json.data.length) {
 			var obj:GithubRepoObj = json.data[i];
+
+			// ignore repo that have never been pushed
+			if (obj.pushed_at == null) {
+				// console.log('${i} - ${obj.pushed_at}');
+				// console.log(obj);
+				continue;
+			}
+
 			obj._created_at = dateConverter(obj.created_at);
 			obj._updated_at = dateConverter(obj.updated_at);
+			obj._pushed_at = dateConverter(obj.pushed_at);
 			obj._created_at_time = dateConverter(obj.created_at).getTime();
-			obj._updated_at_time = dateConverter(obj.created_at).getTime();
-			// obj._pushed_at = dateConverter(obj.pushed_at);
+			obj._updated_at_time = dateConverter(obj.updated_at).getTime();
+			obj._pushed_at_time = dateConverter(obj.pushed_at).getTime();
 			repoArr.push(obj);
 		}
 
@@ -47,40 +56,55 @@ class Gitlab {
 			utils.LoadJsonP.load(json.meta.Link[0][0]);
 		}
 
-		console.log(repoArr.length);
+		// console.log(repoArr.length);
 		generateCompleteRepoList();
-	}
-
-	public static function dateConverter(str:String) {
-		return Date.fromString(str.replace('T', ' ').replace('Z', ''));
 	}
 
 	static public function generateCompleteRepoList() {
 		var div:DivElement = cast document.getElementById('js-gitlab-projects');
 		div.innerHTML = ''; // reset innner html
 		var html = div.innerHTML;
-		html += '<ul>';
+		html += '<div class="list-group">';
 
-		repoArr.sort(function(a, b) return if (a._updated_at_time < b._updated_at_time) 1 else -1);
+		/**
+
+			<div class="list-group">
+			  <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+			The current link item
+			  </a>
+			  <a href="#" class="list-group-item list-group-item-action">A second link item</a>
+			  <a href="#" class="list-group-item list-group-item-action">A third link item</a>
+			  <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+			  <a class="list-group-item list-group-item-action disabled">A disabled link item</a>
+			</div>
+
+		 */
+
+		repoArr.sort(function(a, b) return if (a._pushed_at_time < b._pushed_at_time) 1 else -1);
 
 		for (i in 0...repoArr.length) {
 			var obj:GithubRepoObj = repoArr[i];
-			console.log(obj._created_at);
-			console.log(obj._updated_at);
+			// console.log(obj._created_at_time);
+			// console.log(obj._updated_at_time);
 
 			// vaag
-			if (obj.created_at == obj.updated_at)
-				continue;
+			// if (obj.created_at == obj.updated_at)
+			// 	continue;
+
 			if (obj.fork != true) {
-				html += '<li><a href="${obj.html_url}">${obj.name}</a>';
+				var home = '';
 				if (obj.homepage != null) {
-					html += ' - <a href="${obj.homepage}">homepage</a>';
+					// <a href="${obj.homepage}">
+					home += ' <i class="fa fa-home"></i>';
 				}
-				html += '</li>';
+
+				html += '<a href="${obj.html_url}" target="_blank" class="list-group-item list-group-item-action">${obj.name}${home}</a>';
 			}
 		}
-		html += '</ul>';
+		html += '</div>';
 		div.innerHTML = html;
+
+		console.info(repoArr);
 	}
 
 	static public function onProfileCompleteHandler(json:Dynamic) {
@@ -106,6 +130,12 @@ Repos: <a href="${data.html_url}?tab=repositories" target="_blank">Check out rep
 		div.innerHTML = html;
 	}
 
+	// ____________________________________ utils ____________________________________
+
+	public static function dateConverter(str:String) {
+		return Date.fromString(str.replace('T', ' ').replace('Z', ''));
+	}
+
 	static public function main() {
 		var app = new Gitlab();
 	}
@@ -117,9 +147,10 @@ typedef GithubRepoObj = {
 	var pushed_at:String; // 2015-03-24T14:20:44Z
 	@:optional var _created_at:Date;
 	@:optional var _updated_at:Date;
+	@:optional var _pushed_at:Date;
 	@:optional var _created_at_time:Float;
 	@:optional var _updated_at_time:Float;
-	// @:optional var _pushed_at:Date;
+	@:optional var _pushed_at_time:Float;
 	@:optional var homepage:String; // null or
 	var html_url:String; // "https://github.com/MatthijsKamstra/abc-mvc",
 	var name:String;

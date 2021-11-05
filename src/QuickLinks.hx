@@ -1,4 +1,8 @@
+import haxe.Json;
+import utils.Randomize;
 import utils.LocalData;
+
+using StringTools;
 
 class QuickLinks {
 	// store data under name
@@ -6,20 +10,27 @@ class QuickLinks {
 
 	// output data localstorage
 	var output:DivElement;
+	var input:InputElement;
+	var textarea:TextAreaElement;
 
 	// buttons
-	var btnDownload:ButtonElement;
-	var btnBase64:ButtonElement;
-	var btnBase642:ButtonElement;
+	var btnAdd:ButtonElement;
+	var btnClear:ButtonElement;
 	var btnRead:ButtonElement;
+	var btnRandom:ButtonElement;
 
-	var superHeroFirst:Array<String> = [
-		'captain', 'turbo', 'galactic', 'the', 'aqua', 'fire', 'iron', 'super', 'green', 'phantom', 'dark', 'ghost', 'professor', 'atomic', 'rock', 'omega',
-		'rocket', 'shadow', 'agent', 'silver', 'wild', 'wolf', 'ultra', 'wonder', 'doctor', 'star'
-	];
-	var superHeroLast:Array<String> = [
-		'x', 'shield', 'machine', 'justice', 'beast', 'wing', 'arrow', 'skull', 'blade', 'bolt', 'cobra', 'blaze', 'soldier', 'strike', 'falcon', 'fang',
-		'king', 'surfer', 'bot', 'guard', 'thing', 'claw', 'brain', 'master', 'power', 'storm'
+	var basisArr = [
+		//
+		'https://haxe.org/',
+		'https://getbootstrap.com/docs/5.1/getting-started/introduction/',
+		'https://github.com/MatthijsKamstra?tab=repositories',
+		'https://www.disneyplus.com/en-gb/',
+		'https://www.netflix.com/',
+		'https://tv.kpn.com/',
+		'https://forecastapp.com/1389043/schedule/team',
+		'https://fonkamsterdam1.harvestapp.com/time',
+		'https://calendar.google.com/calendar/',
+		'https://translate.google.com/'
 	];
 
 	public function new() {
@@ -51,52 +62,56 @@ class QuickLinks {
 	}
 
 	function setElements() {
-		output = cast document.getElementById("output");
+		// output
+		output = cast document.getElementById("js-output");
+		input = cast document.getElementById('js-input');
+		textarea = cast document.getElementById('exampleFormControlTextarea1');
 
-		btnDownload = cast document.getElementById('btn-add-item');
-		btnDownload.onclick = onAddHandler;
-		btnBase64 = cast document.getElementById('btn-clear');
-		btnBase64.onclick = onClearHandler;
-		btnRead = cast document.getElementById('btn-read');
+		// buttons
+		btnRandom = cast document.getElementById('js-btn-random');
+		btnRandom.onclick = onRandomHandler;
+		btnAdd = cast document.getElementById('js-btn-add');
+		btnAdd.onclick = onAddHandler;
+		btnClear = cast document.getElementById('js-btn-clear');
+		btnClear.onclick = onClearHandler;
+		btnRead = cast document.getElementById('js-btn-read');
 		btnRead.onclick = onReadHandler;
-		// btnBase642 = cast document.getElementById('btn-base64-2');
-		// btnBase642.onclick = exportBase642;
 	}
 
 	function updateOutput() {
 		var arr:Array<Dynamic> = LocalData.read(dbName, 'itemArray');
+		textarea.value = Json.stringify(arr);
 
-		var out = '<ul>';
+		var out = '<div class="list-group">';
 		for (i in 0...arr.length) {
-			var obj = arr[i];
+			var obj:QuickLinkObj = arr[i];
 			// trace(obj.name);
 			var date = Date.fromString(obj.created);
 			var t = DateTools.format(date, "%T");
 			// trace(obj.created);
-			out += '<li>time: ${t} - <b>${obj.name}</b></li>';
+			out += '<a href="${obj.url}" class="list-group-item list-group-item-action">${obj.url}</a>';
 		}
-		out += '</ul>';
+		out += '</div>';
 		output.innerHTML = out;
 	}
 
 	// ____________________________________ handlers ____________________________________
+
 	function onAddHandler(e) {
 		var arr:Array<Dynamic> = LocalData.read(dbName, 'itemArray');
-
-		trace(arr);
-
-		var superHeroName = superHeroFirst[Math.floor(Math.random() * superHeroFirst.length)]
-			+ ' '
-			+ superHeroLast[Math.floor(Math.random() * superHeroLast.length)];
-
+		var superHeroName = Randomize.superHeroName();
 		var obj = {
+			url: input.value.trim(),
 			name: superHeroName,
 			created: Date.now().toString(),
 		}
 		arr.push(obj);
-		trace(arr);
 		LocalData.update(dbName, 'itemArray', arr);
 		updateOutput();
+	}
+
+	function onRandomHandler(e) {
+		input.value = basisArr[Std.random(basisArr.length)];
 	}
 
 	function onClearHandler(e) {
@@ -111,4 +126,11 @@ class QuickLinks {
 	static public function main() {
 		var app = new QuickLinks();
 	}
+}
+
+typedef QuickLinkObj = {
+	@:optional var _id:String;
+	var created:String; // :Date;
+	var url:String;
+	var name:String;
 }

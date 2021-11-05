@@ -125,6 +125,13 @@ class HxOverrides {
 			throw haxe_Exception.thrown("Invalid date format : " + s);
 		}
 	}
+	static cca(s,index) {
+		let x = s.charCodeAt(index);
+		if(x != x) {
+			return undefined;
+		}
+		return x;
+	}
 	static substr(s,pos,len) {
 		if(len == null) {
 			len = s.length;
@@ -145,8 +152,7 @@ HxOverrides.__name__ = true;
 Math.__name__ = true;
 class QuickLinks {
 	constructor() {
-		this.superHeroLast = ["x","shield","machine","justice","beast","wing","arrow","skull","blade","bolt","cobra","blaze","soldier","strike","falcon","fang","king","surfer","bot","guard","thing","claw","brain","master","power","storm"];
-		this.superHeroFirst = ["captain","turbo","galactic","the","aqua","fire","iron","super","green","phantom","dark","ghost","professor","atomic","rock","omega","rocket","shadow","agent","silver","wild","wolf","ultra","wonder","doctor","star"];
+		this.basisArr = ["https://haxe.org/","https://getbootstrap.com/docs/5.1/getting-started/introduction/","https://github.com/MatthijsKamstra?tab=repositories","https://www.disneyplus.com/en-gb/","https://www.netflix.com/","https://tv.kpn.com/","https://forecastapp.com/1389043/schedule/team","https://fonkamsterdam1.harvestapp.com/time","https://calendar.google.com/calendar/","https://translate.google.com/"];
 		this.dbName = "test-QuickLinks";
 		utils_LocalData.create(this.dbName);
 		if(utils_LocalData.read(this.dbName,"itemArray") == null) {
@@ -163,17 +169,22 @@ class QuickLinks {
 		this.updateOutput();
 	}
 	setElements() {
-		this.output = window.document.getElementById("output");
-		this.btnDownload = window.document.getElementById("btn-add-item");
-		this.btnDownload.onclick = $bind(this,this.onAddHandler);
-		this.btnBase64 = window.document.getElementById("btn-clear");
-		this.btnBase64.onclick = $bind(this,this.onClearHandler);
-		this.btnRead = window.document.getElementById("btn-read");
+		this.output = window.document.getElementById("js-output");
+		this.input = window.document.getElementById("js-input");
+		this.textarea = window.document.getElementById("exampleFormControlTextarea1");
+		this.btnRandom = window.document.getElementById("js-btn-random");
+		this.btnRandom.onclick = $bind(this,this.onRandomHandler);
+		this.btnAdd = window.document.getElementById("js-btn-add");
+		this.btnAdd.onclick = $bind(this,this.onAddHandler);
+		this.btnClear = window.document.getElementById("js-btn-clear");
+		this.btnClear.onclick = $bind(this,this.onClearHandler);
+		this.btnRead = window.document.getElementById("js-btn-read");
 		this.btnRead.onclick = $bind(this,this.onReadHandler);
 	}
 	updateOutput() {
 		let arr = utils_LocalData.read(this.dbName,"itemArray");
-		let out = "<ul>";
+		this.textarea.value = JSON.stringify(arr);
+		let out = "<div class=\"list-group\">";
 		let _g = 0;
 		let _g1 = arr.length;
 		while(_g < _g1) {
@@ -181,27 +192,30 @@ class QuickLinks {
 			let obj = arr[i];
 			let date = HxOverrides.strDate(obj.created);
 			let t = DateTools.format(date,"%T");
-			out += "<li>time: " + t + " - <b>" + obj.name + "</b></li>";
+			out += "<a href=\"" + obj.url + "\" class=\"list-group-item list-group-item-action\">" + obj.url + "</a>";
 		}
-		out += "</ul>";
+		out += "</div>";
 		this.output.innerHTML = out;
 	}
 	onAddHandler(e) {
 		let arr = utils_LocalData.read(this.dbName,"itemArray");
-		console.log("src/QuickLinks.hx:86:",arr);
-		let superHeroName = this.superHeroFirst[Math.floor(Math.random() * this.superHeroFirst.length)] + " " + this.superHeroLast[Math.floor(Math.random() * this.superHeroLast.length)];
-		let obj = { name : superHeroName, created : HxOverrides.dateStr(new Date())};
+		let superHeroName = utils_Randomize.superHeroName();
+		let obj = { url : StringTools.trim(this.input.value), name : superHeroName, created : HxOverrides.dateStr(new Date())};
 		arr.push(obj);
-		console.log("src/QuickLinks.hx:97:",arr);
 		utils_LocalData.update(this.dbName,"itemArray",arr);
 		this.updateOutput();
+	}
+	onRandomHandler(e) {
+		let tmp = this.basisArr;
+		let tmp1 = Std.random(this.basisArr.length);
+		this.input.value = tmp[tmp1];
 	}
 	onClearHandler(e) {
 		utils_LocalData.clear(this.dbName);
 	}
 	onReadHandler(e) {
 		let json = utils_LocalData.load(this.dbName);
-		console.log("src/QuickLinks.hx:108:",json);
+		console.log("src/QuickLinks.hx:123:",json);
 	}
 	static main() {
 		let app = new QuickLinks();
@@ -249,9 +263,47 @@ class Std {
 	static string(s) {
 		return js_Boot.__string_rec(s,"");
 	}
+	static random(x) {
+		if(x <= 0) {
+			return 0;
+		} else {
+			return Math.floor(Math.random() * x);
+		}
+	}
 }
 Std.__name__ = true;
 class StringTools {
+	static isSpace(s,pos) {
+		let c = HxOverrides.cca(s,pos);
+		if(!(c > 8 && c < 14)) {
+			return c == 32;
+		} else {
+			return true;
+		}
+	}
+	static ltrim(s) {
+		let l = s.length;
+		let r = 0;
+		while(r < l && StringTools.isSpace(s,r)) ++r;
+		if(r > 0) {
+			return HxOverrides.substr(s,r,l - r);
+		} else {
+			return s;
+		}
+	}
+	static rtrim(s) {
+		let l = s.length;
+		let r = 0;
+		while(r < l && StringTools.isSpace(s,l - r - 1)) ++r;
+		if(r > 0) {
+			return HxOverrides.substr(s,0,l - r);
+		} else {
+			return s;
+		}
+	}
+	static trim(s) {
+		return StringTools.ltrim(StringTools.rtrim(s));
+	}
 	static lpad(s,c,l) {
 		if(c.length <= 0) {
 			return s;
@@ -468,6 +520,18 @@ class utils_LocalData {
 	}
 }
 utils_LocalData.__name__ = true;
+class utils_Randomize {
+	static superHeroName() {
+		let superHeroName = utils_Randomize.capFirstLetter(utils_Randomize.superHeroFirst[Math.floor(Math.random() * utils_Randomize.superHeroFirst.length)]) + " " + utils_Randomize.capFirstLetter(utils_Randomize.superHeroLast[Math.floor(Math.random() * utils_Randomize.superHeroLast.length)]);
+		return superHeroName;
+	}
+	static capFirstLetter(str) {
+		let tempstr = "";
+		tempstr = str.substring(0,1).toUpperCase() + str.substring(1,str.length);
+		return tempstr;
+	}
+}
+utils_Randomize.__name__ = true;
 var $_;
 function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $global.$haxeUID++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = m.bind(o); o.hx__closures__[m.__id__] = f; } return f; }
 $global.$haxeUID |= 0;
@@ -485,5 +549,7 @@ DateTools.DAY_NAMES = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Frida
 DateTools.MONTH_SHORT_NAMES = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 DateTools.MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 utils_LocalData.isDebug = true;
+utils_Randomize.superHeroFirst = ["captain","turbo","galactic","the","aqua","fire","iron","super","green","phantom","dark","ghost","professor","atomic","rock","omega","rocket","shadow","agent","silver","wild","wolf","ultra","wonder","doctor","star"];
+utils_Randomize.superHeroLast = ["x","shield","machine","justice","beast","wing","arrow","skull","blade","bolt","cobra","blaze","soldier","strike","falcon","fang","king","surfer","bot","guard","thing","claw","brain","master","power","storm"];
 QuickLinks.main();
 })(typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);

@@ -17,7 +17,7 @@ class LocalData {
 	 * if (isOverwrite == false) the 'database' is not created and not overwritten
 	 *
 	 * @param name			dataBase name
-	 * @param isOverwrite	possible to reset the database/overwrite with original data
+	 * @param isOverwrite	possible to reset the database/overwrite with new default data
 	 */
 	public static function create(name:String, ?isOverwrite:Bool = false) {
 		if (isDebug)

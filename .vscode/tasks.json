@@ -10,11 +10,23 @@
 				"$haxe-error",
 				"$haxe-trace"
 			],
+			"group": "build",
+			"label": "haxe: build.hxml"
+		},
+		{
+			"type": "hxml",
+			"file": "build_js_current.hxml",
+			"problemMatcher": [
+				"$haxe-absolute",
+				"$haxe",
+				"$haxe-error",
+				"$haxe-trace"
+			],
 			"group": {
 				"kind": "build",
 				"isDefault": true
 			},
-			"label": "haxe: build.hxml"
+			"label": "haxe: build_js_current.hxml"
 		}
 	]
 }

@@ -153,11 +153,13 @@ Math.__name__ = true;
 class QuickLinks {
 	constructor() {
 		this.basisArr = ["https://haxe.org/","https://getbootstrap.com/docs/5.1/getting-started/introduction/","https://github.com/MatthijsKamstra?tab=repositories","https://www.disneyplus.com/en-gb/","https://www.netflix.com/","https://tv.kpn.com/","https://ficons.fiction.com/reference.html","https://forecastapp.com/1389043/schedule/team","https://fonkamsterdam1.harvestapp.com/time","https://calendar.google.com/calendar/","https://translate.google.com/"];
+		this.localItemArr = [];
 		this.dbName = "test-QuickLinks";
 		utils_LocalData.create(this.dbName);
 		if(utils_LocalData.read(this.dbName,"itemArray") == null) {
 			utils_LocalData.update(this.dbName,"itemArray",[]);
 		}
+		this.localItemArr = utils_LocalData.read(this.dbName,"itemArray");
 		let _gthis = this;
 		window.document.addEventListener("DOMContentLoaded",function(event) {
 			$global.console.log("LocalStorage -Dom ready");
@@ -184,19 +186,24 @@ class QuickLinks {
 	}
 	getLinks() {
 		let ahrefList = window.document.querySelectorAll("a.quicklink-btn");
+		let _gthis = this;
 		let _g = 0;
 		let _g1 = ahrefList.length;
 		while(_g < _g1) {
 			let i = _g++;
 			let ahref = ahrefList[i];
-			ahref.onmouseover = function(e) {
-				$global.console.log(this);
-				$global.console.log(e.currentTarget.dataset.name);
-				$global.console.log(e.currentTarget.dataset.counter);
-			};
 			ahref.onclick = function(e) {
-				$global.console.log(this);
-				$global.console.log(e.currentTarget.dataset.name);
+				let _g = 0;
+				let _g1 = _gthis.localItemArr.length;
+				while(_g < _g1) {
+					let i = _g++;
+					let obj = _gthis.localItemArr[i];
+					if(obj._id == e.currentTarget.dataset.uniq) {
+						obj.counter += 1;
+					}
+				}
+				utils_LocalData.update(_gthis.dbName,"itemArray",_gthis.localItemArr);
+				_gthis.updateOutput();
 			};
 		}
 		let ahrefList1 = window.document.querySelectorAll("a.quicklink-edit-btn");
@@ -218,22 +225,29 @@ class QuickLinks {
 		}
 	}
 	updateOutput() {
-		let arr = utils_LocalData.read(this.dbName,"itemArray");
-		this.textarea.value = JSON.stringify(arr);
+		this.localItemArr = utils_LocalData.read(this.dbName,"itemArray");
+		this.localItemArr.sort(function(a,b) {
+			if(a.counter < b.counter) {
+				return 1;
+			} else {
+				return -1;
+			}
+		});
+		this.textarea.value = JSON.stringify(this.localItemArr);
 		let out = "<ul class=\"list-group\">";
 		let _g = 0;
-		let _g1 = arr.length;
+		let _g1 = this.localItemArr.length;
 		while(_g < _g1) {
 			let i = _g++;
-			let obj = arr[i];
+			let obj = this.localItemArr[i];
 			let date = HxOverrides.strDate(obj.created);
 			let t = DateTools.format(date,"%T");
 			out += "<li class=\"list-group-item d-flex justify-content-between align-items-start\">";
-			out += "<a href=\"" + obj.url + "\" class=\"quicklink-btn\" title=\"" + obj.name + "\" ";
+			out += "<a href=\"" + obj.url + "\" class=\"quicklink-btn\" title=\"" + obj.name + "\" target=\"_blank\" ";
 			out += "data-uniq=\"" + obj._id + "\" data-name=\"" + obj.name + "\" data-counter=\"" + obj.counter + "\">";
 			out += "" + obj.url;
 			out += "</a>";
-			out += "<a href=\"#\" data-uniq=\"" + obj._id + "\" class=\"quicklink-edit-btn btn btn-sm btn-outline-danger\"><i class=\"fa fa-edit\"></i></a>";
+			out += "<a href=\"#\" data-uniq=\"" + obj._id + "\" class=\"quicklink-edit-btn btn btn-sm btn-outline-danger\" ><i class=\"fa fa-edit\"></i></a>";
 			out += "<span class=\"badge bg-primary rounded-pill\">" + obj.counter + "</span>";
 			out += "</li>";
 		}
@@ -242,28 +256,28 @@ class QuickLinks {
 		this.getLinks();
 	}
 	onAddHandler(e) {
-		let arr = utils_LocalData.read(this.dbName,"itemArray");
+		this.localItemArr = utils_LocalData.read(this.dbName,"itemArray");
 		let counter = 0;
 		let _g = 0;
-		let _g1 = arr.length;
+		let _g1 = this.localItemArr.length;
 		while(_g < _g1) {
 			let i = _g++;
-			let ql = arr[i];
+			let ql = this.localItemArr[i];
 			if(ql.counter >= counter) {
 				counter = ql.counter + 1;
 			}
 		}
 		let superHeroName = utils_Randomize.superHeroName();
 		let obj = { _id : "" + new Date().getTime() + "-" + Std.random(1000) + "-" + Std.random(1000), url : StringTools.trim(this.input.value), name : superHeroName, created : HxOverrides.dateStr(new Date()), counter : counter};
-		arr.push(obj);
-		arr.sort(function(a,b) {
+		this.localItemArr.push(obj);
+		this.localItemArr.sort(function(a,b) {
 			if(a.counter < b.counter) {
 				return 1;
 			} else {
 				return -1;
 			}
 		});
-		utils_LocalData.update(this.dbName,"itemArray",arr);
+		utils_LocalData.update(this.dbName,"itemArray",this.localItemArr);
 		this.updateOutput();
 	}
 	onRandomHandler(e) {
@@ -278,7 +292,7 @@ class QuickLinks {
 	}
 	onReadHandler(e) {
 		let json = utils_LocalData.load(this.dbName);
-		console.log("src/QuickLinks.hx:185:",json);
+		console.log("src/QuickLinks.hx:207:",json);
 	}
 	static main() {
 		let app = new QuickLinks();

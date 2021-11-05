@@ -8,6 +8,7 @@ using StringTools;
 class QuickLinks {
 	// store data under name
 	var dbName = 'test-QuickLinks';
+	var localItemArr:Array<QuickLinkObj> = [];
 
 	// output data localstorage
 	var output:DivElement;
@@ -52,6 +53,8 @@ class QuickLinks {
 		if (LocalData.read(dbName, 'itemArray') == null)
 			LocalData.update(dbName, 'itemArray', []);
 
+		localItemArr = LocalData.read(dbName, 'itemArray');
+
 		document.addEventListener("DOMContentLoaded", function(event) {
 			console.log('LocalStorage -Dom ready');
 			init();
@@ -86,14 +89,25 @@ class QuickLinks {
 		var ahrefList = document.querySelectorAll('a.quicklink-btn');
 		for (i in 0...ahrefList.length) {
 			var ahref:LinkElement = cast ahrefList[i];
-			ahref.onmouseover = (e:Event) -> {
-				console.log(Lib.nativeThis);
-				console.log(untyped e.currentTarget.dataset.name);
-				console.log(untyped e.currentTarget.dataset.counter);
-			}
+			// ahref.onmouseover = (e:Event) -> {
+			// 	console.log(Lib.nativeThis);
+			// 	// console.log(untyped e.currentTarget.dataset.uniq);
+			// 	// console.log(untyped e.currentTarget.dataset.name);
+			// 	// console.log(untyped e.currentTarget.dataset.counter);
+			// }
 			ahref.onclick = (e:Event) -> {
-				console.log(Lib.nativeThis);
-				console.log(untyped e.currentTarget.dataset.name);
+				// console.log(Lib.nativeThis);
+				// console.log(untyped e.currentTarget.dataset.uniq);
+				// console.log(untyped e.currentTarget.dataset.name);
+				// console.log(untyped e.currentTarget.dataset.counter);
+				for (i in 0...localItemArr.length) {
+					var obj:QuickLinkObj = localItemArr[i];
+					if (obj._id == untyped e.currentTarget.dataset.uniq) {
+						obj.counter += 1;
+					}
+				}
+				LocalData.update(dbName, 'itemArray', localItemArr);
+				updateOutput();
 			}
 		}
 
@@ -114,23 +128,28 @@ class QuickLinks {
 	}
 
 	function updateOutput() {
-		var arr:Array<Dynamic> = LocalData.read(dbName, 'itemArray');
-		textarea.value = Json.stringify(arr);
+		localItemArr = LocalData.read(dbName, 'itemArray');
+
+		// sort on counter
+		localItemArr.sort(function(a, b) return if (a.counter < b.counter) 1 else -1);
+
+		// for debug purpers
+		textarea.value = Json.stringify(localItemArr);
 
 		// var out = '<div class="list-group">';
 		var out = '<ul class="list-group">';
-		for (i in 0...arr.length) {
-			var obj:QuickLinkObj = arr[i];
+		for (i in 0...localItemArr.length) {
+			var obj:QuickLinkObj = localItemArr[i];
 			// trace(obj.name);
 			var date = Date.fromString(obj.created);
 			var t = DateTools.format(date, "%T");
 			// trace(obj.created);
 			out += '<li class="list-group-item d-flex justify-content-between align-items-start">';
-			out += '<a href="${obj.url}" class="quicklink-btn" title="${obj.name}" ';
+			out += '<a href="${obj.url}" class="quicklink-btn" title="${obj.name}" target="_blank" ';
 			out += 'data-uniq="${obj._id}" data-name="${obj.name}" data-counter="${obj.counter}">';
 			out += '${obj.url}';
 			out += '</a>';
-			out += '<a href="#" data-uniq="${obj._id}" class="quicklink-edit-btn btn btn-sm btn-outline-danger"><i class="fa fa-edit"></i></a>';
+			out += '<a href="#" data-uniq="${obj._id}" class="quicklink-edit-btn btn btn-sm btn-outline-danger" ><i class="fa fa-edit"></i></a>';
 			out += '<span class="badge bg-primary rounded-pill">${obj.counter}</span>';
 			out += '</li>';
 		}
@@ -144,16 +163,17 @@ class QuickLinks {
 	// ____________________________________ handlers ____________________________________
 
 	function onAddHandler(e) {
-		var arr:Array<Dynamic> = LocalData.read(dbName, 'itemArray');
+		localItemArr = LocalData.read(dbName, 'itemArray');
 
 		// add new counter at the top, by adding extra count
 		var counter = 0;
-		for (i in 0...arr.length) {
-			var ql:QuickLinkObj = arr[i];
+		for (i in 0...localItemArr.length) {
+			var ql:QuickLinkObj = localItemArr[i];
 			if (ql.counter >= counter)
 				counter = ql.counter + 1;
 		}
 
+		// create new object to add to list
 		var superHeroName = Randomize.superHeroName();
 		var obj = {
 			_id: '${Date.now().getTime()}-${Std.random(1000)}-${Std.random(1000)}',
@@ -162,11 +182,13 @@ class QuickLinks {
 			created: Date.now().toString(),
 			counter: counter,
 		}
-		arr.push(obj);
+		localItemArr.push(obj);
 
-		arr.sort(function(a, b) return if (a.counter < b.counter) 1 else -1);
+		// sort on counter
+		localItemArr.sort(function(a, b) return if (a.counter < b.counter) 1 else -1);
 
-		LocalData.update(dbName, 'itemArray', arr);
+		//
+		LocalData.update(dbName, 'itemArray', localItemArr);
 		updateOutput();
 	}
 

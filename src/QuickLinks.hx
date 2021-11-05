@@ -1,3 +1,4 @@
+import js.Lib;
 import haxe.Json;
 import utils.Randomize;
 import utils.LocalData;
@@ -27,6 +28,7 @@ class QuickLinks {
 		'https://www.disneyplus.com/en-gb/',
 		'https://www.netflix.com/',
 		'https://tv.kpn.com/',
+		'https://ficons.fiction.com/reference.html',
 		'https://forecastapp.com/1389043/schedule/team',
 		'https://fonkamsterdam1.harvestapp.com/time',
 		'https://calendar.google.com/calendar/',
@@ -59,6 +61,8 @@ class QuickLinks {
 	function init() {
 		setElements();
 		updateOutput();
+
+		getLinks();
 	}
 
 	function setElements() {
@@ -78,44 +82,102 @@ class QuickLinks {
 		btnRead.onclick = onReadHandler;
 	}
 
+	function getLinks() {
+		var ahrefList = document.querySelectorAll('a.quicklink-btn');
+		for (i in 0...ahrefList.length) {
+			var ahref:LinkElement = cast ahrefList[i];
+			ahref.onmouseover = (e:Event) -> {
+				console.log(Lib.nativeThis);
+				console.log(untyped e.currentTarget.dataset.name);
+				console.log(untyped e.currentTarget.dataset.counter);
+			}
+			ahref.onclick = (e:Event) -> {
+				console.log(Lib.nativeThis);
+				console.log(untyped e.currentTarget.dataset.name);
+			}
+		}
+
+		var ahrefList = document.querySelectorAll('a.quicklink-edit-btn');
+		for (i in 0...ahrefList.length) {
+			var ahref:LinkElement = cast ahrefList[i];
+			ahref.onmouseover = (e:Event) -> {
+				console.log(Lib.nativeThis);
+				console.log('FIXME: edit');
+				console.log(untyped e.currentTarget.dataset.uniq);
+			}
+			ahref.onclick = (e:Event) -> {
+				e.preventDefault();
+				console.log('FIXME: edit');
+				console.log(untyped e.currentTarget.dataset.uniq);
+			}
+		}
+	}
+
 	function updateOutput() {
 		var arr:Array<Dynamic> = LocalData.read(dbName, 'itemArray');
 		textarea.value = Json.stringify(arr);
 
-		var out = '<div class="list-group">';
+		// var out = '<div class="list-group">';
+		var out = '<ul class="list-group">';
 		for (i in 0...arr.length) {
 			var obj:QuickLinkObj = arr[i];
 			// trace(obj.name);
 			var date = Date.fromString(obj.created);
 			var t = DateTools.format(date, "%T");
 			// trace(obj.created);
-			out += '<a href="${obj.url}" class="list-group-item list-group-item-action">${obj.url}</a>';
+			out += '<li class="list-group-item d-flex justify-content-between align-items-start">';
+			out += '<a href="${obj.url}" class="quicklink-btn" title="${obj.name}" ';
+			out += 'data-uniq="${obj._id}" data-name="${obj.name}" data-counter="${obj.counter}">';
+			out += '${obj.url}';
+			out += '</a>';
+			out += '<a href="#" data-uniq="${obj._id}" class="quicklink-edit-btn btn btn-sm btn-outline-danger"><i class="fa fa-edit"></i></a>';
+			out += '<span class="badge bg-primary rounded-pill">${obj.counter}</span>';
+			out += '</li>';
 		}
-		out += '</div>';
+		out += '</ul>';
+		// out += '</div>';
 		output.innerHTML = out;
+
+		getLinks();
 	}
 
 	// ____________________________________ handlers ____________________________________
 
 	function onAddHandler(e) {
 		var arr:Array<Dynamic> = LocalData.read(dbName, 'itemArray');
+
+		// add new counter at the top, by adding extra count
+		var counter = 0;
+		for (i in 0...arr.length) {
+			var ql:QuickLinkObj = arr[i];
+			if (ql.counter >= counter)
+				counter = ql.counter + 1;
+		}
+
 		var superHeroName = Randomize.superHeroName();
 		var obj = {
+			_id: '${Date.now().getTime()}-${Std.random(1000)}-${Std.random(1000)}',
 			url: input.value.trim(),
 			name: superHeroName,
 			created: Date.now().toString(),
+			counter: counter,
 		}
 		arr.push(obj);
+
+		arr.sort(function(a, b) return if (a.counter < b.counter) 1 else -1);
+
 		LocalData.update(dbName, 'itemArray', arr);
 		updateOutput();
 	}
 
 	function onRandomHandler(e) {
 		input.value = basisArr[Std.random(basisArr.length)];
+		onAddHandler(e);
 	}
 
 	function onClearHandler(e) {
 		LocalData.clear(dbName);
+		window.location.reload(true);
 	}
 
 	function onReadHandler(e) {
@@ -133,4 +195,5 @@ typedef QuickLinkObj = {
 	var created:String; // :Date;
 	var url:String;
 	var name:String;
+	var counter:Int;
 }

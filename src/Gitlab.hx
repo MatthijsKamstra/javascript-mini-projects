@@ -95,10 +95,10 @@ class Gitlab {
 				var home = '';
 				if (obj.homepage != null) {
 					// <a href="${obj.homepage}">
-					home += ' <i class="fa fa-home"></i>';
+					home += '<i class="fa fa-home"></i> ';
 				}
 
-				html += '<a href="${obj.html_url}" target="_blank" class="list-group-item list-group-item-action">${obj.name}${home}</a>';
+				html += '<a href="${obj.html_url}" target="_blank" class="list-group-item list-group-item-action">${home}${obj.name}</a>';
 			}
 		}
 		html += '</div>';

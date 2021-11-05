@@ -16,6 +16,12 @@
 
 --next
 
+--cmd echo QuickLinks
+-main QuickLinks
+-js docs/quickLinks/quickLinks.js
+
+--next
+
 --cmd echo Gitlab
 -main Gitlab
 -js docs/gitlab/gitlab.js

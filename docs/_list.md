@@ -18,14 +18,15 @@
 | 16 | Localstorage |  | [link](docs/localstorage) |
 | 17 | Memory |  | [link](docs/memory) |
 | 18 | Photo-watermark |  | [link](docs/photo-watermark) |
-| 19 | Quotes |  | [link](docs/quotes) |
-| 20 | Randomuser | DOM,api,json,Promise | [link](docs/randomuser) |
-| 21 | Shoppingcard |  | [link](docs/shoppingcard) |
-| 22 | Sidemenu |  | [link](docs/sidemenu) |
-| 23 | Sketch | canvas,sketching,save png | [link](docs/sketch) |
-| 24 | Svg-editor |  | [link](docs/svg-editor) |
-| 25 | Tictactoe |  | [link](docs/tictactoe) |
-| 26 | Todo | todo,DOM,localStorage,random | [link](docs/todo) |
-| 27 | Togglesound | audio,toggle,loading | [link](docs/togglesound) |
-| 28 | Weather | api,weather,json,loading | [link](docs/weather) |
-| 29 | Webcam | webcam,canvas,snapshot | [link](docs/webcam) |
+| 19 | QuickLinks |  | [link](docs/quickLinks) |
+| 20 | Quotes |  | [link](docs/quotes) |
+| 21 | Randomuser | DOM,api,json,Promise | [link](docs/randomuser) |
+| 22 | Shoppingcard |  | [link](docs/shoppingcard) |
+| 23 | Sidemenu |  | [link](docs/sidemenu) |
+| 24 | Sketch | canvas,sketching,save png | [link](docs/sketch) |
+| 25 | Svg-editor |  | [link](docs/svg-editor) |
+| 26 | Tictactoe |  | [link](docs/tictactoe) |
+| 27 | Todo | todo,DOM,localStorage,random | [link](docs/todo) |
+| 28 | Togglesound | audio,toggle,loading | [link](docs/togglesound) |
+| 29 | Weather | api,weather,json,loading | [link](docs/weather) |
+| 30 | Webcam | webcam,canvas,snapshot | [link](docs/webcam) |

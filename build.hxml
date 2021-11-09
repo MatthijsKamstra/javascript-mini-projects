@@ -16,6 +16,12 @@
 
 --next
 
+--cmd echo SideBar
+-main SideBar
+-js docs/sidebar/sidebar.js
+
+--next
+
 --cmd echo QuickLinks
 -main QuickLinks
 -js docs/quickLinks/quickLinks.js

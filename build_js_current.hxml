@@ -4,6 +4,12 @@
 -D js-es=6
 
 
---cmd echo QuickLinks
--main QuickLinks
--js docs/quickLinks/quickLinks.js
+# --cmd echo QuickLinks
+# -main QuickLinks
+# -js docs/quickLinks/quickLinks.js
+
+
+
+--cmd echo SideBar
+-main SideBar
+-js docs/sidebar/sidebar.js

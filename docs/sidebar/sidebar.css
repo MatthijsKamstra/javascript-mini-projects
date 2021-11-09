@@ -1,0 +1,189 @@
+/*
+default style
+*/
+html,
+body {
+  position: relative;
+  min-height: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  outline: none;
+  resize: none;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+#container-btn-open-electron {
+  display: none;
+}
+
+/*remember to define focus styles!*/
+:focus {
+  outline: 0;
+}
+
+/*
+containers / workbench
+*/
+#monk_markdown_container {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#workbench_parts_title {
+  background-color: #505050;
+  height: 23px;
+  display: flex;
+  font-size: 14px;
+}
+.icon-wrapper {
+  position: relative;
+  float: left;
+}
+*.icon-blue {
+  color: #0088cc;
+}
+*.icon-grey {
+  color: grey;
+}
+i {
+  /* width:100px; */
+  text-align: center;
+  vertical-align: middle;
+}
+.badge {
+  background: #3655b5;
+  color: white;
+  width: auto;
+  height: auto;
+  margin: 0;
+  border-radius: 50%;
+  position: absolute;
+  min-width: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  padding: 3px;
+  right: 5px;
+}
+.badge:empty {
+  display: none;
+}
+
+/* .badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #777;
+    border-radius: 10px;
+} */
+
+#workbench_parts_title > div {
+  flex: 1; /*grow*/
+}
+.window-close {
+  /* background-color: green; */
+}
+.window-title {
+  /* background-color: yellow; */
+  color: #c9c9c9;
+  line-height: 22px;
+  text-align: center;
+}
+.window-wordcount {
+  /* background-color: pink; */
+  color: #949aa1;
+  line-height: 22px;
+  text-align: right;
+  margin-right: 20px;
+}
+
+#workbench_parts_editor_container {
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+}
+
+#workbench_parts_activitybar {
+  background-color: #353535;
+  display: inline-block;
+  width: 50px;
+  height: 100%;
+  color: white;
+  padding-top: 10px;
+}
+#workbench_parts_sidebar {
+  background-color: rgb(39, 39, 39);
+  width: 230px;
+  height: 100%;
+  top: 22px;
+  left: 50px;
+  position: absolute;
+  display: none;
+}
+#workbench_parts_editor {
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1e1e1e;
+}
+#workbench_parts_editor_one {
+  width: 50%;
+  min-width: 500px;
+  height: 100%;
+  display: inline-flex;
+}
+#workbench_parts_editor_two {
+  width: 50%;
+  height: 100%;
+  display: inline-flex;
+}
+
+/*
+buttons
+*/
+.activitybar-btn {
+  cursor: pointer;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  opacity: 0.7;
+  -webkit-transition: opacity 1s; /* Safari */
+  transition: opacity 1s;
+}
+.activitybar-btn:hover {
+  opacity: 1;
+}
+.activitybar-top {
+  top: 0px;
+}
+.activitybar-bottom {
+  bottom: 0px;
+  display: block;
+  position: absolute;
+  width: 50px;
+}

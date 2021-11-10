@@ -16,6 +16,23 @@
 
 --next
 
+--cmd echo DropzoneJs
+-main DropzoneJs
+-js docs/dropzonejs/dropzonejs.js
+--next
+
+--cmd echo SortableJs
+-main SortableJs
+-js docs/sortablejs/sortablejs.js
+
+--next
+
+--cmd echo FullpageJs
+-main FullpageJs
+-js docs/fullpagejs/fullpagejs.js
+
+--next
+
 --cmd echo SideBar
 -main SideBar
 -js docs/sidebar/sidebar.js

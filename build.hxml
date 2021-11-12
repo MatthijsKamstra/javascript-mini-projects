@@ -19,6 +19,7 @@
 --cmd echo DropzoneJs
 -main DropzoneJs
 -js docs/dropzonejs/dropzonejs.js
+
 --next
 
 --cmd echo SortableJs

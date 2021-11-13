@@ -11,26 +11,25 @@
 | 9 | Dropzonejs |  | [link](docs/dropzonejs) |
 | 10 | Dummydata | json,data,dummy,generate | [link](docs/dummydata) |
 | 11 | Emoji-favicon |  | [link](docs/emoji-favicon) |
-| 12 | Fullpagejs |  | [link](docs/fullpagejs) |
-| 13 | Fullscreen | fullscreen,background | [link](docs/fullscreen) |
-| 14 | Geolocation | weather,geolocation,api,cors | [link](docs/geolocation) |
-| 15 | Gitlab |  | [link](docs/gitlab) |
-| 16 | Hidenavbar |  | [link](docs/hidenavbar) |
-| 17 | Jsonp | jsonp,api,github,json,loading | [link](docs/jsonp) |
-| 18 | Localstorage |  | [link](docs/localstorage) |
-| 19 | Memory |  | [link](docs/memory) |
-| 20 | Photo-watermark |  | [link](docs/photo-watermark) |
-| 21 | QuickLinks |  | [link](docs/quickLinks) |
-| 22 | Quotes |  | [link](docs/quotes) |
-| 23 | Randomuser | DOM,api,json,Promise | [link](docs/randomuser) |
-| 24 | Shoppingcard |  | [link](docs/shoppingcard) |
-| 25 | Sidebar |  | [link](docs/sidebar) |
-| 26 | Sidemenu |  | [link](docs/sidemenu) |
-| 27 | Sketch | canvas,sketching,save png | [link](docs/sketch) |
-| 28 | Sortablejs |  | [link](docs/sortablejs) |
-| 29 | Svg-editor |  | [link](docs/svg-editor) |
-| 30 | Tictactoe |  | [link](docs/tictactoe) |
-| 31 | Todo | todo,DOM,localStorage,random | [link](docs/todo) |
-| 32 | Togglesound | audio,toggle,loading | [link](docs/togglesound) |
-| 33 | Weather | api,weather,json,loading | [link](docs/weather) |
-| 34 | Webcam | webcam,canvas,snapshot | [link](docs/webcam) |
+| 12 | Fullscreen | fullscreen,background | [link](docs/fullscreen) |
+| 13 | Geolocation | weather,geolocation,api,cors | [link](docs/geolocation) |
+| 14 | Gitlab |  | [link](docs/gitlab) |
+| 15 | Hidenavbar |  | [link](docs/hidenavbar) |
+| 16 | Jsonp | jsonp,api,github,json,loading | [link](docs/jsonp) |
+| 17 | Localstorage |  | [link](docs/localstorage) |
+| 18 | Memory |  | [link](docs/memory) |
+| 19 | Photo-watermark |  | [link](docs/photo-watermark) |
+| 20 | QuickLinks |  | [link](docs/quickLinks) |
+| 21 | Quotes |  | [link](docs/quotes) |
+| 22 | Randomuser | DOM,api,json,Promise | [link](docs/randomuser) |
+| 23 | Shoppingcard |  | [link](docs/shoppingcard) |
+| 24 | Sidebar |  | [link](docs/sidebar) |
+| 25 | Sidemenu |  | [link](docs/sidemenu) |
+| 26 | Sketch | canvas,sketching,save png | [link](docs/sketch) |
+| 27 | Sortablejs |  | [link](docs/sortablejs) |
+| 28 | Svg-editor |  | [link](docs/svg-editor) |
+| 29 | Tictactoe |  | [link](docs/tictactoe) |
+| 30 | Todo | todo,DOM,localStorage,random | [link](docs/todo) |
+| 31 | Togglesound | audio,toggle,loading | [link](docs/togglesound) |
+| 32 | Weather | api,weather,json,loading | [link](docs/weather) |
+| 33 | Webcam | webcam,canvas,snapshot | [link](docs/webcam) |

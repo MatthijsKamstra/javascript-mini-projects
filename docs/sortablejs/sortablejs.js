@@ -4,11 +4,11 @@ class SortableJs {
 		let _gthis = this;
 		window.document.addEventListener("DOMContentLoaded",function(event) {
 			$global.console.log("SortableJs - Dom ready");
-			utils_Embed.setScript("https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js",$bind(_gthis,_gthis.setupSortableJs));
+			utils_Embed.setScript("https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js",$bind(_gthis,_gthis.init));
 		});
 	}
-	setupSortableJs() {
-		console.log("src/SortableJs.hx:14:","setupSortableJs");
+	init() {
+		console.log("src/SortableJs.hx:14:","init");
 		let el = window.document.getElementById("example1");
 		let sortable = new Sortable(el, {
 			animation: 150,

@@ -6,12 +6,12 @@ class SortableJs {
 	public function new() {
 		document.addEventListener("DOMContentLoaded", function(event) {
 			console.log('SortableJs - Dom ready');
-			Embed.setScript('https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js', setupSortableJs);
+			Embed.setScript('https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js', init);
 		});
 	}
 
-	function setupSortableJs() {
-		trace('setupSortableJs');
+	function init() {
+		trace('init');
 		// var el = document.getElementById('example1');
 		// var sortable = Syntax.code('Sortable.create({0})', el);
 

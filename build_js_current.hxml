@@ -24,8 +24,3 @@
 -main SortableJs
 -js docs/sortablejs/sortablejs.js
 
---next
-
---cmd echo FullpageJs
--main FullpageJs
--js docs/fullpagejs/fullpagejs.js

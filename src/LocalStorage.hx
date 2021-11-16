@@ -40,7 +40,7 @@ class LocalStorage {
 			LocalData.update(dbName, 'itemArray', []);
 
 		document.addEventListener("DOMContentLoaded", function(event) {
-			console.log('LocalStorage -Dom ready');
+			console.log('LocalStorage - Dom ready');
 			init();
 		});
 	}

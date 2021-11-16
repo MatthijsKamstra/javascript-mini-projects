@@ -10,17 +10,17 @@
 # -main QuickLinks
 # -js docs/quickLinks/quickLinks.js
 
-# --cmd echo SideBar
-# -main SideBar
-# -js docs/sidebar/sidebar.js
+--cmd echo SideBar
+-main SideBar
+-js docs/sidebar/sidebar.js
 
---cmd echo DropzoneJs
--main DropzoneJs
--js docs/dropzonejs/dropzonejs.js
+# --cmd echo DropzoneJs
+# -main DropzoneJs
+# -js docs/dropzonejs/dropzonejs.js
 
---next
+# --next
 
---cmd echo SortableJs
--main SortableJs
--js docs/sortablejs/sortablejs.js
+# --cmd echo SortableJs
+# -main SortableJs
+# -js docs/sortablejs/sortablejs.js
 

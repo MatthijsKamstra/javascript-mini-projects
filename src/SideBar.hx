@@ -1,5 +1,6 @@
+package;
+
 import js.Lib;
-import js.html.svg.Element;
 
 using StringTools;
 

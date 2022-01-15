@@ -1,1 +1,3 @@
-markdown csv drag-and-drop
+- markdown
+- csv
+- drag-and-drop

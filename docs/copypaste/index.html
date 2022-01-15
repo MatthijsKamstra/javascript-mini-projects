@@ -37,7 +37,15 @@
                         <div class="mb-3">
                             <label for="js-output-textarea" class="form-label">Copy content from this textarea</label>
                             <textarea class="form-control" id="js-output-textarea" rows="3"></textarea>
-                            <a id="js-copy-btn" class="btn btn-primary" href="#" role="button">Copy</a>
+                            <div class="d-grid gap-2">
+                                <a id="js-copy-btn" class="btn btn-primary btn-block" href="#" role="button">Use this
+                                    button to copy text to clipboard</a>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paste-area" class="form-label">Test it by pasting content here</label>
+                            <textarea placeholder="Click button and paste (Command+V) the clipboard in the area"
+                                class="form-control" id="paste-area" rows="3"></textarea>
                         </div>
                     </div>
                 </div>

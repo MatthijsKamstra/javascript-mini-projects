@@ -218,4 +218,15 @@
 -main Hidenavbar
 -js docs/hidenavbar/hidenavbar.js
 
+--next
+
+--cmd echo HtmlAudioWrapper
+-main HtmlAudioWrapper
+-js docs/htmlaudiowrapper/htmlaudiowrapper.js
+
+--next
+
+--cmd echo HtmlVideoWrapper
+-main HtmlVideoWrapper
+-js docs/htmlvideowrapper/htmlvideowrapper.js
 

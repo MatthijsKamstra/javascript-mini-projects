@@ -16,21 +16,23 @@
 | 14 | Geolocation | weather,geolocation,api,cors | [link](docs/geolocation) |
 | 15 | Gitlab |  | [link](docs/gitlab) |
 | 16 | Hidenavbar |  | [link](docs/hidenavbar) |
-| 17 | Jsonp | jsonp,api,github,json,loading | [link](docs/jsonp) |
-| 18 | Localstorage |  | [link](docs/localstorage) |
-| 19 | Memory |  | [link](docs/memory) |
-| 20 | Photo-watermark |  | [link](docs/photo-watermark) |
-| 21 | QuickLinks |  | [link](docs/quickLinks) |
-| 22 | Quotes |  | [link](docs/quotes) |
-| 23 | Randomuser | DOM,api,json,Promise | [link](docs/randomuser) |
-| 24 | Shoppingcard |  | [link](docs/shoppingcard) |
-| 25 | Sidebar |  | [link](docs/sidebar) |
-| 26 | Sidemenu |  | [link](docs/sidemenu) |
-| 27 | Sketch | canvas,sketching,save png | [link](docs/sketch) |
-| 28 | Sortablejs |  | [link](docs/sortablejs) |
-| 29 | Svg-editor |  | [link](docs/svg-editor) |
-| 30 | Tictactoe |  | [link](docs/tictactoe) |
-| 31 | Todo | todo,DOM,localStorage,random | [link](docs/todo) |
-| 32 | Togglesound | audio,toggle,loading | [link](docs/togglesound) |
-| 33 | Weather | api,weather,json,loading | [link](docs/weather) |
-| 34 | Webcam | webcam,canvas,snapshot | [link](docs/webcam) |
+| 17 | Htmlaudiowrapper |  | [link](docs/htmlaudiowrapper) |
+| 18 | Htmlvideowrapper |  | [link](docs/htmlvideowrapper) |
+| 19 | Jsonp | jsonp,api,github,json,loading | [link](docs/jsonp) |
+| 20 | Localstorage |  | [link](docs/localstorage) |
+| 21 | Memory |  | [link](docs/memory) |
+| 22 | Photo-watermark |  | [link](docs/photo-watermark) |
+| 23 | QuickLinks |  | [link](docs/quickLinks) |
+| 24 | Quotes |  | [link](docs/quotes) |
+| 25 | Randomuser | DOM,api,json,Promise | [link](docs/randomuser) |
+| 26 | Shoppingcard |  | [link](docs/shoppingcard) |
+| 27 | Sidebar |  | [link](docs/sidebar) |
+| 28 | Sidemenu |  | [link](docs/sidemenu) |
+| 29 | Sketch | canvas,sketching,save png | [link](docs/sketch) |
+| 30 | Sortablejs |  | [link](docs/sortablejs) |
+| 31 | Svg-editor |  | [link](docs/svg-editor) |
+| 32 | Tictactoe |  | [link](docs/tictactoe) |
+| 33 | Todo | todo,DOM,localStorage,random | [link](docs/todo) |
+| 34 | Togglesound | audio,toggle,loading | [link](docs/togglesound) |
+| 35 | Weather | api,weather,json,loading | [link](docs/weather) |
+| 36 | Webcam | webcam,canvas,snapshot | [link](docs/webcam) |
